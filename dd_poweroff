@@ -1,0 +1,23 @@
+#!/bin/sh
+
+echo "y=poweroff, r=reboot, l=lock, s=suspend, h=hibernation other=nothing"
+read reponse
+
+if [ "$reponse" == "y" ]
+then
+		systemctl poweroff
+elif [ "$reponse" == "r" ]
+then
+		systemctl reboot
+elif [ "$reponse" == "l" ]
+then
+		xlock -mode blank
+elif [ "$reponse" == "s" ]
+then
+		systemctl suspend
+elif [ "$reponse" == "h" ]
+then
+		systemctl hibernate
+else
+	echo "nothing"
+fi

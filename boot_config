@@ -1,0 +1,49 @@
+#!/bin/bash
+
+# rajouter "source ~/script/boot_config" dans "/home/dionisos/.profile et .bashrc" !!!
+
+# enable programmable completion features (you don't need to enable
+# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+# sources /etc/bash.bashrc).
+if [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+fi
+
+function Delete()
+{
+	mv $@ $HOME/.local/share/Trash/files/
+}
+ 
+function Purge()
+{
+	\rm -rf $HOME/.local/share/Trash/files/*
+	\rm -rf $HOME/.local/share/Trash/info/*
+}
+ 
+alias rm='Delete'
+alias purge='Purge'
+alias cp='cp -i'
+alias mv='mv -i'
+alias go='cd ~/Bureau/'
+alias ema='cd ~/.emacs.d/'
+alias cd..='cd ..'
+alias gocpp="cd ~/projet/programmation/c++/"
+alias gopy="cd ~/projet/programmation/python/"
+alias rmtempo="~/rmtempo"
+alias r="ranger"
+
+export HISTFILESIZE=200000
+export HISTSIZE=100000
+export SVN_EDITOR="emacsclient -c"
+export EDITOR="emacsclient -c"
+PATH=$PATH:"./"
+PATH=$PATH:"~/script"
+export PATH
+export LANG="fr_FR.utf8"
+export PAGER=less
+# c-v + key for find the character sequence emitted by key
+bind '"\e[Z":menu-complete'
+bind '"\e[A": history-search-backward'
+bind '"\e[B": history-search-forward'
+# c-r for search in history
+source /usr/etc/profile.d/autojump.bash

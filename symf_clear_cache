@@ -1,0 +1,4 @@
+#!/bin/bash
+
+sudo -u http php ./app/console cache:clear
+sudo -u http php ./app/console cache:clear --env=prod

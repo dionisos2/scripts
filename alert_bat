@@ -1,0 +1,4 @@
+#!/bin/sh
+
+echo "la batterie est presque vide !!"
+read a

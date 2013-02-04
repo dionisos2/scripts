@@ -1,0 +1,5 @@
+#!/bin/bash
+
+date=`date "+%Y-%m-%d-%S-%N"`
+
+import -window root /home/dionisos/screenshot/root_screen_$date.png
