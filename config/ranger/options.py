@@ -21,6 +21,7 @@ from ranger.api.options import *
 load_default_rc = False
 # How many columns are there, and what are their relative widths?
 column_ratios = (1, 3, 4)
+autoupdate_cumulative_size = False
 
 # Which files should be hidden?  Toggle this by typing `zh' or
 # changing the setting `show_hidden'
@@ -68,7 +69,7 @@ mouse_enabled = True
 
 # Display the file size in the main column or status bar?
 display_size_in_main_column = True
-display_size_in_status_bar = False
+display_size_in_status_bar = True
 
 # Display files tags in all columns or only in main column?
 display_tags_in_all_columns = True

@@ -82,6 +82,15 @@ from ranger.core.runner import ALLOWED_FLAGS
 import os
 from ranger.core.loader import CommandLoader
 
+class size2(Command):
+    def execute(self):
+        self.fm.get_cumulative_size()
+
+class size(Command):
+    def execute(self):
+        param = "-hs " + ' '.join(d.path for d in self.fm.env.cwd.get_selection())
+        self.fm.execute_command("du " + param, flags = ['p'])
+
 class extracthere(Command):
     def execute(self):
 	    """ Extract copied files to current directory """
@@ -530,7 +539,7 @@ class delete(Command):
 		if cwd.marked_items or (cf.is_directory and not cf.is_link \
 				and len(os.listdir(cf.path)) > 0):
 			# better ask for a confirmation, when attempting to
-			# delete multiple files or a non-empty directory.
+			# te multiple files or a non-empty directory.
 			return self.fm.open_console(DELETE_WARNING)
 
 		# no need for a confirmation, just delete
