@@ -108,7 +108,7 @@ myawesomemenu = {
    { "zim", "zim" },
    { "emacs_debug", "emacs --debug-init" },
    { "pidgin", "pidgin" },
-   { "bépo", terminal_cmd .. "/home/dionisos/script/pgm_keyboard/load" },
+   { "bépo", "/home/dionisos/script/pgm_keyboard/load" },
    { "azerty", terminal_cmd .. "setxkbmap fr" },
    { "manual", terminal_cmd .. "man awesome"  },
    { "edit config", editor .. " " .. awful.util.getdir("config") .. "/rc.lua" },
@@ -164,7 +164,7 @@ orgwidget = wibox.widget.textbox()
 
 vicious.register(netwidget, vicious.widgets.net, format_net, 5)
 vicious.register(batwidget, vicious.widgets.bat, ' $1$2', 29, 'BAT0')
-vicious.register(volumewidget, vicious.widgets.volume, '$2$1 ', 31, 'Master')
+vicious.register(volumewidget, vicious.widgets.volume, '$2$1% ', 31, 'Master')
 vicious.register(orgwidget, vicious.widgets.org, format_org, 59, {'/home/dionisos/info/agenda.org'})
 
 os.setlocale("fr_FR.UTF-8") -- Français
@@ -329,8 +329,10 @@ globalkeys = awful.util.table.join(
     awful.key({modkey, "Control"}, "m",function () awful.util.spawn("quodlibet") end),
 	awful.key({modkey, "Control"}, "p",function () awful.util.spawn("pidgin") end),
 	awful.key({modkey, "Control"}, "f",function () awful.util.spawn("firefox") end),
-	awful.key({modkey,}, "#95",function () awful.util.spawn("/home/dionisos/script/volume_down") vicious.force({volumewidget}) end),
-    awful.key({modkey,}, "#96",function () awful.util.spawn("/home/dionisos/script/volume_up") vicious.force({volumewidget})end),
+	awful.key({modkey,}, "#95",function () awful.util.spawn("/home/dionisos/script/volume_down 1") vicious.force({volumewidget}) end),
+    awful.key({modkey,}, "#96",function () awful.util.spawn("/home/dionisos/script/volume_up 1") vicious.force({volumewidget})end),
+	awful.key({modkey, "Shift"}, "#95",function () awful.util.spawn("/home/dionisos/script/volume_down 10") vicious.force({volumewidget}) end),
+    awful.key({modkey, "Shift"}, "#96",function () awful.util.spawn("/home/dionisos/script/volume_up 10") vicious.force({volumewidget})end),
 	awful.key({modkey, "Control"}, "#76",function () awful.util.spawn("/home/dionisos/script/volume_unmute") vicious.force({volumewidget}) end),
 	awful.key({modkey, }, "#76",function () awful.util.spawn("/home/dionisos/script/volume_mute") vicious.force({volumewidget}) end),
 	awful.key({}, "#74",function () awful.util.spawn("setxkbmap fr") end),
