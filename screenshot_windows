@@ -1,0 +1,5 @@
+#!/bin/bash
+
+date=$(format_date)
+
+import -windows "$1" "/home/dionisos/screenshot/$1_screenshot_$date.png"

@@ -6,3 +6,5 @@ emacsclient_c
 hibernation
 rc.d
 git-completion.bash
+mount_ukratio
+save_ukratio_db_ftp

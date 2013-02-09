@@ -1,5 +1,5 @@
 #!/bin/bash
 
-date=`date "+%Y-%m-%d-%S-%N"`
+date=$(format_date)
 
 import -window root /home/dionisos/screenshot/root_screen_$date.png

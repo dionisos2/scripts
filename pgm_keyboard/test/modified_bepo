@@ -1,0 +1,441 @@
+     key <AE01> {
+-        type= "FOUR_LEVEL_SEMIALPHABETIC",
+-        symbols[Group1]= [        quotedbl,               1,          emdash, doublelowquotemark ]
++        type[group1]= "FOUR_LEVEL_SEMIALPHABETIC",
++        type[group2]= "FOUR_LEVEL",
++        symbols[Group1]= [      braceright  ,               1,      quotedbl    , doublelowquotemark ],
++        symbols[Group2]= [       ampersand,               1,      dead_acute,  periodcentered ]
+     };
+
+     KEY		 <AE02> {
+-        type= "FOUR_LEVEL_SEMIALPHABETIC",
+-        symbols[Group1]= [   guillemotleft,               2,            less, leftdoublequotemark ]
++        type[group1]= "FOUR_LEVEL_SEMIALPHABETIC",
++        type[group2]= "FOUR_LEVEL",
++        symbols[Group1]= [   less,               2,    guillemotleft        , leftdoublequotemark ],
++        symbols[Group2]= [          eacute,               2,      asciitilde,          Eacute ]
+     };
+
+
+     key <AE03> {
+-        type= "FOUR_LEVEL_SEMIALPHABETIC",
+-        symbols[Group1]= [  guillemotright,               3,         greater, rightdoublequotemark ]
++        type[group1]= "FOUR_LEVEL_SEMIALPHABETIC",
++        type[group2]= "FOUR_LEVEL",
++        symbols[Group1]= [  greater,               3,   guillemotright      , rightdoublequotemark ],
++        symbols[Group2]= [        quotedbl,               3,      numbersign,         cedilla ]
+     };
+
+     key <AE04> {
+-        type= "FOUR_LEVEL_SEMIALPHABETIC",
+-        symbols[Group1]= [       parenleft,               4,     bracketleft,   lessthanequal ]
++        type[group1]= "FOUR_LEVEL_SEMIALPHABETIC",
++        type[group2]= "FOUR_LEVEL",
++        symbols[Group1]= [       parenleft,               4,     bracketleft,   lessthanequal ],
++        symbols[Group2]= [      apostrophe,               4,       braceleft,           acute ]
+     };
+
+     key <AE05> {
+-        type= "FOUR_LEVEL_SEMIALPHABETIC",
+-        symbols[Group1]= [      parenright,               5,    bracketright, greaterthanequal ]
++        type[group1]= "FOUR_LEVEL_SEMIALPHABETIC",
++        type[group2]= "FOUR_LEVEL",
++        symbols[Group1]= [      parenright,               5,    bracketright, greaterthanequal ],
++        symbols[Group2]= [       parenleft,               5,     bracketleft,       diaeresis ]
+     };
+
+     key <AE06> {
+-        type= "FOUR_LEVEL_SEMIALPHABETIC",
+-        symbols[Group1]= [              at,               6,     asciicircum,        NoSymbol ]
++        type[group1]= "FOUR_LEVEL_SEMIALPHABETIC",
++        type[group2]= "FOUR_LEVEL",
++        symbols[Group1]= [              at,               6,     asciicircum,        NoSymbol ],
++        symbols[Group2]= [           minus,               6,             bar,       brokenbar ]
+     };
+
+     key <AE07> {
+-        type= "FOUR_LEVEL_SEMIALPHABETIC",
+-        symbols[Group1]= [            plus,               7,       plusminus,         notsign ]
++        type[group1]= "FOUR_LEVEL_SEMIALPHABETIC",
++        type[group2]= "FOUR_LEVEL",
++        symbols[Group1]= [            plus,               7,       plusminus,         notsign ],
++        symbols[Group2]= [          egrave,               7,      dead_grave,          Egrave ]
+     };
+
+     key <AE08> {
+-        type= "FOUR_LEVEL_SEMIALPHABETIC",
+-        symbols[Group1]= [           minus,               8,           U2212,      onequarter ]
++        type[group1]= "FOUR_LEVEL_SEMIALPHABETIC",
++        type[group2]= "FOUR_LEVEL",
++        symbols[Group1]= [           minus,               8,           U2212,      onequarter ],
++        symbols[Group2]= [      underscore,               8,       backslash,          macron ]
+     };
+
+     key <AE09> {
+-        type= "FOUR_LEVEL_SEMIALPHABETIC",
+-        symbols[Group1]= [           slash,               9,        division,         onehalf ]
++        type[group1]= "FOUR_LEVEL_SEMIALPHABETIC",
++        type[group2]= "FOUR_LEVEL",
++        symbols[Group1]= [           slash,               9,        division,         onehalf ],
++        symbols[Group2]= [        ccedilla,               9,     asciicircum,        Ccedilla ]
+     };
+
+     key <AE10> {
+-        type= "FOUR_LEVEL_SEMIALPHABETIC",
+-        symbols[Group1]= [        asterisk,               0,        multiply,   threequarters ]
++        type[group1]= "FOUR_LEVEL_SEMIALPHABETIC",
++        type[group2]= "FOUR_LEVEL",
++        symbols[Group1]= [        asterisk,               0,        multiply,   threequarters ],
++        symbols[Group2]= [          agrave,               0,              at,          Agrave ]
+     };
+
+     key <AE11> {
+         type= "FOUR_LEVEL",
+-        symbols[Group1]= [           equal,          degree,        notequal,         minutes ]
++        symbols[Group1]= [           equal,          degree,        notequal,         minutes ],
++        symbols[Group2]= [      parenright,          degree,    bracketright,      ydiaeresis ]
+     };
+
+     key <AE12> {
+         type= "FOUR_LEVEL",
+-        symbols[Group1]= [         percent,           grave,           U2030,         seconds ]
++        symbols[Group1]= [         percent,           grave,           U2030,         seconds ],
++        symbols[Group2]= [           equal,            plus,      braceright,  dead_abovering ]
+     };
+
+     key <AD01> {
+         type= "FOUR_LEVEL_SEMIALPHABETIC",
+-        symbols[Group1]= [               b,               B,             bar,       brokenbar ]
++        symbols[Group1]= [               b,               B,             bar,       brokenbar ],
++        symbols[Group2]= [               a,               A,     acircumflex,      adiaeresis ]
+     };
+
+     key <AD02> {
+-        type= "FOUR_LEVEL_SEMIALPHABETIC",
+-        symbols[Group1]= [          eacute,          Eacute,      dead_acute, dead_doubleacute ]
++        type[group1]= "FOUR_LEVEL_SEMIALPHABETIC",
++        type[group2]= "FOUR_LEVEL_ALPHABETIC",
++        symbols[Group1]= [          eacute,          Eacute,      dead_acute, dead_doubleacute ],
++        symbols[Group2]= [               z,               Z,           aring,           Aring ]
+     };
+
+     key <AD03> {
+         type= "FOUR_LEVEL_SEMIALPHABETIC",
+-        symbols[Group1]= [               p,               P,       ampersand,         section ]
++        symbols[Group1]= [               p,               P,       ampersand,         section ],
++        symbols[Group2]= [               e,               E,        EuroSign,            cent ]
+     };
+
+     key <AD04> {
+         type= "FOUR_LEVEL_ALPHABETIC",
+-        symbols[Group1]= [               o,               O,              oe,              OE ]
++        symbols[Group1]= [               o,               O,              oe,              OE ],
++        symbols[Group2]= [               r,               R,        ccedilla,        Ccedilla ]
+     };
+
+     key <AD05> {
+-        type= "FOUR_LEVEL_SEMIALPHABETIC",
+-        symbols[Group1]= [          egrave,          Egrave,      dead_grave,           grave ]
++        type[group1]= "FOUR_LEVEL_SEMIALPHABETIC",
++        type[group2]= "FOUR_LEVEL_ALPHABETIC",
++        symbols[Group1]= [          egrave,          Egrave,      dead_grave,           grave ],
++        symbols[Group2]= [               t,               T,           thorn,           THORN ]
+     };
+
+     key <AD06> {
+-        type= "FOUR_LEVEL",
+-        symbols[Group1]= [ dead_circumflex,          exclam,      exclamdown,        NoSymbol ]
++        type[group1]= "FOUR_LEVEL",
++        type[group2]= "FOUR_LEVEL_ALPHABETIC",
++        symbols[Group1]= [ dead_circumflex,          exclam,      question,        NoSymbol ],
++        symbols[Group2]= [               y,               Y,          yacute,          Yacute ]
+     };
+
+     key <AD07> {
+         type= "FOUR_LEVEL_SEMIALPHABETIC",
+-        symbols[Group1]= [               v,               V,      dead_caron,        NoSymbol ]
++        symbols[Group1]= [               v,               V,      dead_caron,        NoSymbol ],
++        symbols[Group2]= [               u,               U,     ucircumflex,      udiaeresis ]
+     };
+
+     key <AD08> {
+-        type= "FOUR_LEVEL_ALPHABETIC",
+-        symbols[Group1]= [               d,               D,             eth,             ETH ]
++        type[group1]= "FOUR_LEVEL_ALPHABETIC",
++        type[group2]= "FOUR_LEVEL_SEMIALPHABETIC",
++        symbols[Group1]= [               d,               D,             eth,             ETH ],
++        symbols[Group2]= [               i,               I,     icircumflex,      idiaeresis ]
+     };
+
+     key <AD09> {
+         type= "FOUR_LEVEL_SEMIALPHABETIC",
+-        symbols[Group1]= [               l,               L,     dead_stroke,        NoSymbol ]
++        symbols[Group1]= [               l,               L,     dead_stroke,        NoSymbol ],
++        symbols[Group2]= [               o,               O,     ocircumflex,      odiaeresis ]
+     };
+
+     key <AD10> {
+-        type= "FOUR_LEVEL_ALPHABETIC",
+-        symbols[Group1]= [               j,               J,           U0133,           U0132 ]
++        type[group1]= "FOUR_LEVEL_ALPHABETIC",
++        type[group2]= "FOUR_LEVEL_SEMIALPHABETIC",
++        symbols[Group1]= [               j,               J,           w,           W ],
++        symbols[Group2]= [               p,               P,       paragraph,           grave ]
+     };
+
+     key <AD11> {
+-        type= "FOUR_LEVEL_ALPHABETIC",
+-        symbols[Group1]= [               z,               Z,           schwa,           SCHWA ]
++        type[group1]= "FOUR_LEVEL_ALPHABETIC",
++        type[group2]= "FOUR_LEVEL",
++        symbols[Group1]= [               z,               Z,           schwa,           SCHWA ],
++        symbols[Group2]= [ dead_circumflex,  dead_diaeresis,      dead_tilde,      apostrophe ]
+     };
+
+     key <AD12> {
+-        type= "FOUR_LEVEL_SEMIALPHABETIC",
+-        symbols[Group1]= [               w,               W,      dead_breve,        NoSymbol ]
++        type[group1]= "FOUR_LEVEL_SEMIALPHABETIC",
++        type[group2]= "FOUR_LEVEL",
++        symbols[Group1]= [               quotedbl,     apostrophe          ,      asciicircum,        NoSymbol ],
++        symbols[Group2]= [          dollar,        sterling,     ecircumflex,      ediaeresis ]
+     };
+
+     key <AC01> {
+-        type= "FOUR_LEVEL_ALPHABETIC",
+-        symbols[Group1]= [               a,               A,              ae,              AE ]
++        type[group1]= "FOUR_LEVEL_ALPHABETIC",
++        type[group2]= "FOUR_LEVEL_SEMIALPHABETIC",
++        symbols[Group1]= [               a,               A,              ae,              AE ],
++        symbols[Group2]= [               q,               Q,     Acircumflex,      Adiaeresis ]
+     };
+
+     key <AC02> {
+         type= "FOUR_LEVEL_ALPHABETIC",
+-        symbols[Group1]= [               u,               U,          ugrave,          Ugrave ]
++        symbols[Group1]= [               u,               U,          ugrave,          Ugrave ],
++        symbols[Group2]= [               s,               S,          oslash,          Oslash ]
+     };
+
+     key <AC03> {
+         type= "FOUR_LEVEL_SEMIALPHABETIC",
+-        symbols[Group1]= [               i,               I,  dead_diaeresis,   dead_abovedot ]
++        symbols[Group1]= [               i,               I,  elementof,   notelementof ],
++        symbols[Group2]= [               d,               D,     Ecircumflex,      Ediaeresis ]
+     };
+
+     key <AC04> {
+         type= "FOUR_LEVEL_SEMIALPHABETIC",
+-        symbols[Group1]= [               e,               E,        EuroSign,   dead_currency ]
++        symbols[Group1]= [               e,               E,        EuroSign,   dead_currency ],
++        symbols[Group2]= [               f,               F,       plusminus,     ordfeminine ]
+     };
+
+     key <AC05> {
+-        type= "FOUR_LEVEL",
+-        symbols[Group1]= [           comma,       semicolon, rightsinglequotemark,       dead_horn ]
++        type[group1]= "FOUR_LEVEL",
++        type[group2]= "FOUR_LEVEL_ALPHABETIC",
++        symbols[Group1]= [           comma,       semicolon, rightsinglequotemark,       dead_horn ],
++        symbols[Group2]= [               g,               G,              ae,              AE ]
+     };
+
+     key <AC06> {
+-        type= "FOUR_LEVEL_SEMIALPHABETIC",
+-        symbols[Group1]= [               c,               C,       copyright,           U017F ]
++        type[group1]= "FOUR_LEVEL_SEMIALPHABETIC",
++        type[group2]= "FOUR_LEVEL_ALPHABETIC",
++        symbols[Group1]= [               c,               C,       ccedilla,           Ccedilla ],
++        symbols[Group2]= [               h,               H,             eth,             ETH ]
+     };
+
+     key <AC07> {
+-        type= "FOUR_LEVEL_ALPHABETIC",
+-        symbols[Group1]= [               t,               T,           thorn,           THORN ]
++        type[group1]= "FOUR_LEVEL_ALPHABETIC",
++        type[group2]= "FOUR_LEVEL_SEMIALPHABETIC",
++        symbols[Group1]= [               t,               T,           U2200,           U2203 ],
++        symbols[Group2]= [               j,               J,     Ucircumflex,      Udiaeresis ]
+     };
+
+     key <AC08> {
+         type= "FOUR_LEVEL_SEMIALPHABETIC",
+-        symbols[Group1]= [               s,               S,          ssharp,           U1E9E ]
++        symbols[Group1]= [               s,               S,          ssharp,           U1E9E ],
++        symbols[Group2]= [               k,               K,     Icircumflex,      Idiaeresis ]
+     };
+
+     key <AC09> {
+         type= "FOUR_LEVEL_SEMIALPHABETIC",
+-        symbols[Group1]= [               r,               R,      registered,       trademark ]
++        symbols[Group1]= [               r,               R,      registered,       trademark ],
++        symbols[Group2]= [               l,               L,     Ocircumflex,      Odiaeresis ]
+     };
+
+     key <AC10> {
+         type= "FOUR_LEVEL_SEMIALPHABETIC",
+-        symbols[Group1]= [               n,               N,      dead_tilde,        NoSymbol ]
++        symbols[Group1]= [               n,               N,      dead_tilde,        NoSymbol ],
++        symbols[Group2]= [               m,               M,     onesuperior,       masculine ]
+     };
+
+     key <AC11> {
+-        type= "FOUR_LEVEL_SEMIALPHABETIC",
+-        symbols[Group1]= [               m,               M,     dead_macron,       masculine ]
++        type[group1]= "FOUR_LEVEL_SEMIALPHABETIC",
++        type[group2]= "FOUR_LEVEL",
++        symbols[Group1]= [               m,               M,     dead_macron,       masculine ],
++        symbols[Group2]= [          ugrave,         percent,     twosuperior,          Ugrave ]
+     };
+
+     key <TLDE> {
+-        type= "FOUR_LEVEL",
+-        symbols[Group1]= [          dollar,      numbersign,          endash,       paragraph ]
++        type[group1]= "FOUR_LEVEL",
++        type[group2]= "FOUR_LEVEL_SEMIALPHABETIC",
++        symbols[Group1]= [         braceleft ,      numbersign,      dollar    ,       paragraph ],
++        symbols[Group2]= [              oe,              OE, leftdoublequotemark, rightdoublequotemark ]
+     };
+
+     key <BKSL> {
+-        type= "FOUR_LEVEL_SEMIALPHABETIC",
+-        symbols[Group1]= [        ccedilla,        Ccedilla,    dead_cedilla, dead_belowcomma ]
++        type[group1]= "FOUR_LEVEL_SEMIALPHABETIC",
++        type[group2]= "FOUR_LEVEL",
++        symbols[Group1]= [        ccedilla,        Ccedilla,    dead_cedilla, dead_belowcomma ],
++        symbols[Group2]= [        asterisk,              mu,   threesuperior,             yen ]
+     };
+
+     key <AB01> {
+         type= "FOUR_LEVEL_SEMIALPHABETIC",
+-        symbols[Group1]= [          agrave,          Agrave,       backslash,        NoSymbol ]
++        symbols[Group1]= [          agrave,          Agrave,       backslash,        NoSymbol ],
++        symbols[Group2]= [               w,               W,   guillemotleft,            less ]
+     };
+
+     key <AB02> {
+         type= "FOUR_LEVEL_SEMIALPHABETIC",
+-        symbols[Group1]= [               y,               Y,       braceleft, leftsinglequotemark ]
++        symbols[Group1]= [               y,               Y,       U22C3, U22C2 ],
++        symbols[Group2]= [               x,               X,  guillemotright,       greater ]
+     };
+
+     key <AB03> {
+         type= "FOUR_LEVEL_SEMIALPHABETIC",
+-        symbols[Group1]= [               x,               X,      braceright, rightsinglequotemark ]
++        symbols[Group1]= [               x,               X,      includedin,rightsinglequotemark ],
++        symbols[Group2]= [               c,               C,       copyright,       copyright ]
+     };
+
+     key <AB04> {
+-        type= "FOUR_LEVEL",
+-        symbols[Group1]= [          period,           colon,        ellipsis,  periodcentered ]
++        type[group1]= "FOUR_LEVEL",
++        type[group2]= "FOUR_LEVEL_SEMIALPHABETIC",
++        symbols[Group1]= [          period,           colon,        ellipsis,  periodcentered ],
++        symbols[Group2]= [               v,               V,      registered, leftsinglequotemark ]
+     };
+
+     key <AB05> {
+         type= "FOUR_LEVEL_SEMIALPHABETIC",
+-        symbols[Group1]= [               k,               K,      asciitilde,        NoSymbol ]
++        symbols[Group1]= [               k,               K,      asciitilde,        NoSymbol ],
++        symbols[Group2]= [               b,               B,          ssharp, rightsinglequotemark ]
+     };
+
+     key <AB06> {
+-        type= "FOUR_LEVEL",
+-        symbols[Group1]= [      apostrophe,        question,    questiondown,       dead_hook ]
++        type[group1]= "FOUR_LEVEL",
++        type[group2]= "FOUR_LEVEL_SEMIALPHABETIC",
++        symbols[Group1]= [      f,        F,    question,       dead_hook ],
++        symbols[Group2]= [               n,               N,         notsign,               N ]
+     };
+
+     key <AB07> {
+-        type= "FOUR_LEVEL_SEMIALPHABETIC",
+-        symbols[Group1]= [               q,               Q,  dead_abovering,   dead_belowdot ]
++        type[group1]= "FOUR_LEVEL_SEMIALPHABETIC",
++        type[group2]= "FOUR_LEVEL",
++        symbols[Group1]= [               q,               Q,  dead_abovering,   dead_belowdot ],
++        symbols[Group2]= [           comma,        question,    questiondown,       masculine ]
+     };
+
+     key <AB08> {
+-        type= "FOUR_LEVEL_SEMIALPHABETIC",
+-        symbols[Group1]= [               g,               G,      dead_greek,        NoSymbol ]
++        type[group1]= "FOUR_LEVEL_SEMIALPHABETIC",
++        type[group2]= "FOUR_LEVEL",
++        symbols[Group1]= [               g,               G,              mu,        NoSymbol ],
++        symbols[Group2]= [       semicolon,          period,        multiply,        multiply ]
+     };
+
+     key <AB09> {
+-        type= "FOUR_LEVEL_SEMIALPHABETIC",
+-        symbols[Group1]= [               h,               H,          dagger,    doubledagger ]
++        type[group1]= "FOUR_LEVEL_SEMIALPHABETIC",
++        type[group2]= "FOUR_LEVEL",
++        symbols[Group1]= [               h,               H,          dagger,    doubledagger ],
++        symbols[Group2]= [           colon,           slash,        division,        division ]
+     };
+
+     key <AB10> {
+-        type= "FOUR_LEVEL_SEMIALPHABETIC",
+-        symbols[Group1]= [               f,               F,     dead_ogonek,     ordfeminine ]
++        type[group1]= "FOUR_LEVEL_SEMIALPHABETIC",
++        type[group2]= "FOUR_LEVEL",
++        symbols[Group1]= [               w,               W,     dead_ogonek,     ordfeminine ],
++        symbols[Group2]= [          exclam,         section,      exclamdown,   dead_abovedot ]
+     };
+
+     key <KPMU> {
+-        type= "CTRL+ALT",
+-        symbols[Group1]= [     KP_Multiply,           U22C5,       0x10000d7,      VoidSymbol,   XF86ClearGrab ]
++        type= "FOUR_LEVEL_X",
++        symbols[Group1]= [     KP_Multiply,           U22C5,       0x10000d7,   XF86ClearGrab ]
+     };
+
+     key <SPCE> {
+         type= "FOUR_LEVEL",
+-        symbols[Group1]= [           space,    nobreakspace,      underscore,           U202F ]
++        symbols[Group1]= [           space,    nobreakspace,      underscore,           U202F ],
++        symbols[Group2]= [           space,           space,    nobreakspace,        NoSymbol ]
+     };
+
+
+     key <KPSU> {
+-        type= "CTRL+ALT",
+-        symbols[Group1]= [     KP_Subtract,           U2212,           U2212,      VoidSymbol,  XF86Prev_VMode ]
++        type= "FOUR_LEVEL_X",
++        symbols[Group1]= [     KP_Subtract,           U2212,           U2212,  XF86Prev_VMode ]
+     };
+
+     key  <KP0> {
+         type= "FOUR_LEVEL_MIXED_KEYPAD",
+-        symbols[Group1]= [       KP_Insert,            KP_0,           U2195,           U21D5 ]
++        symbols[Group1]= [       U2205,            KP_0,           U2205,           U2205 ]
+     };
+
+     key <KPDL> {
+-        type= "FOUR_LEVEL_MIXED_KEYPAD",
+-        symbols[Group1]= [       KP_Delete,          period,           comma,           U202F ]
+-    };
+
+-    key <LVL3> {
+-        type= "ONE_LEVEL",
+-        symbols[Group1]= [ ISO_Level3_Shift ],
+-        actions[Group1]= [ SetMods(modifiers=LevelThree) ]
++        type[group1]= "FOUR_LEVEL_MIXED_KEYPAD",
++        type[group2]= "FOUR_LEVEL_KEYPAD",
++        symbols[Group1]= [       KP_Delete,          period,           comma,           U202F ],
++        symbols[Group2]= [       KP_Delete,      KP_Decimal,       KP_Delete,      KP_Decimal ]
+     };
+
+     key <LSGT> {
+-        type= "FOUR_LEVEL_SEMIALPHABETIC",
+-        symbols[Group1]= [     ecircumflex,     Ecircumflex,           slash,       brokenbar ]
++        type[group1]= "FOUR_LEVEL_SEMIALPHABETIC",
++        type[group2]= "FOUR_LEVEL",
++        symbols[Group1]= [     ecircumflex,     Ecircumflex,           slash,       brokenbar ],
++        symbols[Group2]= [            less,         greater,             bar,        NoSymbol ]
+     };

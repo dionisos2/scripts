@@ -1,0 +1,2 @@
+xkbprint -color -label symbols -ll 2 -pict all $DISPLAY -o keysymbols.ps
+xkbprint -color -label name $DISPLAY -o keycodes.ps

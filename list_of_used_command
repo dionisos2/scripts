@@ -1,1 +1,12 @@
-history|awk '{print $2}'|awk 'BEGIN {FS="|"} {print $1}'|sort|uniq -c|sort -rn
+#!/bin/sh
+
+
+echo -e "use:\nsource $0"
+
+commands=$(history|awk '{print $2}'|awk 'BEGIN {FS="|"} {print $1}'|sort|uniq -c|sort -rn)
+
+sum=$(echo -e "$commands" | awk '{SUM += $1}END{print SUM}')
+
+echo "sum = " $sum
+echo "list of commands:"
+echo "$commands"

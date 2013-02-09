@@ -1,0 +1,7 @@
+#!/bin/sh
+
+echo "création de l’archive"
+wget http://ukratio.org/testeur.php
+echo "récupération de l’archive"
+lftp -f save_ukratio_db_ftp
+echo "sauvegarde réussie !"

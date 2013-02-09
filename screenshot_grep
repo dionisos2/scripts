@@ -1,0 +1,13 @@
+#!/bin/bash
+
+date=$(format_date)
+
+windows=$(wmctrl -l | grep "$1" | head -1 | awk '{print $1}')
+
+if [ "$windows" == "" ]
+then
+	echo "windows not found"
+	exit 1
+fi
+	
+import -windows $windows screenshot_$date.png
