@@ -1,0 +1,12 @@
+#!/bin/sh
+
+date=$(date "+%d-%m-%Y")
+
+echo "création de l’archive"
+wget http://ukratio.org/dump_db.php
+echo "récupération de l’archive"
+user=$(.psw -u ukratio.org)
+psw=$(.psw -p ukratio.org)
+
+curl -u $user:$psw "ftp://ftp.toile-libre.org/ukratio/ukratio.org-web/htdocs/ukratio.sql.gz" -o "/srv/http/sauvegardes_mysql/ukratio_$date.sql.gz"
+echo "sauvegarde réussie !"
