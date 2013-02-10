@@ -1,0 +1,6 @@
+#!/bin/sh
+
+user=$(.psw -u ukratio.org)
+psw=$(.psw -p ukratio.org)
+
+curlftpfs -v "ftp://$user:$psw@ftp.toile-libre.org/ukratio/ukratio.org-web" ukratio.org
