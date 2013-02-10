@@ -1,0 +1,9 @@
+#!/bin/sh
+
+
+sudo swapoff -a
+sudo swapon /swapfile
+sudo s2disk
+
+echo "le redémarrage c’est correctement effectué"
+read a
