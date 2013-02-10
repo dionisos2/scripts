@@ -1,0 +1,39 @@
+#!/bin/sh
+
+if [[ ! -f $1 ]]
+then
+	echo "$1 n’est pas un fichier ou n’existe pas"
+	exit 1
+fi
+
+rep=false
+if [[ ${1:0:17} == "/srv/http/ukratio" ]]
+then
+	rep="ukratio"
+fi
+
+if [[ ${1:0:19} == "/srv/http/generales" ]]
+then
+	rep="generales"
+fi
+
+if [[ $rep == false ]]
+then
+	echo "le fichier $1 doit être dans /srv/http/ukratio ou /srv/http/generales"
+	exit 1
+fi
+
+if [[ $rep == "ukratio" ]]
+then
+	file="${1:18}"
+fi
+
+if [[ $rep == "generales" ]]
+then
+	file="generales/${1:20}"
+fi
+
+user=$(.psw -u ukratio.org)
+psw=$(.psw -p ukratio.org)
+
+curl -T $1 -u $user:$psw "ftp://ftp.toile-libre.org/ukratio/ukratio.org-web/htdocs/$file"

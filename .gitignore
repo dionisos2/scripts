@@ -8,3 +8,4 @@ rc.d
 git-completion.bash
 mount_ukratio
 save_ukratio_db
+.psw
