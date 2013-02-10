@@ -7,4 +7,4 @@ hibernation
 rc.d
 git-completion.bash
 mount_ukratio
-save_ukratio_db_ftp
+save_ukratio_db
