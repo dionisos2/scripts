@@ -34,6 +34,7 @@ alias r="ranger"
 
 export HISTFILESIZE=200000
 export HISTSIZE=100000
+# /!\ del this var in .bash_rc /!\
 export SVN_EDITOR="emacsclient -c"
 export EDITOR="emacsclient -c"
 PATH=$PATH:"./"
@@ -47,3 +48,4 @@ bind '"\e[A": history-search-backward'
 bind '"\e[B": history-search-forward'
 # c-r for search in history
 source /usr/etc/profile.d/autojump.bash
+export PROMPT_COMMAND="history -a && $PROMPT_COMMAND"

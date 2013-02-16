@@ -1,9 +1,7 @@
 #!/bin/sh
 
 
-echo -e "use:\nsource $0"
-
-commands=$(history|awk '{print $2}'|awk 'BEGIN {FS="|"} {print $1}'|sort|uniq -c|sort -rn)
+commands=$(more ~/.bash_history | egrep -v "(^#|^$)" | awk '{print $1}'|sort|uniq -c|sort -rg)
 
 sum=$(echo -e "$commands" | awk '{SUM += $1}END{print SUM}')
 
