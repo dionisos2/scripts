@@ -1,3 +1,5 @@
+-- luac -p ~/.config/awesome/rc.lua to verify syntax !
+
 -- Standard awesome library
 local gears = require("gears")
 local awful = require("awful")
@@ -155,6 +157,25 @@ function format_org(widget, args)
    return string.format("<span color=%s> %d/%d(%d) </span>", color, args[2], args[3], args[1])
 end
 
+do
+   local already_hibernate = false
+
+   function format_bat(widget, args)
+	  if (args[2] < 20) then
+		 color = '"#CC9393"'
+	  else
+		 color = '"#7F9F7F"'
+	  end
+
+	  if (args[2] < 10) and not(already_hibernate) then
+		 already_hibernate = true
+		 awful.util.spawn(terminal_cmd .. "/home/dionisos/script/hibernation")
+	  end
+
+	  return string.format("<span color=%s> %s%d</span>", color, args[1], args[2])
+   end
+end
+
 netwidget = wibox.widget.textbox()
 batwidget = wibox.widget.textbox()
 debugwidget = wibox.widget.textbox('')
@@ -163,7 +184,7 @@ orgwidget = wibox.widget.textbox()
 
 
 vicious.register(netwidget, vicious.widgets.net, format_net, 5)
-vicious.register(batwidget, vicious.widgets.bat, ' $1$2', 29, 'BAT0')
+vicious.register(batwidget, vicious.widgets.bat, format_bat, 29, 'BAT0')
 vicious.register(volumewidget, vicious.widgets.volume, '$2$1% ', 31, 'Master')
 vicious.register(orgwidget, vicious.widgets.org, format_org, 59, {'/home/dionisos/info/agenda.org'})
 
