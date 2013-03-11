@@ -1,0 +1,3 @@
+#!/bin/sh
+
+find . -regex "$1" -print | xargs wc -l 
