@@ -2,6 +2,5 @@
 
 cp ~/.config/awesome/rc.lua ~/script/config/awesome/
 cp ~/.config/awesome/environnement.lua ~/script/config/awesome/
-cp ~/.config/ranger/apps.py ~/script/config/ranger/
 cp ~/.config/ranger/commands.py ~/script/config/ranger/
 cp ~/.config/ranger/rc.conf ~/script/config/ranger/
