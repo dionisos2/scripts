@@ -165,14 +165,21 @@ do
 		 color = '"#CC9393"'
 	  else
 		 color = '"#7F9F7F"'
+		 already_hibernate = false
 	  end
 
-	  if (args[2] < 10) and not(already_hibernate) then
+	  if (args[2] < 10) and not(already_hibernate) and (args[2] == "-") then
 		 already_hibernate = true
 		 awful.util.spawn(terminal_cmd .. "/home/dionisos/script/hibernation")
 	  end
 
-	  return string.format("<span color=%s> %s%d</span>", color, args[1], args[2])
+	  if (already_hibernate) then
+		 info = "N"
+	  else
+		 info = "S"
+	  end
+	  
+	  return string.format("<span color=%s> %s%d%s</span>", color, args[1], args[2], info)
    end
 end
 
