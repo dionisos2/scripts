@@ -1,0 +1,22 @@
+#!/bin/bash
+
+if [[ -e /media/dede ]]
+then
+	echo "umount dede"
+	pumount dede
+fi
+
+if [[ -e /dev/sdb1 ]]
+then
+	echo "mount sdb1"
+	pmount /dev/sdb1 dede
+	exit 0
+fi
+
+if [[ -e /dev/sdc1 ]]
+then
+	echo "mount sdc1"
+	pmount /dev/sdc1 dede
+	exit 0
+fi
+
