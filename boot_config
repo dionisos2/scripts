@@ -47,5 +47,5 @@ bind '"\e[Z":menu-complete'
 bind '"\e[A": history-search-backward'
 bind '"\e[B": history-search-forward'
 # c-r for search in history
-source /usr/etc/profile.d/autojump.bash
+source /etc/profile.d/autojump.bash
 export PROMPT_COMMAND="history -a && $PROMPT_COMMAND"

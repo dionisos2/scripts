@@ -1,3 +1,4 @@
 #!/bin/bash
 
 chmod -R g+w /srv/http/TrouveTout
+chgrp -R dionisos /srv/http/TrouveTout
