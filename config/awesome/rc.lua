@@ -54,7 +54,7 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
-beautiful.init("/usr/share/awesome/themes/default/theme.lua")
+beautiful.init("/home/dionisos/.config/awesome/themes/default/theme.lua")
 
 theme.wallpaper = "/home/dionisos/documents/images/ecran_de_fond.jpeg"
 -- Default modkey.
@@ -92,8 +92,8 @@ end
 
 -- {{{ Tags
 -- Define a tag table which hold all screen tags.
-tags = {names = {"main","com","musique","dia","divers","prog"}, 
-		layout = {layouts[2],layouts[2],layouts[2],layouts[2],layouts[2],layouts[2]}}
+tags = {names = {"main","prog","musique","com","divers"}, 
+		layout = {layouts[2],layouts[2],layouts[2],layouts[2],layouts[2]}}
 
 for s = 1, screen.count() do
     -- Each screen has its own tag table.
@@ -128,14 +128,14 @@ mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
                                      menu = mymainmenu })
 
 function format_net(widget, args)
-   if(args['{eth0 carrier}'] == 1)then
-	  network = 'eth0'
-	  network_down_kb = args['{eth0 down_kb}']
-	  network_up_kb = args['{eth0 up_kb}']
-   elseif(args['{wlan0 carrier}'] == 1) then
-	  network = 'wlan0'
-	  network_down_kb = args['{wlan0 down_kb}']
-	  network_up_kb = args['{wlan0 up_kb}']
+   if(args['{enp5s0 carrier}'] == 1)then
+	  network = 'enp5s0'
+	  network_down_kb = args['{enp5s0 down_kb}']
+	  network_up_kb = args['{enp5s0 up_kb}']
+   elseif(args['{wlp3s0 carrier}'] == 1) then
+	  network = 'wlp3s0'
+	  network_down_kb = args['{wlp3s0 down_kb}']
+	  network_up_kb = args['{wlp3s0 up_kb}']
    else
 	  network = false
    end
@@ -168,11 +168,11 @@ do
 		 already_hibernate = false
 	  end
 
-	  if (args[2] < 10) and not(already_hibernate) and (args[2] == "-") then
+	  if (args[2] < 10) and not(already_hibernate) and (args[1] == "-") then
 		 already_hibernate = true
 		 awful.util.spawn(terminal_cmd .. "/home/dionisos/script/hibernation")
 	  end
-
+		 
 	  if (already_hibernate) then
 		 info = "N"
 	  else
@@ -356,6 +356,7 @@ globalkeys = awful.util.table.join(
 	awful.key({modkey, "Control"}, "e",function () awful.util.spawn("emacsclient -c") end),
     awful.key({modkey, "Control"}, "m",function () awful.util.spawn("quodlibet") end),
 	awful.key({modkey, "Control"}, "p",function () awful.util.spawn("pidgin") end),
+	awful.key({modkey, "Control"}, "i",function () awful.util.spawn("/home/dionisos/installation/obj-instantbird/mozilla/dist/bin/instantbird") end),
 	awful.key({modkey, "Control"}, "f",function () awful.util.spawn("firefox") end),
 	awful.key({modkey,}, "#95",function () awful.util.spawn("/home/dionisos/script/volume_down 1") vicious.force({volumewidget}) end),
     awful.key({modkey,}, "#96",function () awful.util.spawn("/home/dionisos/script/volume_up 1") vicious.force({volumewidget})end),
@@ -475,7 +476,8 @@ awful.rules.rules = {
                      border_color = beautiful.border_normal,
                      focus = awful.client.focus.filter,
                      keys = clientkeys,
-                     buttons = clientbuttons } },
+                     buttons = clientbuttons,
+					 size_hints_honor = false} },
     { rule = { class = "MPlayer" },
       properties = { floating = true } },
     { rule = { class = "pinentry" },
