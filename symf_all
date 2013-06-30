@@ -1,5 +1,7 @@
 #!/bin/bash
 
+/home/dionisos/script/symf_owner
+/home/dionisos/script/symf_droit
 /home/dionisos/script/symf_clear_cache
 /home/dionisos/script/symf_owner
 /home/dionisos/script/symf_droit
