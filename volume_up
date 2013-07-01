@@ -1,3 +1,4 @@
 #!/bin/bash
 
-amixer sset Master $1%+
+sound_controle=$(current_sound_controller)
+amixer sset $sound_controle $1%+

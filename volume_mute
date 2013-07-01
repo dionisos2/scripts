@@ -1,3 +1,4 @@
 #!/bin/bash
 
 amixer sset Master mute
+amixer sset Headphone mute
