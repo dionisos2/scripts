@@ -1,4 +1,5 @@
 -- luac -p ~/.config/awesome/rc.lua to verify syntax !
+-- xev to know code of one key
 
 -- Standard awesome library
 local gears = require("gears")
@@ -192,7 +193,8 @@ orgwidget = wibox.widget.textbox()
 
 vicious.register(netwidget, vicious.widgets.net, format_net, 5)
 vicious.register(batwidget, vicious.widgets.bat, format_bat, 29, 'BAT0')
-vicious.register(volumewidget, vicious.widgets.volume, '$2$1% ', 31, 'Master')
+local sound_controller = io.popen("/home/dionisos/script/current_sound_controller"):read("*all")
+vicious.register(volumewidget, vicious.widgets.volume, '$2$1% ', 31, sound_controller)
 vicious.register(orgwidget, vicious.widgets.org, format_org, 59, {'/home/dionisos/info/agenda.org'})
 
 os.setlocale("fr_FR.UTF-8") -- Français
@@ -358,12 +360,12 @@ globalkeys = awful.util.table.join(
 	awful.key({modkey, "Control"}, "p",function () awful.util.spawn("pidgin") end),
 	awful.key({modkey, "Control"}, "i",function () awful.util.spawn("/home/dionisos/installation/obj-instantbird/mozilla/dist/bin/instantbird") end),
 	awful.key({modkey, "Control"}, "f",function () awful.util.spawn("firefox") end),
-	awful.key({modkey,}, "#95",function () awful.util.spawn("/home/dionisos/script/volume_down 1") vicious.force({volumewidget}) end),
-    awful.key({modkey,}, "#96",function () awful.util.spawn("/home/dionisos/script/volume_up 1") vicious.force({volumewidget})end),
-	awful.key({modkey, "Shift"}, "#95",function () awful.util.spawn("/home/dionisos/script/volume_down 10") vicious.force({volumewidget}) end),
-    awful.key({modkey, "Shift"}, "#96",function () awful.util.spawn("/home/dionisos/script/volume_up 10") vicious.force({volumewidget})end),
-	awful.key({modkey, "Control"}, "#76",function () awful.util.spawn("/home/dionisos/script/volume_unmute") vicious.force({volumewidget}) end),
-	awful.key({modkey, }, "#76",function () awful.util.spawn("/home/dionisos/script/volume_mute") vicious.force({volumewidget}) end),
+	awful.key({modkey,}, "#95",function () awful.util.spawn("/home/dionisos/script/volume_down 1") os.execute("sleep 0.1") vicious.force({volumewidget}) end),
+    awful.key({modkey,}, "#96",function () awful.util.spawn("/home/dionisos/script/volume_up 1") os.execute("sleep 0.1") vicious.force({volumewidget})end),
+	awful.key({modkey, "Shift"}, "#95",function () awful.util.spawn("/home/dionisos/script/volume_down 10") os.execute("sleep 0.1") vicious.force({volumewidget}) end),
+    awful.key({modkey, "Shift"}, "#96",function () awful.util.spawn("/home/dionisos/script/volume_up 10") os.execute("sleep 0.1") vicious.force({volumewidget})end),
+	awful.key({modkey, "Control"}, "#76",function () awful.util.spawn("/home/dionisos/script/volume_unmute") os.execute("sleep 0.1") vicious.force({volumewidget}) end),
+	awful.key({modkey, }, "#76",function () awful.util.spawn("/home/dionisos/script/volume_mute") os.execute("sleep 0.1") vicious.force({volumewidget}) end),
 	awful.key({}, "#74",function () awful.util.spawn("setxkbmap fr") end),
 	awful.key({}, "#73",function () awful.util.spawn("/home/dionisos/script/pgm_keyboard/load") end),
     awful.key({ modkey,           }, "#104",function () awful.util.spawn(terminal) end),
