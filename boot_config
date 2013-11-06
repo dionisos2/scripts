@@ -39,6 +39,7 @@ export SVN_EDITOR="emacsclient -c"
 export EDITOR="emacsclient -c"
 PATH=$PATH:"./"
 PATH=$PATH:"~/script"
+PATH=$PATH:"/opt/java/bin"
 export PATH
 export LANG="fr_FR.utf8"
 export PAGER=less
