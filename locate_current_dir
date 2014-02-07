@@ -1,0 +1,4 @@
+#!/bin/bash
+
+echo \"$(pwd)'/.*'$1\"
+locate -r "$(pwd)/.*$1"
