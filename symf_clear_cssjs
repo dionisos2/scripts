@@ -1,0 +1,7 @@
+#!/bin/bash
+
+rm web/css/*
+rm web/js/*
+cp app/Resources/css/bootstrap.min.css web/css/
+sudo -u http php ./app/console assetic:dump
+sudo -u http php ./app/console assetic:dump --env=prod --no-debug
