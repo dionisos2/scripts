@@ -1,0 +1,33 @@
+#!/bin/bash
+
+if [ $# -ne 1 ]
+then
+    echo "Rentrez un et un seul argument"
+	exit 1
+fi
+
+if  [ ! -d "$1" ]
+then
+	echo "Le première argument doit être un dossier"
+	exit 1
+fi
+
+for file in *
+do
+	if [ -f $file ]
+	then
+		extension=${file##*.}
+		echo $extension
+		if [ $extension == "jpg" ]
+		then
+			if [ ! -f $1$file ]
+			then
+				convert $file -quality 50 -resize 800x600 $1$file
+				echo $1$file " compressé"
+			else
+				echo $1$file " exist déjà"
+			fi
+		fi
+	fi
+done
+

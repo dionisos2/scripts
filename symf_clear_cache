@@ -3,3 +3,4 @@
 sudo -u http php ./app/console cache:clear
 sudo -u http php ./app/console cache:clear --env=prod
 sudo -u http php vendor/sensio/distribution-bundle/Sensio/Bundle/DistributionBundle/Resources/bin/build_bootstrap.php
+sudo -u http php composer.phar dumpautoload --optimize -v
