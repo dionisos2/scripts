@@ -1,4 +1,4 @@
 #!/bin/bash
 
-chmod -R g+w /srv/http/public/TrouveTout
-chgrp -R dionisos /srv/http/public/TrouveTout
+chmod -R g+w ./
+chgrp -R dionisos ./

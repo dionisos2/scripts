@@ -1,8 +1,14 @@
 #!/bin/bash
 
+echo "clear css and js"
 /home/dionisos/script/symf_clear_cssjs
+echo "change owner"
 /home/dionisos/script/symf_owner
+echo "change permission"
 /home/dionisos/script/symf_droit
+echo "clear cache"
 /home/dionisos/script/symf_clear_cache
+echo "change owner"
 /home/dionisos/script/symf_owner
+echo "change permission"
 /home/dionisos/script/symf_droit
