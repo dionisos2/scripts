@@ -1,6 +1,0 @@
-#!/bin/sh
-
-cd "/home/dionisos/.wine/drive_c/Program Files (x86)/Age of Empires II/"
-xrandr --output LVDS1 --mode 800x600
-wine "EMPIRES2.EXE"
-xrandr --output LVDS1 --mode 1366x768
