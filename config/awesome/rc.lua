@@ -93,7 +93,7 @@ end
 
 -- {{{ Tags
 -- Define a tag table which hold all screen tags.
-tags = {names = {"main","prog","musique","com","divers"}, 
+tags = {names = {"main","prog","musique","com","divers"},
 		layout = {layouts[2],layouts[2],layouts[2],layouts[2],layouts[2]}}
 
 for s = 1, screen.count() do
@@ -106,17 +106,14 @@ end
 -- Create a laucher widget and a main menu
 myawesomemenu = {
    { "firefox", "firefox" },
-   { "gedit", "gedit" },
-   { "emacsclient", "emacsclient -c"},
-   { "zim", "zim" },
-   { "emacs_debug", "emacs --debug-init" },
+   { "emacs", "emacsclient -c" },
    { "pidgin", "pidgin" },
+   { "gedit", "gedit" },
+   { "quodlibet", "quodlibet" },
+   { "terminator", "terminator" },
    { "bépo", "/home/dionisos/script/pgm_keyboard/load" },
    { "azerty", terminal_cmd .. "setxkbmap fr" },
-   { "manual", terminal_cmd .. "man awesome"  },
    { "edit config", editor .. " " .. awful.util.getdir("config") .. "/rc.lua" },
-   { "starcraft 2", "sc2" },
-	 { "libreoffice", "libreoffice" },
    { "restart", awesome.restart }
 }
 
@@ -173,13 +170,13 @@ do
 		 already_hibernate = true
 		 awful.util.spawn(terminal_cmd .. "/home/dionisos/script/hibernation")
 	  end
-		 
+
 	  if (already_hibernate) then
 		 info = "N"
 	  else
 		 info = "S"
 	  end
-	  
+
 	  return string.format("<span color=%s> %s%d%s</span>", color, args[1], args[2], info)
    end
 end
@@ -239,6 +236,9 @@ mytasklist.buttons = awful.util.table.join(
                                                   c:raise()
                                               end
                                           end),
+					 awful.button({ }, 2, function (c)
+									          c:kill()
+										  end),
                      awful.button({ }, 3, function ()
                                               if instance then
                                                   instance:hide()
@@ -357,7 +357,7 @@ globalkeys = awful.util.table.join(
 	awful.key({modkey, "Control"}, "q",function () awful.util.spawn("xkill") end),
 	awful.key({modkey, "Control"}, "e",function () awful.util.spawn("emacsclient -c") end),
     awful.key({modkey, "Control"}, "m",function () awful.util.spawn("quodlibet") end),
-	awful.key({modkey, "Control"}, "p",function () awful.util.spawn("pidgin") end),
+	awful.key({modkey, "Control"}, "t",function () awful.util.spawn("empathy") end),
 	awful.key({modkey, "Control"}, "i",function () awful.util.spawn("/home/dionisos/installation/obj-instantbird/mozilla/dist/bin/instantbird") end),
 	awful.key({modkey, "Control"}, "f",function () awful.util.spawn("firefox") end),
 	awful.key({modkey,}, "#95",function () awful.util.spawn("/home/dionisos/script/volume_down 1") os.execute("sleep 0.1") vicious.force({volumewidget}) end),
