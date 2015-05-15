@@ -11,8 +11,8 @@ file="/tmp/pager_$date"
 
 > $file
 
-while read line  
-do   
+while read line
+do
 	 echo $line >> $file
 done
 

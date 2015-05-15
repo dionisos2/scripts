@@ -9,18 +9,17 @@ if [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
 fi
 
-function Delete()
-{
-	mv $@ $HOME/.local/share/Trash/files/
-}
- 
+
+
 function Purge()
 {
-	\rm -rf $HOME/.local/share/Trash/files/*
-	\rm -rf $HOME/.local/share/Trash/info/*
+	\rm -rf "$HOME/.local/share/Trash/files/"
+	\rm -rf "$HOME/.local/share/Trash/info/"
+	mkdir "$HOME/.local/share/Trash/files/"
+	mkdir "$HOME/.local/share/Trash/info/"
 }
- 
-alias rm='Delete'
+
+alias rm='/home/dionisos/script/dionisos_rm'
 alias purge='Purge'
 alias cp='cp -i'
 alias mv='mv -i'

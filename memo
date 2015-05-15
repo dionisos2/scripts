@@ -1,0 +1,184 @@
+#!/bin/bash
+
+if [[ -f "/home/dionisos/.bashrc" ]]
+then
+	echo "/home/dionisos/.bashrc is a file" # sortie
+else
+	echo "/home/dionisos/.bashrc is not a file"
+fi
+
+if [[ -f "/home/dionisos/" ]]
+then
+	echo "/home/dionisos/ is a file"
+else
+	echo "/home/dionisos/ is not a file" # sortie
+fi
+
+if [[ -f "/home/dionisos/" ]]
+then
+	echo "/home/dionisos/ is a directory"
+else
+	echo "/home/dionisos/ is not a directory"
+fi
+
+if [[ -e /home/dionisos/ ]]
+then
+	echo "-e /home/dionisos"
+fi
+
+if [[ -e /home/dionisos/.bashrc ]]
+then
+	echo "-e /home/dionisos/.bashrc"
+fi
+
+# echo * # affiche tout les fichiers du dossiers
+
+for file in "file1" "file2" "file3"
+do
+ 	echo "$file"
+done
+
+variable="plop"
+echo $variable # sortie = "plop"
+
+# read input
+# echo $input
+
+if [ $# -ne 1 ]
+then
+    echo "Nombre d’argument différent de 1"
+fi
+
+if [ ! $# -ne 1 ]
+then
+    echo "Nombre d’argument égal à 1"
+	echo "arg1 → $1"
+elif [ $# -le 2 ]
+then
+	 echo "Nombre d’argument inférieur ou égal à 2"
+fi
+
+function funct1()
+{
+	echo "funct1"
+}
+
+funct1
+
+file="~/plop.ext/"
+extension=${file##*.}
+without_extension=${file%.*}
+file_name=$(basename "$file")
+substring=${file:2:5} #commence au 3ème caractère et finit 5 caractères plus loin
+echo "\$file=="$file
+echo "\$extension=="$extension
+echo "\$without_extension=="$without_extension
+echo "\$file_name=="$file_name
+echo "$substring=="$substring
+
+#export/alias/source voir ~/script/boot_config
+
+case "plop" in
+	pl) echo "pl";;
+	lop) echo "plop";;
+	*op) echo "*op";;
+	*) echo "nothing";;
+esac
+
+the_date=$(date)
+echo $the_date
+echo \"
+
+# while read line
+# do
+# 	echo $line
+# done
+
+tab=("a" "b" "c")
+echo ${tab[@]}
+echo ${tab[1]}
+
+s=2
+a=10
+while [[ a -ge 0 ]]
+do
+	echo $a
+	a=$((a - s))
+done
+
+# Conditional expressions are used by the [[ compound command and
+# the test and [ builtin commands to test file attributes and per‐
+# form string and arithmetic comparisons. Expressions are formed
+# from the following unary or binary primaries. If any file argu‐
+# ment to one of the primaries is of the form /dev/fd/n, then file
+# descriptor n is checked. If the file argument to one of the
+# primaries is one of /dev/stdin, /dev/stdout, or /dev/stderr,
+# file descriptor 0, 1, or 2, respectively, is checked.
+
+# Unless otherwise specified, primaries that operate on files fol‐
+# low symbolic links and operate on the target of the link, rather
+# than the link itself.
+
+# When used with [[, the < and > operators sort lexicographically
+# using the current locale. The test command sorts using ASCII
+# ordering.
+
+# -a file
+# True if file exists.
+# -d file
+# True if file exists and is a directory.
+# -f file
+# True if file exists and is a regular file.
+# -r file
+# True if file exists and is readable.
+# -s file
+# True if file exists and has a size greater than zero.
+# -w file
+# True if file exists and is writable.
+# -x file
+# True if file exists and is executable.
+# -L file
+# True if file exists and is a symbolic link.
+# file1 -ef file2
+# True if file1 and file2 refer to the same device and
+# inode numbers.
+# file1 -nt file2
+# True if file1 is newer (according to modification date)
+# than file2, or if file1 exists and file2 does not.
+# file1 -ot file2
+# True if file1 is older than file2, or if file2 exists and
+# file1 does not.
+# -z string
+# True if the length of string is zero.
+# string
+# stringTrue if the length of string is non-zero.
+
+# string1 == string2
+# string1 = string2
+# True if the strings are equal. = should be used with the
+# test command for POSIX conformance. When used with the
+# [[ command, this performs pattern matching as described
+# above (Compound Commands).
+
+# string1 != string2
+# True if the strings are not equal.
+
+# string1 < string2
+# True if string1 sorts before string2 lexicographically.
+
+# string1 > string2
+# True if string1 sorts after string2 lexicographically.
+
+# arg1 OP arg2
+# OP is one of -eq, -ne, -lt, -le, -gt, or -ge. These
+# arithmetic binary operators return true if arg1 is equal
+# to, not equal to, less than, less than or equal to,
+# greater than, or greater than or equal to arg2, respec‐
+# tively. Arg1 and arg2 may be positive or negative inte‐
+# gers.
+
+
+file="/home/dionisos/plop.ext"
+length=${#parameter}
+echo $length
+

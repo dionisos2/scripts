@@ -77,6 +77,7 @@
 # ===================================================================
 
 from ranger.api.commands import *
+from subprocess import Popen # dionisos
 
 class alias(Command):
     """:alias <newcommand> <oldcommand>
@@ -494,6 +495,12 @@ class delete(Command):
 
     allow_abbrev = False
 
+    def dionisos_delete(self):
+        self.fm.notify("Deleting!")
+        selected = self.fm.thistab.get_selection()
+        for f in selected:
+            Popen("/home/dionisos/script/dionisos_rm \"" + f.path + "\"", shell=True) #TODO vérifier si tout est ok avec Popen
+
     def execute(self):
         import os
         if self.rest(1):
@@ -517,11 +524,13 @@ class delete(Command):
                 self._question_callback, ('n', 'N', 'y', 'Y'))
         else:
             # no need for a confirmation, just delete
-            self.fm.delete()
+            # self.fm.delete()
+            self.dionisos_delete()
 
     def _question_callback(self, answer):
         if answer == 'y' or answer == 'Y':
-            self.fm.delete()
+            # self.fm.delete()
+            self.dionisos_delete()
 
 
 class mark(Command):
