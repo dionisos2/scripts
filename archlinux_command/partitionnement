@@ -1,0 +1,3 @@
+blkid
+fdisk -l
+parted -l (en root)

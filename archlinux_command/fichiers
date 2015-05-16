@@ -1,0 +1,7 @@
+connaitre de quel paquet vient un fichier:
+pacman -Qo fichier.
+
+connaitre les processus utilisant un fichier ou un dossier:
+fuser -m fichier
+ou
+lsof | grep "partition ou point de montage"

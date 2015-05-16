@@ -1,0 +1,1 @@
+rsync -auv --progress musique_a_trier/ musique

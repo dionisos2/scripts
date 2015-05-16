@@ -1,0 +1,6 @@
+xrandr --output HDMI1 --auto
+xrandr --output HDMI1 --off
+
+xrandr --output LVDS1 --mode 1366x768 //récupération de la résolution sur le portable
+xrandr --screen 0 //list possible mode
+xrandr --output HDMI1 --mode 1600x1200 //change mode

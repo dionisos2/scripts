@@ -1,0 +1,5 @@
+# asoundconf is-active
+# asoundconf list
+# asoundconf set-default-card <chosen soundcard>
+amixer
+alsamixer

@@ -1,0 +1,4 @@
+mencoder /home/toi/chemin_de la_video.mp4 -ovc frameno -oac mp3lame -o test.mp3
+ffmpeg -i $f.mp4 -acodec libvorbis -vcodec libtheora $f.ogg
+convert file.tiff file.jpg //conversion d’image à partir de l’extension
+ffmpeg -i file.webm -an -vcodec copy file_no_sound.webm

@@ -1,0 +1,50 @@
+git config remote.[remoteName].push [localBranchName]:[remoteBranchName] //traquer la remote branch en push
+git remote show origin //voir les informations détaillé sur toute les branches
+git push origin :serverfix //supprimer la branche serverfix
+git stash //enregitrer temporairement une branche (évite le commit)
+git config //aide pour les variables de configurations
+git branch --set-upstream developpement origin/<branch> //tracking info in branch developpement
+
+
+This works. I have used it more than a few times for setting up clients with git-flow, heroku, and a backup git service.
+
+.git/config for the repo:
+
+[core]
+  repositoryformatversion = 0
+  filemode = true
+  bare = false
+  logallrefupdates = true
+  ignorecase = true
+[heroku]
+  account = youraccount
+[remote "origin"]
+  url = git@bitbucket.org:youruser/yoursite.heroku.com.git # or github, etc.
+  fetch = +refs/heads/*:refs/remotes/origin/*
+[branch "master"]
+  remote = origin
+  merge = refs/heads/master
+[branch "staging"]
+  remote = origin
+  merge = refs/heads/staging
+[branch "develop"]
+  remote = origin
+  merge = refs/heads/develop
+[remote "production"]
+  pushurl = git@heroku.com:your-prod-app.git
+  push = master:master
+[remote "staging"]
+  pushurl = git@heroku.com:your-staging-app.git
+  push = staging:master
+
+All working correctly:
+
+git push origin
+
+git pull origin
+
+git push staging
+
+git push production
+
+Think about fetch and push as like stdout and stdin, where both can be redirected or closed to be one way. Also if anyone knows how to get these settings without hacking .git/config, please feel free to amend with an edit, karma points are sure to follow.

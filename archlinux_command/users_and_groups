@@ -1,0 +1,6 @@
+sudo groupadd <group>
+adduser //liste de questions
+/etc/passwd
+/etc/group
+sudo usermod -a -G group user
+gpasswd -a user group

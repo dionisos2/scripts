@@ -1,0 +1,5 @@
+shopt //option du shell
+help shell-cmd
+man bash
+source //for executing script in the current env
+nohup and disown //detach program

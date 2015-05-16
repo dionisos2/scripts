@@ -1,0 +1,2 @@
+fuser -m /dev/sdb1
+lsof | grep /media/disk

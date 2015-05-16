@@ -2,6 +2,6 @@
 
 date=$(format_date)
 
-import -window root /home/dionisos/screenshot/root_screen_$date.png
-convert /home/dionisos/screenshot/root_screen_$date.png /home/dionisos/screenshot/root_screen_$date.jpg
-rm /home/dionisos/screenshot/root_screen_$date.png
+import -window root /home/dionisos/screenshots/root_screen_$date.png
+convert /home/dionisos/screenshots/root_screen_$date.png /home/dionisos/screenshots/root_screen_$date.jpg
+rm /home/dionisos/screenshots/root_screen_$date.png

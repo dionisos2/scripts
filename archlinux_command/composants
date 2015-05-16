@@ -1,0 +1,17 @@
+lsusb
+lsusb -v -s bus:device
+lspci
+lshw -short // better than lspci
+dmidecode -t connector
+connector:
+    bios
+    system
+    baseboard
+    chassis
+    processor
+    memory
+    cache
+    connector
+    slot
+
+lsblk // list of media and mountage

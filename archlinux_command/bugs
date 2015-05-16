@@ -1,0 +1,7 @@
+"Pacman is currently in use, please wait." -> rm /var/lib/pacman/db.lck
+
+manque lib32-machin -> voir dans /etc/pacman.conf et rajouter multilib
+
+magit-show show nothing -> se mettre à la racine du dépot git
+
+mount /dev/sda1 /media/dd/ -o umask=000 // quand vfat inaccessible en écriture

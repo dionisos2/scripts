@@ -1,0 +1,5 @@
+ln -s fichier|dossier cible
+les liens symboliques peuvent être relatifs ou absolus(les liens relatifs sont créé avec le lien tel quel, donc les créer à partir du répertoire cible)
+
+ll affiche les cibles des liens symboliques
+pwd -P affiche le réel repertoire courant

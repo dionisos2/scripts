@@ -1,0 +1,60 @@
+wifi-menu -o //humhum 
+
+//changement d’ip
+ifconfig eth0 192.168.0.10
+rc.d restart network
+
+//wifi
+https://wiki.archlinux.org/index.php/Wifi
+You can find your card type by command:
+
+# lspci | grep -i net
+
+Or, if you have a USB device, run:
+
+# lsusb
+
+    Wi-Fi power management can be enabled by adding the following line: 
+
+iwconfig wlan0 power on
+or
+
+iw dev wlan0 set power_save on
+Step 0. (Optional, may be required) At this step you may need to set the proper operating mode of the wireless card. More specifically, if you are going to connect an ad-hoc network, you might need to set the operating mode to ad-hoc:
+Note: Ideally, you should already know which type of network you are going to connect to. If you do not, scan the network as described in step 2 below, then, if necessary, return back to this step and change the mode. Also, please keep in mind that changing the operating mode might require the wireless interface to be down (ip link set wlan0 down).
+
+# iwconfig wlan0 mode ad-hoc
+Step 1. (Also optional, may be required) Some cards require that the kernel interface be activated before you can use the wireless_tools:
+
+# ip link set wlan0 up
+
+Step 2. See what access points are available:
+
+# iwlist wlan0 scan
+
+Note: If it displays "Interface doesn't support scanning" then you probably forgot to install the firmware. You can also try bringing up the interface first as shown in point 1. In some cases this message is also displayed when not running iwlist as root. Also, your wireless network card may be soft-blocked. Try getting rfkill and running rfkill list all to check.
+
+Step 3. Depending on the encryption, you need to associate your wireless device with the access point to use and pass the encryption key.
+
+Assuming you want to use the ESSID named MyEssid:
+
+    No encryption 
+
+# iwconfig wlan0 essid "MyEssid"
+
+    WEP 
+
+using a hexadecimal key:
+
+# iwconfig wlan0 essid "MyEssid" key 1234567890
+
+using an ASCII key:
+
+# iwconfig wlan0 essid "MyEssid" key s:asciikey
+Note: In some setups it may still display "Access Point: Not-Associated", continue on to the next step.
+
+Step 4. Finally, provide an IP address to the network interface. Simple examples are:
+
+# dhcpcd wlan0
+
+sudo rfkillunblock all
