@@ -1,7 +1,7 @@
 #!/bin/sh
 
-cp ~/.config/awesome/rc.lua ~/script/config/awesome/
-cp ~/.config/awesome/environnement.lua ~/script/config/awesome/
-cp ~/.config/ranger/commands.py ~/script/config/ranger/
-cp ~/.config/ranger/rc.conf ~/script/config/ranger/
-cp ~/.config/ranger/rifle.conf ~/script/config/ranger/
+cp ~/.config/awesome/rc.lua ~/scripts/config/awesome/
+cp ~/.config/awesome/environnement.lua ~/scripts/config/awesome/
+cp ~/.config/ranger/commands.py ~/scripts/config/ranger/
+cp ~/.config/ranger/rc.conf ~/scripts/config/ranger/
+cp ~/.config/ranger/rifle.conf ~/scripts/config/ranger/

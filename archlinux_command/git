@@ -1,3 +1,10 @@
+git checkout commit_num file /!\ warning, this delete the current file without warning, do a commit before /!\
+git checkout commit_num → go to another version, don’t do it with a unclean work directory
+
+git reset --soft HEAD^ → reset to the previous commit
+git rm --cached file → remove file from stage. (unindexing)
+git gui → a git gui to do lot of things
+
 git config remote.[remoteName].push [localBranchName]:[remoteBranchName] //traquer la remote branch en push
 git remote show origin //voir les informations détaillé sur toute les branches
 git push origin :serverfix //supprimer la branche serverfix

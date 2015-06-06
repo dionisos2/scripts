@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# rajouter "source ~/script/boot_config" dans "/home/dionisos/.profile et .bashrc" !!!
+# rajouter "source ~/scripts/boot_config" dans "/home/dionisos/.profile et .bashrc" !!!
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -19,7 +19,7 @@ function Purge()
 	mkdir "$HOME/.local/share/Trash/info/"
 }
 
-alias rm='/home/dionisos/script/dionisos_rm'
+alias rm='/home/dionisos/scripts/dionisos_rm'
 alias purge='Purge'
 alias cp='cp -i'
 alias mv='mv -i'
@@ -37,11 +37,12 @@ export HISTSIZE=100000
 export SVN_EDITOR="emacsclient -c"
 export EDITOR="emacsclient -c"
 PATH=$PATH:"./"
-PATH=$PATH:"~/script"
+PATH=$PATH:"~/scripts"
 PATH=$PATH:"/opt/java/bin"
 export PATH
 export LANG="fr_FR.utf8"
 export PAGER=less
+export XLIB_SKIP_ARGB_VISUALS=1 # for skype
 # c-v + key for find the character sequence emitted by key
 bind '"\e[Z":menu-complete'
 bind '"\e[A": history-search-backward'
@@ -49,3 +50,6 @@ bind '"\e[B": history-search-forward'
 # c-r for search in history
 source /etc/profile.d/autojump.bash
 export PROMPT_COMMAND="history -a && $PROMPT_COMMAND"
+
+
+

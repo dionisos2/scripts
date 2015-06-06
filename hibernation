@@ -2,5 +2,5 @@
 
 systemctl hibernate
 
-echo "le redémarrage c’est correctement effectué"
+echo "le redémarrage c’est correctement effectué, attention à avoir S et non N à la suite du pourcentage de batterie"
 read a

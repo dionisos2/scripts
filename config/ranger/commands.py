@@ -480,6 +480,41 @@ class terminal(Command):
         self.fm.run(command, flags='f')
 
 
+class real_delete(Command):
+    """:real_delete
+    Tries to delete the selection but really (don’t use dionisos_rm)
+    """
+    allow_abbrev = False
+
+    def execute(self):
+        import os
+        if self.rest(1):
+            self.fm.notify("Error: delete takes no arguments! It deletes "
+                    "the selected file(s).", bad=True)
+            return
+
+        cwd = self.fm.thisdir
+        cf = self.fm.thisfile
+        if not cwd or not cf:
+            self.fm.notify("Error: no file selected for deletion!", bad=True)
+            return
+
+        confirm = self.fm.settings.confirm_on_delete
+        many_files = (cwd.marked_items or (cf.is_directory and not cf.is_link \
+                and len(os.listdir(cf.path)) > 0))
+
+        if confirm != 'never' and (confirm != 'multiple' or many_files):
+            self.fm.ui.console.ask("Confirm deletion of: %s (y/N)" %
+                ', '.join(f.basename for f in self.fm.thistab.get_selection()),
+                self._question_callback, ('n', 'N', 'y', 'Y'))
+        else:
+            # no need for a confirmation, just delete
+            self.fm.delete()
+
+    def _question_callback(self, answer):
+        if answer == 'y' or answer == 'Y':
+            self.fm.delete()
+
 class delete(Command):
     """:delete
 
@@ -499,7 +534,7 @@ class delete(Command):
         self.fm.notify("Deleting!")
         selected = self.fm.thistab.get_selection()
         for f in selected:
-            Popen("/home/dionisos/script/dionisos_rm \"" + f.path + "\"", shell=True) #TODO vérifier si tout est ok avec Popen
+            Popen("/home/dionisos/scripts/dionisos_rm \"" + f.path + "\"", shell=True) #TODO vérifier si tout est ok avec Popen
 
     def execute(self):
         import os

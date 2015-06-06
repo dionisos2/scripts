@@ -3,5 +3,5 @@
 echo "export DISPLAY" > /dev/tty1
 export DISPLAY=":0.0"
 echo "lancement de dd_poweroff" > /dev/tty1
-/usr/bin/xterm -display :0.0 -e "/home/dionisos/script/dd_poweroff"
+/usr/bin/xterm -display :0.0 -e "/home/dionisos/scripts/dd_poweroff"
 
