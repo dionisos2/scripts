@@ -1,5 +1,15 @@
 #!/bin/bash
 
+if [[ $# -eq 1 ]] || [[ $# -eq 10 ]]
+then
+	echo "1 ou 10"
+fi
+
+if [[ $# -eq 1 ]] && [[ $# -eq 10 ]]
+then
+	echo "1 et 10"
+fi
+
 if [[ -f "/home/dionisos/.bashrc" ]]
 then
 	echo "/home/dionisos/.bashrc is a file" # sortie

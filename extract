@@ -1,17 +1,25 @@
 #!/bin/bash
+
+args_7z=""
+
+if [[ $# -eq 2 ]] && [[ $2 == "-y" ]]
+then
+	args_7z="-y"
+fi
+
 if [[ -f "$1" ]]; then
     case $1 in
         *.tar.bz2) tar xvjf "$1";;
         *.tar.gz)  tar xvzf "$1";;
         *.bz2)     bunzip2 "$1";;
-        *.rar)     7z x "$1";;
+        *.rar)     7z x "$1" $args_7z;;
         *.gz)      gunzip "$1";;
         *.tar)     tar xvf "$1";;
         *.tbz2)    tar xvjf "$1";;
         *.tgz)     tar xvzf "$1";;
-        *.zip)     7z x "$1";;
+        *.zip)     7z x "$1" $args_7z;;
         *.Z)       uncompress "$1";;
-        *.7z)      7z x "$1";;
+        *.7z)      7z x "$1" $args_7z;;
         *)         echo "'$1' cannot be extracted";;
     esac
 else

@@ -3,3 +3,6 @@
 # asoundconf set-default-card <chosen soundcard>
 amixer
 alsamixer
+aplay -l
+aplay -D plughw:0,0 /usr/share/sounds/alsa/Front_Center.wav
+~/.asoundrc
