@@ -515,6 +515,39 @@ class real_delete(Command):
         if answer == 'y' or answer == 'Y':
             self.fm.delete()
 
+# dionisos extract.
+class extract(Command):
+    """:extract
+    uncompress a file
+    """
+    allow_abbrev = False
+
+    def dionisos_extract(self):
+        self.fm.notify("extraction !")
+        selected = self.fm.thistab.get_selection()
+        for f in selected:
+            Popen("/home/dionisos/scripts/extract \"" + f.path + "\" -y", shell=True) #TODO vérifier si tout est ok avec Popen
+
+    def execute(self):
+        import os
+        if self.rest(1):
+            self.fm.notify("Error: extract takes no arguments! It extracts "
+                    "the selected file.", bad=True)
+            return
+
+        cf = self.fm.thisfile
+        if not cf:
+            self.fm.notify("Error: no file selected for extraction!", bad=True)
+            return
+
+        self.fm.ui.console.ask("Confirm extraction of: %s (y/N)" %
+                               ', '.join(f.basename for f in self.fm.thistab.get_selection()),
+                               self._question_callback, ('n', 'N', 'y', 'Y'))
+
+    def _question_callback(self, answer):
+        if answer == 'y' or answer == 'Y':
+            self.dionisos_extract()
+
 class delete(Command):
     """:delete
 

@@ -1,2 +1,3 @@
 cat fichier.z01 fichier.z02 ... fichier.zip > nouveau_fichier.zip
 7z x file.zip -odir ("7z e" ne garde pas les chemins !!)
+7z a -tzip file.zip directory_to_compress
