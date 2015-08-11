@@ -12,6 +12,9 @@ xsensor -> température
 figlet -> create ascii art
 mirage/eog -> image viewer
 pitivi -> édition vidéo
+quvi -> télécharger des vidéos (de youtube ou autre)
+jmtpfs /media/dd -> mount pour tablette android
+fusermount -u /media/dd -> unmount after jmtpfs
 
 jeux
 mana -> the mana world (paquet:tmw) (mmorpg)

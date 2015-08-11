@@ -1,0 +1,2 @@
+py.test --cov src/ tests/ → test + code coverage with pytest (pytest-cov)
+py.test --cov-report html --cov src/ tests/ → coverage in html

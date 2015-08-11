@@ -1,0 +1,6 @@
+#!/bin/sh
+
+systemctl suspend
+
+echo "reprise ok !"
+read a

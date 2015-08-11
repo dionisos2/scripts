@@ -1,3 +1,16 @@
 #!/bin/sh
 
-\rm -r ~/.thumbnails/*
+size_thumbnails=$(du -s ~/.thumbnails/ | awk '{print $1}')
+size_cache=$(du -s ~/.cache/ | awk '{print $1}')
+
+if [[ $size_thumbnails -ge 1000 ]]
+then
+	echo "remove thumbnails"
+	\rm -r ~/.thumbnails/*
+fi
+
+if [[ $size_cache -ge 1000 ]]
+then
+	echo "remove cache"
+	\rm -r ~/.cache/*
+fi
