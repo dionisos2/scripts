@@ -1,0 +1,5 @@
+#!/bin/sh
+
+# python help script
+
+~/projets/programmation/python/python_help/python_create.py $@
