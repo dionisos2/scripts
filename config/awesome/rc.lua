@@ -93,8 +93,8 @@ end
 
 -- {{{ Tags
 -- Define a tag table which hold all screen tags.
-tags = {names = {"main","prog","musique","com","divers"},
-		layout = {layouts[2],layouts[2],layouts[2],layouts[2],layouts[2]}}
+tags = {names = {"main","prog","console","com","musique","divers"},
+		layout = {layouts[2],layouts[2],layouts[2],layouts[2],layouts[2],layouts[2]}}
 
 for s = 1, screen.count() do
     -- Each screen has its own tag table.
@@ -114,6 +114,7 @@ myawesomemenu = {
    { "bépo", "/home/dionisos/scripts/pgm_keyboard/load" },
    { "azerty", terminal_cmd .. "setxkbmap fr" },
    { "edit config", editor .. " " .. awful.util.getdir("config") .. "/rc.lua" },
+   { "suspend", terminal_cmd .. "/home/dionisos/scripts/mysuspend" },
    { "restart", awesome.restart }
 }
 
@@ -360,6 +361,7 @@ globalkeys = awful.util.table.join(
 	awful.key({modkey, "Control"}, "t",function () awful.util.spawn("empathy") end),
 	awful.key({modkey, "Control"}, "i",function () awful.util.spawn("/home/dionisos/installation/obj-instantbird/mozilla/dist/bin/instantbird") end),
 	awful.key({modkey, "Control"}, "f",function () awful.util.spawn("firefox") end),
+	awful.key({modkey, "Control"}, "s",function () awful.util.spawn(terminal_cmd .. "/home/dionisos/scripts/mysuspend") end),
 	awful.key({modkey,}, "#95",function () awful.util.spawn("/home/dionisos/scripts/volume_down 1") os.execute("sleep 0.1") vicious.force({volumewidget}) end),
     awful.key({modkey,}, "#96",function () awful.util.spawn("/home/dionisos/scripts/volume_up 1") os.execute("sleep 0.1") vicious.force({volumewidget})end),
 	awful.key({modkey, "Shift"}, "#95",function () awful.util.spawn("/home/dionisos/scripts/volume_down 10") os.execute("sleep 0.1") vicious.force({volumewidget}) end),

@@ -1,4 +1,5 @@
 #!/bin/bash
 
-echo \"$(pwd)'/.*'$1\"
-locate -r "$(pwd)/.*$1"
+# do not follow symlink !!
+echo \"$(pwd -P)'/.*'$1\"
+locate -r "$(pwd -P)/.*$1"
