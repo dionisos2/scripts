@@ -1,0 +1,8 @@
+sur la tablette : paramètre→stockage→en haut à droit:connection usb à l’ordinateur
+puis activer le MTP
+
+mtp-detect
+Si MTP detect ne marche pas, le cable usb peut ne pas être bon, apparemment certains de servent qu’à recharger (sérieux…)
+
+mtp-connect (pas sur que ça soit utile)
+jmtpfs /media/dd
