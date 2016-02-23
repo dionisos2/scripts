@@ -6,3 +6,8 @@ Si MTP detect ne marche pas, le cable usb peut ne pas être bon, apparemment cer
 
 mtp-connect (pas sur que ça soit utile)
 jmtpfs /media/dd
+
+
+webcam
+activate "ip-cam" on the tablet, and:
+sudo gst-launch-0.10 -v souphttpsrc location='http://192.168.1.51:8080/videofeed' is-live=true ! multipartdemux ! decodebin2 ! v4l2sink device=/dev/video1
