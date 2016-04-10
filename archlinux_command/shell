@@ -3,3 +3,8 @@ help shell-cmd
 man bash
 source //for executing script in the current env
 nohup and disown //detach program
+watch -n 1 -t command //update command every seconde
+watch -n 1 -t date //a simple clock :-)
+time command //calculate the time that command run
+watch -dpermanent ls -ltr //see what change in the directory
+figlet // write in ascii-art

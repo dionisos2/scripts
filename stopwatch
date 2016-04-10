@@ -1,0 +1,27 @@
+#!/bin/sh
+
+stopwatch_file="/home/dionisos/à_supr/stopwatch_tmp"
+
+if [ "$1" == "-c" ] && [ -f $stopwatch_file ]
+then
+	rm $stopwatch_file
+fi
+
+delta=0
+if [ -f $stopwatch_file ]
+then
+	delta=$(more $stopwatch_file)
+fi
+
+export I=$[$(date +%s) - $delta]
+
+watch -t -n 1 'T=$(date +%s); E=$(($T-$I)); hours=$((E / 3600)); seconds=$((E % 3600)); minutes=$((seconds / 60)); seconds=$((seconds % 60)); echo $(printf "%02d:%02d:%02d" $hours $minutes $seconds);'
+
+T=$(date +%s)
+E=$(($T-$I))
+hours=$((E / 3600))
+seconds=$((E % 3600))
+minutes=$((seconds / 60))
+seconds=$((seconds % 60))
+echo $E > $stopwatch_file
+echo $(printf "%02d:%02d:%02d" $hours $minutes $seconds)

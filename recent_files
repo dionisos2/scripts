@@ -1,0 +1,11 @@
+#!/bin/bash
+
+if [ $# -ne 2 ]
+then
+    echo "first argument is dir, and second is number, exemple : recent_files . 5"
+	exit 1
+fi
+
+dir="$1"
+number="$2"
+find "$dir" -type f -printf '%T@ %TY-%Tm-%Td %TH:%TM:%.2TS %p\n' | sort -nr | head -n "$number" | cut -f2- -d" "
