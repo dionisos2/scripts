@@ -9,5 +9,7 @@ jmtpfs /media/dd
 
 
 webcam
-activate "ip-cam" on the tablet, and:
-sudo gst-launch-0.10 -v souphttpsrc location='http://192.168.1.51:8080/videofeed' is-live=true ! multipartdemux ! decodebin2 ! v4l2sink device=/dev/video1
+sudo modprobe v4l2loopback
+activate "ip-webcam" on the tablet
+start server on the ip-webcam software
+sudo gst-launch-0.10 -v souphttpsrc location='http://192.168.0.15:8080/videofeed' is-live=true ! multipartdemux ! decodebin2 ! v4l2sink device=/dev/video1

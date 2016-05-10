@@ -5,3 +5,8 @@ manque lib32-machin -> voir dans /etc/pacman.conf et rajouter multilib
 magit-show show nothing -> se mettre à la racine du dépot git
 
 mount /dev/sda1 /media/dd/ -o umask=000 // quand vfat inaccessible en écriture
+
+bug wikimedia :
+- Installer mise à jour en suivant les étapes décrite
+- Virer un drop table dans un des fichiers sql de maintenance
+- Supprimer et recréer cl_sortkey
