@@ -15,6 +15,10 @@ git branch --set-upstream developpement origin/<branch> //tracking info in branc
 
 This works. I have used it more than a few times for setting up clients with git-flow, heroku, and a backup git service.
 
+//Récupéré un fichier adder mais pas commit, après un reset --hard
+git fsck --cache --unreachable $(git for-each-ref --format="%(objectname)")
+//Les fichiers sont les blobs.
+
 .git/config for the repo:
 
 [core]
