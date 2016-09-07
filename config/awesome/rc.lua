@@ -106,6 +106,7 @@ end
 -- Create a laucher widget and a main menu
 myawesomemenu = {
    { "firefox", "firefox" },
+   { "krusader", "krusader" },
    { "emacs", "emacsclient -c" },
    { "pidgin", "pidgin" },
    { "gedit", "gedit" },

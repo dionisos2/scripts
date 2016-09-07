@@ -2,7 +2,7 @@
 
 if [ $# -ne 1 ]
 then
-    echo "Rentrez l’extension"
+    echo "Rentrez l’extension, ex:'convert_movie mp4'"
 	exit 1
 fi
 
@@ -16,8 +16,8 @@ do
 		if [ $extension ==  $1 ]
 		then
 			echo "$file → $filename.ogg"
-			ffmpeg -i "$file" -f avi -b 2048k -ab 160k -ar 44100 "$filename.avi"
-			# ffmpeg -i "$file" -acodec libvorbis -vcodec libtheora "$filename.ogg"
+			# ffmpeg -i "$file" -f avi -b 2048k -ab 160k -ar 44100 "$filename.avi"
+			ffmpeg -i "$file" -acodec libvorbis -vcodec libtheora "$filename.ogg"
 		fi
 	fi
 done

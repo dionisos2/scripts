@@ -15,6 +15,7 @@ pitivi -> édition vidéo
 quvi -> télécharger des vidéos (de youtube ou autre)
 jmtpfs /media/dd -> mount pour tablette android
 fusermount -u /media/dd -> unmount after jmtpfs
+krusader -> navigateur de fichiers
 
 jeux
 mana -> the mana world (paquet:tmw) (mmorpg)

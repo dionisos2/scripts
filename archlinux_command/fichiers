@@ -5,3 +5,6 @@ connaitre les processus utilisant un fichier ou un dossier:
 fuser -m fichier
 ou
 lsof | grep "partition ou point de montage"
+
+Comment sont ouvert les fichiers (voir xdg-open and xdg-mime)
+~/.local/share/applications/mimeapps.list
