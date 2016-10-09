@@ -10,3 +10,8 @@ bug wikimedia :
 - Installer mise à jour en suivant les étapes décrite
 - Virer un drop table dans un des fichiers sql de maintenance
 - Supprimer et recréer cl_sortkey
+
+problème avec les package dans emacs:
+"package--read-archive-file: End of file during parsing"
+supprimer les fichiers ~/.emacs.d/elpa/archives/le_dépot/archive-contents fonctionne, voir :
+http://emacs.stackexchange.com/questions/19576/how-to-fix-this-startup-package-initialization-problem
