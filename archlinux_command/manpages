@@ -3,3 +3,4 @@ man ascii
 man -k "regexp" or apropos "regexp" //search in name
 yaourt -S most and $PAGER=most //most good than less
 help cmd // for built-ins command !
+mandb // manually update index datababe caches
