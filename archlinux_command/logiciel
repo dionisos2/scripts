@@ -1,4 +1,3 @@
-
 inkscape -> dessins vectoriels
 geogebra -> géométrie, traçage de courbes
 xpaint -> paint program(not soo good)
@@ -16,6 +15,7 @@ quvi -> télécharger des vidéos (de youtube ou autre)
 jmtpfs /media/dd -> mount pour tablette android
 fusermount -u /media/dd -> unmount after jmtpfs
 krusader -> navigateur de fichiers
+gnome-clock -> chronomètre et alarme
 
 jeux
 mana -> the mana world (paquet:tmw) (mmorpg)
