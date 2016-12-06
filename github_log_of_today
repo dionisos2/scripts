@@ -1,0 +1,11 @@
+#!/bin/sh
+
+commits="$(git log --oneline --since=midnight)"
+
+last_commit=$(echo "$commits" | cut -d" " -f 1 | head -1)
+first_commit=$(echo "$commits" | cut -d" " -f 1 | tail -1)
+previous_commit=$(git log --oneline "$first_commit"^ -1 | cut -d" " -f 1)
+
+
+echo "https://github.com/dionisos2/generateur_de_cartes/compare/$previous_commit...$last_commit"
+echo "https://github.com/dionisos2/generateur_de_cartes/compare/$previous_commit...$last_commit" | xclip

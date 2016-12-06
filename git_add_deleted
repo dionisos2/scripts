@@ -1,3 +1,4 @@
 #!/bin/bash
+#stage the deleted file
 
 git ls-files --deleted | xargs git rm

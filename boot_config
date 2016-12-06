@@ -10,25 +10,14 @@ if [ -f /etc/bash_completion ]; then
 fi
 
 
-
-function Purge()
-{
-	\rm -rf "$HOME/.local/share/Trash/files/"
-	\rm -rf "$HOME/.local/share/Trash/info/"
-	mkdir "$HOME/.local/share/Trash/files/"
-	mkdir "$HOME/.local/share/Trash/info/"
-}
-
-alias rm='/home/dionisos/scripts/dionisos_rm'
-alias purge='Purge'
+alias rm='echo "rm desactivated, use trash"'
+alias purge='echo "trash-empty 3 (vieux de plus de 3 jours)" && trash-empty 3'
 alias cp='cp -i'
 alias mv='mv -i'
-alias go='cd ~/Bureau/'
 alias ema='cd ~/.emacs.d/'
 alias cd..='cd ..'
-alias gocpp="cd ~/projet/programmation/c++/"
-alias gopy="cd ~/projet/programmation/python/"
-alias rmtempo="~/rmtempo"
+alias gocpp="cd ~/projets/programmation/c++/"
+alias gopy="cd ~/projets/programmation/python/"
 alias r="ranger"
 
 export HISTFILESIZE=200000

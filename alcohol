@@ -1,0 +1,13 @@
+#!/bin/bash
+
+if [ $# -ne 2 ]
+then
+    echo "first parameter is the number of l, and the second is the degree of the beverage, ex for a beer: alcohol 0.25 4.2"
+    echo "it print the number of gramme of alcohol"
+	exit 1
+fi
+
+volume="$1"
+degree="$2"
+
+python -c "print('{0:.2f}'.format(($volume*0.8*$degree*10),2))"

@@ -1,4 +1,5 @@
 shopt //option du shell
+shopt -p
 help shell-cmd
 man bash
 source //for executing script in the current env
@@ -8,3 +9,5 @@ watch -n 1 -t date //a simple clock :-)
 time command //calculate the time that command run
 watch -dpermanent ls -ltr //see what change in the directory
 figlet // write in ascii-art
+we can use <<< to input something in a command, ex:
+bc <<< "5*6"
