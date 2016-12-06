@@ -57,7 +57,7 @@ end
 -- Themes define colours, icons, and wallpapers
 beautiful.init("/home/dionisos/.config/awesome/themes/default/theme.lua")
 
-theme.wallpaper = "/home/dionisos/documents/images/ecran_de_fond.jpeg"
+theme.wallpaper = "/home/dionisos/documents/images/moine.jpeg"
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
 -- If you do not like this or do not have such a key,
@@ -106,6 +106,7 @@ end
 -- Create a laucher widget and a main menu
 myawesomemenu = {
    { "firefox", "firefox" },
+   { "gnome-clocks", "gnome-clocks" },
    { "krusader", "krusader" },
    { "emacs", "emacsclient -c" },
    { "pidgin", "pidgin" },
@@ -183,18 +184,38 @@ do
    end
 end
 
+-- My mail updater widget
+function mailcount(format, warg)
+    os.execute("/home/dionisos/scripts/unread.py > /home/dionisos/.mailcount")
+    local f = io.open("/home/dionisos/.mailcount")
+
+    local l = nil
+    if f ~= nil then
+       l = f:read()
+       f:close()
+    else
+       l = "?"
+    end
+
+    if l == nil then
+       l = "?"
+    end
+    return {tostring(l)}
+end
+
 netwidget = wibox.widget.textbox()
 batwidget = wibox.widget.textbox()
 debugwidget = wibox.widget.textbox('')
 volumewidget = wibox.widget.textbox()
 orgwidget = wibox.widget.textbox()
+mailwidget = wibox.widget.textbox()
 
-
-vicious.register(netwidget, vicious.widgets.net, format_net, 5)
+-- vicious.register(netwidget, vicious.widgets.net, format_net, 10)
 vicious.register(batwidget, vicious.widgets.bat, format_bat, 29, 'BAT0')
 local sound_controller = io.popen("/home/dionisos/scripts/current_sound_controller"):read("*all")
 vicious.register(volumewidget, vicious.widgets.volume, '$2$1% ', 31, sound_controller)
 vicious.register(orgwidget, vicious.widgets.org, format_org, 59, {'/home/dionisos/organisation/agenda.org'})
+vicious.register(mailwidget, mailcount, ' {$1}', 1223)
 
 os.setlocale("fr_FR.UTF-8") -- Français
 mytextclock = awful.widget.textclock(" %a/%d/%b/%H:%M ")
@@ -287,12 +308,13 @@ for s = 1, screen.count() do
     -- Widgets that are aligned to the right
     local right_layout = wibox.layout.fixed.horizontal()
     if s == 1 then right_layout:add(wibox.widget.systray()) end
+    right_layout:add(mailwidget)
     right_layout:add(orgwidget)
     right_layout:add(mytextclock)
-	right_layout:add(volumewidget)
-	right_layout:add(netwidget)
-	right_layout:add(batwidget)
-	right_layout:add(debugwidget)
+    right_layout:add(volumewidget)
+    right_layout:add(netwidget)
+    right_layout:add(batwidget)
+    right_layout:add(debugwidget)
     right_layout:add(mylayoutbox[s])
 
 
@@ -353,16 +375,18 @@ globalkeys = awful.util.table.join(
 						end),
 
     -- Standard program
-    awful.key({ modkey },            "y",     function () mypromptbox[mouse.screen]:run() end),
+  awful.key({ modkey },            "y",     function () mypromptbox[mouse.screen]:run() end),
 	awful.key({ modkey, "Control", "Shift"}, "#119",function () awful.util.spawn(terminal_cmd .. "/home/dionisos/scripts/dd_poweroff") end),
 	awful.key({ modkey, "Control"}, "#119",function () awful.util.spawn(terminal_cmd .. "/home/dionisos/scripts/process_view") end),
 	awful.key({modkey, "Control"}, "q",function () awful.util.spawn("xkill") end),
 	awful.key({modkey, "Control"}, "e",function () awful.util.spawn("emacsclient -c") end),
-    awful.key({modkey, "Control"}, "m",function () awful.util.spawn("quodlibet") end),
+  awful.key({modkey, "Control"}, "m",function () awful.util.spawn("quodlibet") end),
 	awful.key({modkey, "Control"}, "t",function () awful.util.spawn("empathy") end),
 	awful.key({modkey, "Control"}, "i",function () awful.util.spawn("/home/dionisos/installation/obj-instantbird/mozilla/dist/bin/instantbird") end),
 	awful.key({modkey, "Control"}, "f",function () awful.util.spawn("firefox") end),
+  awful.key({modkey, "Control"}, "g",function () awful.util.spawn("gnome-clocks") end),
 	awful.key({modkey, "Control"}, "s",function () awful.util.spawn(terminal_cmd .. "/home/dionisos/scripts/mysuspend") end),
+  awful.key({modkey,}, "#75",function () vicious.force({mailwidget}) end),
 	awful.key({modkey,}, "#95",function () awful.util.spawn("/home/dionisos/scripts/volume_down 1") os.execute("sleep 0.1") vicious.force({volumewidget}) end),
     awful.key({modkey,}, "#96",function () awful.util.spawn("/home/dionisos/scripts/volume_up 1") os.execute("sleep 0.1") vicious.force({volumewidget})end),
 	awful.key({modkey, "Shift"}, "#95",function () awful.util.spawn("/home/dionisos/scripts/volume_down 10") os.execute("sleep 0.1") vicious.force({volumewidget}) end),

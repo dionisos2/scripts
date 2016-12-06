@@ -566,8 +566,11 @@ class delete(Command):
     def dionisos_delete(self):
         self.fm.notify("Deleting!")
         selected = self.fm.thistab.get_selection()
-        for f in selected:
-            Popen("/home/dionisos/scripts/dionisos_rm \"" + f.path + "\"", shell=True) #TODO vérifier si tout est ok avec Popen
+        command_args = ""
+        for file_to_delete in selected:
+            command_args += '"' + file_to_delete.path + '" '
+        # print("trash " + command_args)
+        Popen("trash " + command_args, shell=True) #TODO vérifier si tout est ok avec Popen
 
     def execute(self):
         import os
