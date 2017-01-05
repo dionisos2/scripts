@@ -16,6 +16,7 @@ jmtpfs /media/dd -> mount pour tablette android
 fusermount -u /media/dd -> unmount after jmtpfs
 krusader -> navigateur de fichiers
 gnome-clock -> chronomètre et alarme
+conky -> lot of stats
 
 jeux
 mana -> the mana world (paquet:tmw) (mmorpg)
