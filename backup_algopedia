@@ -1,0 +1,5 @@
+#!/bin/bash
+
+cd ~/algosphere/wikiteam
+python2.7 dumpgenerator.py https://algopedia.miraheze.org --xml --images
+read a

@@ -386,6 +386,7 @@ globalkeys = awful.util.table.join(
 	awful.key({modkey, "Control"}, "f",function () awful.util.spawn("firefox") end),
   awful.key({modkey, "Control"}, "g",function () awful.util.spawn("gnome-clocks") end),
 	awful.key({modkey, "Control"}, "s",function () awful.util.spawn(terminal_cmd .. "/home/dionisos/scripts/mysuspend") end),
+  awful.key({modkey,}, "s",function () awful.util.spawn(terminal_cmd .. "/home/dionisos/scripts/screensaver") end),
   awful.key({modkey,}, "#75",function () vicious.force({mailwidget}) end),
 	awful.key({modkey,}, "#95",function () awful.util.spawn("/home/dionisos/scripts/volume_down 1") os.execute("sleep 0.1") vicious.force({volumewidget}) end),
     awful.key({modkey,}, "#96",function () awful.util.spawn("/home/dionisos/scripts/volume_up 1") os.execute("sleep 0.1") vicious.force({volumewidget})end),

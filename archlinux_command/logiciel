@@ -17,6 +17,7 @@ fusermount -u /media/dd -> unmount after jmtpfs
 krusader -> navigateur de fichiers
 gnome-clock -> chronomètre et alarme
 conky -> lot of stats
+pure-ftp -> serveur ftp (démarrer avec systemctl start pure-ftpd.service)
 
 jeux
 mana -> the mana world (paquet:tmw) (mmorpg)

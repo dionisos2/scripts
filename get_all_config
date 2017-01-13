@@ -5,3 +5,4 @@ cp ~/.config/awesome/environnement.lua ~/scripts/config/awesome/
 cp ~/.config/ranger/commands.py ~/scripts/config/ranger/
 cp ~/.config/ranger/rc.conf ~/scripts/config/ranger/
 cp ~/.config/ranger/rifle.conf ~/scripts/config/ranger/
+cp ~/.config/beancount/beancount.config ~/scripts/config/beancount/
