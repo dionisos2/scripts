@@ -1,0 +1,2 @@
+journalctl --since "2017-01-16 18:00" -u pure-ftpd.service
+journalctl --since today -u pure-ftpd.service
