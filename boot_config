@@ -40,6 +40,7 @@ bind '"\e[B": history-search-forward'
 # c-r for search in history
 source /etc/profile.d/autojump.bash
 export PROMPT_COMMAND="history -a && $PROMPT_COMMAND"
-
-
-
+# expand command before verifying this
+shopt -s histverify
+# disable XON/XOFF then you can use ctrl-s with ctrl-r
+stty -ixon

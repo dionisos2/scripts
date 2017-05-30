@@ -1,3 +1,6 @@
+git log -stat file // what commit modify the file
+git log -p file // same thing but get the full diff of the commits
+
 Adding files quickly:
 git add *file
 git add -i

@@ -1,1 +1,21 @@
 C-xC-e //Open the current command in a editor
+!! last command
+!-2 two command before
+^auie^eiua replace first auie by eiua in last command
+!!:s/auie/eiua same thing
+!!:gs/auie/eiua replace all auie by eiua in last command
+
+$ history | grep 'ipt'
+  2    iptables -L -n -v -t nat
+$ !2     # will execute the iptables command
+
+history 3 # will only show the last 3 commands
+
+$ command #useful # add a comment
+ctrl+r #useful # then you can search for this comment
+
+ctrl-s to go forward after ctrl-r
+
+M-> and M-< to move the pointer to the end or start of the history
+
+cancel ctrl-r with ctrl-c to move the pointer at the end of the history
