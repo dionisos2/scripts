@@ -9,7 +9,8 @@ ldm -> lith way device mounter
 ntp(ntpd -q)-> sync date (sudo ntpd -qg for put right universal time)
 xsensor -> température
 figlet -> create ascii art
-mirage/eog -> image viewer
+mirage/eog -> image viewer (plus à jour)
+geeqie -> image viewer
 pitivi -> édition vidéo
 quvi -> télécharger des vidéos (de youtube ou autre)
 jmtpfs /media/dd -> mount pour tablette android
@@ -19,10 +20,18 @@ gnome-clock -> chronomètre et alarme
 conky -> lot of stats
 pure-ftp -> serveur ftp (démarrer avec systemctl start pure-ftpd.service)
 inxi -> configuration
+pycallgraph graphviz blabla.py -> analyze time
+simple-scan -> scanner (gui pour sane)
+system-config-printer -> configuration de l’imprimante
 
 jeux
 mana -> the mana world (paquet:tmw) (mmorpg)
-0ad -> jeux de strategie style age of empire
-warzone -> jeux de strategie futuriste
-widelands -> jeux de strategie style settler
+0ad -> jeux de stratégie style age of empire
+warzone -> jeux de stratégie futuriste
+widelands -> jeux de stratégie style settler
 limbo -> jeux de plate forme sur steam (fx)
+frogatto -> jeu de plateforme qui à l’air vraiment sympa
+boswars -> jeu de stratégie mais qui n’a pas l’air très équilibré
+zero-k -> jeu de stratégie qui à l’air ouf
+megaglest -> jeu de stratégie à test
+supertuxkart -> jeu de kart

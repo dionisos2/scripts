@@ -1,0 +1,25 @@
+win+b → awesome menu
+win+p → open programs with menu
+win+m → like alt+tab on windows
+win+j/win+z → slipt resize
+win+s → screensaver
+win+ctrl+s → suspend
+win+y → run with command
+win+x → run lua code
+win+q → close windows
+win+f7 → bépo
+win+f8 → azerty
+win+space → cycle through floating/fullscreen/tiddle
+win+ctrl+space → toggle "floating"/"not floating" on windows
+win+ctrl+e → emacsclient
+win+ctrl+f → firefox
+win+enter → terminator console
+win+shift+f → toggle fullscreen
+win+shift+j/win+shift+z → "move windows between slipt"
+win+left_click → move windows
+win+shift+left_arrow/right_arrow → move windows
+win+right_click → resize windows
+win+ctrl+left_arrow/right_arrow → change of tag ("main", "prog"…)
+
+BUG
+"+" on the firefox windown → run firefox with the menu, and if there are many firefox windows popping, close the windows with a "+", then close remaining instance of firefox

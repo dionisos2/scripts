@@ -391,8 +391,6 @@ globalkeys = awful.util.table.join(
    awful.key({ modkey, }, "#110", function() awful.util.spawn(terminal_cmd .. "genius") end),
    awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
    awful.key({ modkey, "Control" }, "r", awesome.restart),
-   awful.key({ modkey, "Shift"   }, "q", awesome.quit),
-
    awful.key({ modkey,           }, "z",     function () awful.tag.incmwfact( 0.05)    end),
    awful.key({ modkey,           }, "j",     function () awful.tag.incmwfact(-0.05)    end),
    awful.key({ modkey, "Shift"   }, "z",     function () awful.tag.incnmaster( 1)      end),
@@ -405,12 +403,13 @@ globalkeys = awful.util.table.join(
    awful.key({ modkey,  }, "Down", awful.client.restore),
 
    -- Prompt
-   awful.key({ modkey },            "r",     function () mypromptbox[mouse.screen]:run() end),
+    awful.key({ modkey },            "r",     function () awful.screen.focused().mypromptbox:run() end,
+              {description = "run prompt", group = "launcher"}),
 
    awful.key({ modkey }, "x",
       function ()
          awful.prompt.run({ prompt = "Run Lua code: " },
-            mypromptbox[mouse.screen].widget,
+            awful.screen.focused().mypromptbox.widget,
             awful.util.eval, nil,
             awful.util.getdir("cache") .. "/history_eval")
    end),
