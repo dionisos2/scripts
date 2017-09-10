@@ -1,0 +1,10 @@
+paccache -rk 2 // prefered to pacman -Sc, keep the 2 last versions of the package for possible downgrading
+pacman -Sc
+
+pacman -Qe // list manually installed package
+pacman -Qeq // same but get only the package name
+yaourt --stats // get stats about package
+
+pacman -Qm // get aur and other external packages
+
+pacman -Slq core // get all core packages

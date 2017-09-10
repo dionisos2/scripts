@@ -23,6 +23,13 @@ inxi -> configuration
 pycallgraph graphviz blabla.py -> analyze time
 simple-scan -> scanner (gui pour sane)
 system-config-printer -> configuration de l’imprimante
+espeak -> lecteur de text
+zenity --info --text="plop" -> display gtk dialog
+httrack -> aspirateur de sites
+ipython -> repl pour python (console)
+jupyter -> notebook generaliste
+sympy+scipy -> calculs scientifiques et symboliques
+zeal -> download and see docset
 
 jeux
 mana -> the mana world (paquet:tmw) (mmorpg)

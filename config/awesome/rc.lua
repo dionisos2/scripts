@@ -177,7 +177,20 @@ do
    end
 end
 
+-- -- Notify urgent message /!\ don’t work and block awesome
+-- do
+--    local waited = 0
+--    function notify_urgent_tasks(formal, warg)
+--       if waited > 10 then
+--          os.execute("/home/dionisos/logiciels/myPyOrgMode/examples/notify_urgent_tasks.py")
+--       else
+--          waited = waited + 1
+--       end
+--       return {''}
+--    end
+-- end
 -- My mail updater widget
+
 function mailcount(format, warg)
    os.execute("/home/dionisos/scripts/unread.py > /home/dionisos/.mailcount")
    local f = io.open("/home/dionisos/.mailcount")
@@ -206,6 +219,7 @@ mailwidget = wibox.widget.textbox()
 -- vicious.register(netwidget, vicious.widgets.net, format_net, 10)
 vicious.register(batwidget, vicious.widgets.bat, format_bat, 29, 'BAT0')
 local sound_controller = io.popen("/home/dionisos/scripts/current_sound_controller"):read("*all")
+sound_controller = sound_controller:sub(1, -2) -- Because there is a line break to remove
 vicious.register(volumewidget, vicious.widgets.volume, '$2$1% ', 31, sound_controller)
 vicious.register(orgwidget, vicious.widgets.org, format_org, 59, {'/home/dionisos/organisation/agenda.org'})
 vicious.register(mailwidget, mailcount, ' {$1}', 1223)
@@ -388,7 +402,7 @@ globalkeys = awful.util.table.join(
    awful.key({modkey, }, "#73",function () awful.util.spawn("/home/dionisos/scripts/pgm_keyboard/load") end),
    awful.key({ modkey,           }, "#104",function () awful.util.spawn(terminal) end),
    awful.key({}, "#107", function() awful.util.spawn("/home/dionisos/scripts/screenshot") end),
-   awful.key({ modkey, }, "#110", function() awful.util.spawn(terminal_cmd .. "genius") end),
+   awful.key({ modkey, }, "#110", function() awful.util.spawn(terminal_cmd .. "julia") end),
    awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
    awful.key({ modkey, "Control" }, "r", awesome.restart),
    awful.key({ modkey,           }, "z",     function () awful.tag.incmwfact( 0.05)    end),
@@ -588,7 +602,6 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- }}}
 
 awful.util.spawn("/home/dionisos/scripts/run_once clipit")
-awful.util.spawn("/home/dionisos/scripts/run_once goldendict")
 awful.util.spawn("/home/dionisos/scripts/run_once emacs --daemon")
 awful.util.spawn("/home/dionisos/scripts/pgm_keyboard/load")
 awful.util.spawn("/home/dionisos/scripts/run_on_boot")

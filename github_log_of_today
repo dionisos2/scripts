@@ -1,6 +1,18 @@
 #!/bin/sh
 
-commits="$(git log --oneline --since=midnight)"
+if [ $# -ne 0 ]
+then
+    date="midnight"
+else
+    date="$1"
+fi
+commits="$(git log --oneline --since=$1)"
+
+if [ "$commits" == "" ]
+then
+    echo "no commits found"
+    exit 1
+fi
 
 last_commit=$(echo "$commits" | cut -d" " -f 1 | head -1)
 first_commit=$(echo "$commits" | cut -d" " -f 1 | tail -1)
@@ -9,5 +21,7 @@ previous_commit=$(git log --oneline "$first_commit"^ -1 | cut -d" " -f 1)
 
 #echo "https://github.com/dionisos2/generateur_de_cartes/compare/$previous_commit...$last_commit"
 #echo "https://github.com/dionisos2/generateur_de_cartes/compare/$previous_commit...$last_commit" | xclip
-echo "https://github.com/dionisos2/no_repeat_please/compare/$previous_commit...$last_commit"
-echo "https://github.com/dionisos2/no_repeat_please/compare/$previous_commit...$last_commit" | xclip
+# echo "https://github.com/dionisos2/no_repeat_please/compare/$previous_commit...$last_commit"
+# echo "https://github.com/dionisos2/no_repeat_please/compare/$previous_commit...$last_commit" | xclip
+echo "https://github.com/dionisos2/CI/compare/$previous_commit...$last_commit"
+echo "https://github.com/dionisos2/CI/compare/$previous_commit...$last_commit" | xclip

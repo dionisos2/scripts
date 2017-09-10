@@ -1,1 +1,2 @@
+paccache -rk 2 // prefered to pacman -Sc, keep the 2 last versions of the package for possible downgrading
 pacman -Sc

@@ -1,0 +1,8 @@
+voir ~/.config/systemd/user/notification.service
+
+systemctl --user daemon-reload // to run after creating a new service
+
+systemctl --user list-timers // to see all current timer "--all" to see all timer
+// start the service to activate the OnUnitActiveSec of the timer if it isn’t already running (generally thanks to OnBootSec)
+
+systemctl --user list-units

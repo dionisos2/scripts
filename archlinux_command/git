@@ -12,6 +12,16 @@ git ls-files --deleted | xargs git rm
 git checkout commit_num file /!\ warning, this delete the current file without warning, do a commit before /!\
 git checkout commit_num → go to another version, don’t do it with a unclean work directory
 
+git commit --amend --no-edit
+git rebase -i
+
+
+
+git diff --name-only HEAD^ - (optional) use to list the files that changed in the last commit.
+git reset HEAD^ path/to/file/to/revert - to reset the index to that last version, leaving the working copy untouched.
+git commit --amend - to amend that last commit to include the index changes
+
+
 
 git reset --soft HEAD^ → reset to the previous commit
 git rm --cached file → remove file from stage. (unindexing)
