@@ -11,3 +11,6 @@ watch -dpermanent ls -ltr //see what change in the directory
 figlet // write in ascii-art
 we can use <<< to input something in a command, ex:
 bc <<< "5*6"
+
+find ./ -type f -name "Con*" | xargs mv -t ./
+find file of type "file" and of name "Con*" and for each file, mv -t ./ (-t is to choose the destination directory)

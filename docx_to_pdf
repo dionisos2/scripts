@@ -1,0 +1,38 @@
+#!/bin/bash
+
+if [ $# != 1 ] || [ $1 != "-p" ]
+then
+    echo "Intaller unoconv 'apt-get install unoconv' (dans une autre console)"
+    echo "(Utiliser 'docx_to_pdf -p' pour passer toutes les questions)"
+    echo "<entrer> pour continuer"
+    read
+    echo "Faire une sauvegarde du dossier avant continuer"
+    read
+    echo "Fait ?"
+    read
+fi
+
+if [[ ! -d "pdf_directory" ]]
+then
+    mkdir pdf_directory
+fi
+
+for file in *
+do
+	if [[ -f "$file" ]]
+	then
+		extension=${file##*.}
+		filename=${file%.*}
+		if [ $extension ==  "docx" ]
+		then
+			  echo "$file → pdf_directory/$filename.pdf"
+        unoconv -o"pdf_directory/$filename" -f pdf "$file"
+        if [ $? != 0 ]
+        then
+            echo "Conversion raté, essayer au moins une fois de plus"
+            exit 1
+        fi
+		fi
+	fi
+done
+

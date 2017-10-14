@@ -30,6 +30,8 @@ ipython -> repl pour python (console)
 jupyter -> notebook generaliste
 sympy+scipy -> calculs scientifiques et symboliques
 zeal -> download and see docset
+gpick -> récupérer couleurs
+gpk- -> gui pour packagekit (front-end généraliste pour les gestionnaire de paquets)
 
 jeux
 mana -> the mana world (paquet:tmw) (mmorpg)

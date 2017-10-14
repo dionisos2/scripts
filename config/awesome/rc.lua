@@ -98,6 +98,7 @@ end
 -- {{{ Menu
 -- Create a laucher widget and a main menu
 myawesomemenu = {
+   { "palemoon", "palemoon" },
    { "firefox", "firefox" },
    { "gnome-clocks", "gnome-clocks" },
    { "krusader", "krusader" },
@@ -387,7 +388,7 @@ globalkeys = awful.util.table.join(
    awful.key({modkey, "Control"}, "m",function () awful.util.spawn("quodlibet") end),
    awful.key({modkey, "Control"}, "t",function () awful.util.spawn("empathy") end),
    awful.key({modkey, "Control"}, "i",function () awful.util.spawn("/home/dionisos/installation/obj-instantbird/mozilla/dist/bin/instantbird") end),
-   awful.key({modkey, "Control"}, "f",function () awful.util.spawn("firefox") end),
+   awful.key({modkey, "Control"}, "f",function () awful.util.spawn("palemoon") end),
    awful.key({modkey, "Control"}, "g",function () awful.util.spawn("gnome-clocks") end),
    awful.key({modkey, "Control"}, "s",function () awful.util.spawn(terminal_cmd .. "/home/dionisos/scripts/mysuspend") end),
    awful.key({modkey,}, "s",function () awful.util.spawn(terminal_cmd .. "/home/dionisos/scripts/screensaver") end),
@@ -435,7 +436,7 @@ clientkeys = awful.util.table.join(
    awful.key({ modkey,"Shift"}, "f",      function (c) c.fullscreen = not c.fullscreen  end),
    awful.key({ modkey, }, "q",      function (c) c:kill()                         end),
    awful.key({ modkey, }, "#107",      function(c) awful.util.spawn("/home/dionisos/scripts/screenshot_windows " .. c.window)  end),
-   awful.key({ "Control", "Shift"   }, "#61",      function (c) c:kill()                         end),
+   awful.key({ modkey, }, "#2",      function (c) c:kill()                         end),
    awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ),
    awful.key({ modkey, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end),
    -- awful.key({ modkey,           }, "o",      awful.client.movetoscreen                        ),

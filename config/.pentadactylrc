@@ -1,0 +1,32 @@
+"1.2pre-pm-3
+
+loadplugins '\.(js|penta)$'
+group user
+map -count -modes=n,v <C-A-Left> -builtin <count><C-p>
+map -count -modes=n,v <C-A-Right> -builtin <count><C-n>
+map -count -modes=n,v <C-t> -builtin <count><C-p>
+map -count -modes=n,v <C-r> -builtin <count><C-n>
+map -count -modes=n,v <C-d> -builtin <count>F
+map -count -modes=n,v <C-A-d> -builtin <count>;;
+map -count -modes=n,v <C-s> -builtin <count>/
+map -count -modes=n <C-q> -builtin <count>ZZ
+map -count -modes=n <A-x> -builtin <count>:
+map -count -modes=n <C-g> -builtin <count><Esc>
+map -count -modes=n <BS> -builtin <Nop>
+map -count -modes=n,v <A-d> -builtin <count>4k
+map -count -modes=n,v <A-s> -builtin <count>4j
+map -count -modes=n,v <A-t> -builtin <count>4h
+map -count -modes=n,v <A-r> -builtin <count>4l
+map -count -modes=n,v d -builtin <count>4k
+map -count -modes=n,v s -builtin <count>4j
+map -count -modes=v <C-g> -builtin <count><Esc>
+map -count -modes=i <C-g> -builtin <Esc>
+map -count -modes=t <C-g> -builtin <count><Esc>
+map -count -modes=c <C-g> -builtin <Esc>
+set cdpath=''
+set editor='emacsclient -c <file>'
+set guioptions=nbCrsmTB
+set hintkeys=tesirunadoc,gy
+set maxitems=35
+
+" vim: set ft=pentadactyl:

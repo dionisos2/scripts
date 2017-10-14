@@ -1,5 +1,6 @@
 #!/bin/sh
 
+cp ~/.pentadactylrc ~/scripts/config/
 cp ~/.config/awesome/rc.lua ~/scripts/config/awesome/
 cp ~/.config/awesome/environnement.lua ~/scripts/config/awesome/
 cp ~/.config/ranger/commands.py ~/scripts/config/ranger/
