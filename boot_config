@@ -19,6 +19,7 @@ alias cd..='cd ..'
 alias gocpp="cd ~/projets/programmation/c++/"
 alias gopy="cd ~/projets/programmation/python/"
 alias r="ranger"
+alias ll='ls -alF'
 
 export HISTFILESIZE=200000
 export HISTSIZE=100000
@@ -34,6 +35,8 @@ export PATH
 export LANG="fr_FR.utf8"
 export PAGER=less
 export XLIB_SKIP_ARGB_VISUALS=1 # for skype
+export BORG_REPO=ssh://dionisos@dionisos_pc:22/home/dionisos/save_portable
+
 # c-v + key for find the character sequence emitted by key
 bind '"\e[Z":menu-complete'
 bind '"\e[A": history-search-backward'
@@ -45,3 +48,4 @@ export PROMPT_COMMAND="history -a && $PROMPT_COMMAND"
 shopt -s histverify
 # disable XON/XOFF then you can use ctrl-s with ctrl-r
 stty -ixon
+

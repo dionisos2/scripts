@@ -1,1 +1,4 @@
-rsync -auv --progress musique_a_trier/ musique
+rsync -au --progress musique_a_trier/ musique
+// -a archive = rlptgoD
+// -u update skip files that are newer on the receiver
+// -r recursive -l copy symlinks as symlinks -p preserve permissions -t preserve modification times -g preserve group -o preserve owner -D preserve special files

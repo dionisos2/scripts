@@ -3,8 +3,11 @@ pacman -Sc
 
 pacman -Qe // list manually installed package
 pacman -Qeq // same but get only the package name
+pacman -Qneq // same but without aur
 yaourt --stats // get stats about package
 
 pacman -Qm // get aur and other external packages
 
 pacman -Slq core // get all core packages
+
+pacman -Qi // get info on a package

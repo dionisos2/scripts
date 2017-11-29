@@ -1,5 +1,17 @@
 shopt //option du shell
 shopt -p
+
+type command //find what a command is, work for normal command but also for bash function or alias
+
+# Turn on extended shell debugging
+shopt -s extdebug
+# Dump the function's name, line number and fully qualified source file
+declare -F foo
+# Turn off extended shell debugging
+shopt -u extdebug
+
+bash -x //knowing everything bash run at boot
+
 help shell-cmd
 man bash
 source //for executing script in the current env

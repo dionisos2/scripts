@@ -388,7 +388,7 @@ globalkeys = awful.util.table.join(
    awful.key({modkey, "Control"}, "m",function () awful.util.spawn("quodlibet") end),
    awful.key({modkey, "Control"}, "t",function () awful.util.spawn("empathy") end),
    awful.key({modkey, "Control"}, "i",function () awful.util.spawn("/home/dionisos/installation/obj-instantbird/mozilla/dist/bin/instantbird") end),
-   awful.key({modkey, "Control"}, "f",function () awful.util.spawn("palemoon") end),
+   awful.key({modkey, "Control"}, "f",function () awful.util.spawn("firefox") end),
    awful.key({modkey, "Control"}, "g",function () awful.util.spawn("gnome-clocks") end),
    awful.key({modkey, "Control"}, "s",function () awful.util.spawn(terminal_cmd .. "/home/dionisos/scripts/mysuspend") end),
    awful.key({modkey,}, "s",function () awful.util.spawn(terminal_cmd .. "/home/dionisos/scripts/screensaver") end),

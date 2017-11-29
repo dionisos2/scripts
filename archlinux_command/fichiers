@@ -8,3 +8,5 @@ lsof | grep "partition ou point de montage"
 
 Comment sont ouvert les fichiers (voir xdg-open and xdg-mime)
 ~/.local/share/applications/mimeapps.list
+
+perl-rename -n 's/^\[.*\]//' *

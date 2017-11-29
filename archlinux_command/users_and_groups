@@ -1,6 +1,22 @@
 sudo groupadd <group>
-adduser //liste de questions
+
+
+adduser //liste de questions ou:
+
+sudo useradd backup
+sudo passwd backup
+echo ~backup
+sudo chown backup /home/backup/
+sudo chgrp backup /home/backup/
+
+
 /etc/passwd
 /etc/group
-sudo usermod -a -G group user
+g=$(cat /etc/group | cut -d: -f1 | tr '\n' ',')
+g=${g%?}
+
+sudo usermod -a -G group,group2 username // ajoute group à l’utilisateur
+// -a pour append, et -G pour groups
+
+
 gpasswd -a user group
