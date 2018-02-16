@@ -20,6 +20,7 @@ alias gocpp="cd ~/projets/programmation/c++/"
 alias gopy="cd ~/projets/programmation/python/"
 alias r="ranger"
 alias ll='ls -alF'
+alias t="trizen"
 
 export HISTFILESIZE=200000
 export HISTSIZE=100000

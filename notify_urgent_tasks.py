@@ -1,4 +1,4 @@
-#!/usr/bin/python2
+#!/usr/bin/python
 from PyOrgMode import PyOrgMode
 
 base = PyOrgMode.OrgDataStructure()
@@ -9,6 +9,7 @@ todo_list = base.extract_todo_list()
 
 # print([base.root.content[0].content])
 # print(len(todo_list))
+todo_list = [task for task in todo_list if task.priority == 'A']
 
 for task in todo_list:
     print(str(task))
@@ -16,7 +17,5 @@ for task in todo_list:
     print(task.priority)
     print(task.scheduled)
     print(task.tags)
-
-todo_list = [task for task in todo_list if task.priority == 'A']
 
 print(len(todo_list))
