@@ -21,6 +21,8 @@ alias gopy="cd ~/projets/programmation/python/"
 alias r="ranger"
 alias ll='ls -alF'
 alias t="trizen"
+alias rsync="rsync -au --progress"
+alias cp="rsync -au --progress"
 
 export HISTFILESIZE=200000
 export HISTSIZE=100000

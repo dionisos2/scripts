@@ -78,6 +78,7 @@
 
 from ranger.api.commands import *
 from subprocess import Popen # dionisos
+import re
 
 class alias(Command):
     """:alias <newcommand> <oldcommand>

@@ -30,6 +30,9 @@ from libqtile.command import lazy
 from libqtile import layout, bar, widget, hook
 import subprocess
 import os
+import sys
+sys.path.append('/home/dionisos/projets/programmation/python/qtile/')
+from org_mode_widget import OrgMode
 
 mod = "mod4"
 
@@ -72,7 +75,8 @@ keys = [
 
 
     # Swap panes of split stack
-    Key([mod, "shift"], "r", lazy.layout.rotate()),
+    # Key([mod, "shift"], "r", lazy.layout.rotate()),
+    Key([mod, "shift"], "r", lazy.layout.client_to_next()),
 
     # Toggle between split and unsplit sides of stack.
     # Split = all windows displayed
@@ -84,12 +88,16 @@ keys = [
     Key([mod, "control"], "p", lazy.spawn("firefox --private-window")),
     Key([mod, "control"], "e", lazy.spawn("emacsclient -c")),
     Key([mod, "control"], "m", lazy.spawn("quodlibet")),
-    Key([mod], "m", lazy.spawn("dmenu-qtile-windowslist.py")),
+    Key([mod, "control"], "k", lazy.spawn("keepassx")),
+    Key([mod, "control"], "c", lazy.spawn("/home/dionisos/scripts/com_software")),
+    Key([mod], "m", lazy.spawn("/home/dionisos/scripts/dmenu-qtile-windowslist.py")),
+    Key([mod, "control"], "s", lazy.spawn("systemctl suspend")),
 
     # Toggle between different layouts as defined below
     Key([mod], "Tab", lazy.next_layout()),
     Key([mod], "space", lazy.next_layout()),
     Key([mod], "q", lazy.window.kill()),
+    Key([], "XF86HomePage", lazy.window.kill()),
 
     Key([mod, "control"], "r", lazy.restart()),
     # Key([mod, "control"], "q", lazy.shutdown()),
@@ -100,8 +108,8 @@ keys = [
 
 groups = [
     Group("a"),
-    Group("u", matches=[Match(wm_class=["whatsapp-desktop","Skype","Pidgin"])]),
-    Group("i"),
+    Group("u"),
+    Group("i", matches=[Match(wm_class=["whatsapp-desktop","Skype","Pidgin"])]),
     Group("e"),
 ]
 
@@ -144,12 +152,14 @@ screens = [
                 widget.Prompt(),
                 widget.WindowName(),
                 # widget.TextBox(str(gmail_password), name="default"),
+                OrgMode(),
                 widget.Battery(),
                 widget.Volume(update_interval=1),
                 widget.GmailChecker(username="denis.baudouin@gmail.com", password=gmail_password, fmt="{%s}", status_only_unseen=True, update_interval=67),
                 widget.Systray(),
                 # widget.Wlan(),
-                widget.Clock(format='%d-%m-%Y %a %I:%M %p'),
+                widget.Clock(format='%d-%m-%Y %a %R'),
+                # widget.Notify(default_timeout=10)
             ],
             24,
         ),
