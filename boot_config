@@ -24,6 +24,9 @@ alias t="trizen"
 alias rsync="rsync -au --progress"
 alias cp="rsync -au --progress"
 
+source /usr/share/bash-completion/completions/trizen
+complete -o default -F _trizen t
+
 export HISTFILESIZE=200000
 export HISTSIZE=100000
 export HISTCONTROL=ignoredups:ignorespace

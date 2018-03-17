@@ -10,6 +10,8 @@ then
 	exit 1
 fi
 
-import -windows $windows screenshot_$date.png
-convert screenshot_$date.png screenshot_$date.jpg
-rm screenshot_$date.jpg
+wmctrl -a "$1"
+sleep 1
+import -window "$windows" "/home/dionisos/screenshots/screenshot_$date.png"
+convert "/home/dionisos/screenshots/screenshot_$date.png" "/home/dionisos/screenshots/screenshot_$date.jpg"
+trash "/home/dionisos/screenshots/screenshot_$date.png"
