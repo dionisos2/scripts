@@ -1,0 +1,15 @@
+#!/bin/bash
+
+if [ $# -ne 1 ]
+then
+    echo "first parameter is the commit name"
+	  exit 1
+fi
+
+# borg init -e repokey /path/to/repo
+export BORG_REPO=ssh://dionisos@dionisos_pc:22/home/dionisos/save_portable
+
+to_save="/home/dionisos/scripts/files_to_save"
+to_exclude="/home/dionisos/scripts/files_to_exclude"
+
+sudo -u root borg create --stats --progress $BORG_REPO::"$1" $(cat $to_save)  --exclude-caches --exclude-from $to_exclude
