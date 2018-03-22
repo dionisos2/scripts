@@ -26,7 +26,7 @@
 # SOFTWARE.
 
 from libqtile.config import Key, Screen, Group, Drag, Click, Match
-from libqtile.command import lazy
+from libqtile.command import lazy, Client
 from libqtile import layout, bar, widget, hook
 import subprocess
 import os
@@ -36,20 +36,29 @@ from org_mode_widget import OrgMode
 
 mod = "mod4"
 
+gmail_password = subprocess.getoutput("/home/dionisos/scripts/.psw -p gmail")
+widgetGmail = widget.GmailChecker(username="denis.baudouin@gmail.com", password=gmail_password, fmt="{%s}", status_only_unseen=True, update_interval=67)
+widgetVolume = widget.Volume(update_interval=200)
+
+
 @hook.subscribe.startup_once
 def autostart():
     start = os.path.expanduser('~/.config/qtile/autostart.sh')
     subprocess.call([start])
 
 
+def updateVolume(qtile, args=None):
+    widgetVolume.update()
+
+
 keys = [
         # Sound and Mpd
     Key([], "XF86AudioRaiseVolume",
-        lazy.spawn("amixer sset Master 5%+")),
+        lazy.spawn("amixer sset Master 5%+"),lazy.function(updateVolume)),
     Key([], "XF86AudioLowerVolume",
-        lazy.spawn("amixer sset Master 5%-")),
+        lazy.spawn("amixer sset Master 5%-"), lazy.function(updateVolume)),
     Key([], "XF86AudioMute",
-        lazy.spawn("amixer sset Master toggle")),
+        lazy.spawn("amixer sset Master toggle"), lazy.function(updateVolume)),
 
     # Switch between windows in current stack pane
     Key([mod], "s", lazy.layout.down()),
@@ -67,9 +76,9 @@ keys = [
     Key([mod, "control"], "j", lazy.layout.shuffle_up()),
 
     # Switch window focus to other pane(s) of stack
-    Key([mod], "o", lazy.group.next_window()),
-    Key([mod], "r", lazy.group.next_window()),
-    Key([mod], "t", lazy.group.prev_window()),
+    # Key([mod], "o", lazy.group.focus_next()),
+    Key([mod], "r", lazy.layout.next()),
+    Key([mod], "t", lazy.group.prev()),
     Key([mod], "Right", lazy.group.next_window()),
     Key([mod], "Left", lazy.group.prev_window()),
 
@@ -90,8 +99,11 @@ keys = [
     Key([mod, "control"], "m", lazy.spawn("quodlibet")),
     Key([mod, "control"], "k", lazy.spawn("keepassx")),
     Key([mod, "control"], "c", lazy.spawn("/home/dionisos/scripts/com_software")),
+    Key([], "Print", lazy.spawn("/home/dionisos/scripts/screenshot")),
     Key([mod], "m", lazy.spawn("/home/dionisos/scripts/dmenu-qtile-windowslist.py")),
     Key([mod, "control"], "s", lazy.spawn("systemctl suspend")),
+    Key([mod, "shift"], "s", lazy.spawn("/home/dionisos/scripts/screensaver")),
+    Key([mod], "F9", lazy.function(lambda qtile, args=None: widgetGmail.tick())),
 
     # Toggle between different layouts as defined below
     Key([mod], "Tab", lazy.next_layout()),
@@ -140,9 +152,6 @@ widget_defaults = dict(
 extension_defaults = widget_defaults.copy()
 
 
-
-gmail_password = subprocess.getoutput("/home/dionisos/scripts/.psw -p gmail")
-
 screens = [
     Screen(
         bottom=bar.Bar(
@@ -151,11 +160,11 @@ screens = [
                 widget.GroupBox(),
                 widget.Prompt(),
                 widget.WindowName(),
-                # widget.TextBox(str(gmail_password), name="default"),
+                # widget.TextBox(),
                 OrgMode(),
                 widget.Battery(),
-                widget.Volume(update_interval=1),
-                widget.GmailChecker(username="denis.baudouin@gmail.com", password=gmail_password, fmt="{%s}", status_only_unseen=True, update_interval=67),
+                widgetVolume,
+                widgetGmail,
                 widget.Systray(),
                 # widget.Wlan(),
                 widget.Clock(format='%d-%m-%Y %a %R'),
@@ -165,6 +174,7 @@ screens = [
         ),
     ),
 ]
+
 
 # Drag floating layouts.
 mouse = [
