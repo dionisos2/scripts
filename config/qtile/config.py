@@ -1,4 +1,3 @@
-
 # Copyright (c) 2010 Aldo Cortesi
 # Copyright (c) 2010, 2014 dequis
 # Copyright (c) 2012 Randall Ma
@@ -104,6 +103,8 @@ keys = [
     Key([mod, "control"], "s", lazy.spawn("systemctl suspend")),
     Key([mod, "shift"], "s", lazy.spawn("/home/dionisos/scripts/screensaver")),
     Key([mod], "F9", lazy.function(lambda qtile, args=None: widgetGmail.tick())),
+    Key([mod], "F8", lazy.spawn("/home/dionisos/scripts/pgm_keyboard/load")),
+    Key([mod], "F7", lazy.spawn("setxkbmap fr")),
 
     # Toggle between different layouts as defined below
     Key([mod], "Tab", lazy.next_layout()),
@@ -114,6 +115,7 @@ keys = [
     Key([mod, "control"], "r", lazy.restart()),
     # Key([mod, "control"], "q", lazy.shutdown()),
     Key([mod], "x", lazy.spawncmd()),
+    Key([mod], "y", lazy.spawncmd()),
 ]
 
 # groups = [Group(i) for i in "auie"]
@@ -121,12 +123,13 @@ keys = [
 groups = [
     Group("a"),
     Group("u"),
-    Group("i", matches=[Match(wm_class=["whatsapp-desktop","Skype","Pidgin"])]),
+    Group("i", matches=[Match(wm_class=["whats-app-nativefier-7bbd2c","Skype","Pidgin"])]),
     Group("e"),
+    Group("c"),
 ]
 
 
-keybings = "auie"
+keybings = "auiec"
 
 lazy.group["c"].matches([Match(wm_class=["Firefox"])])
 

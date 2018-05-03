@@ -42,6 +42,7 @@ export LANG="fr_FR.utf8"
 export PAGER=less
 export XLIB_SKIP_ARGB_VISUALS=1 # for skype
 export BORG_REPO=ssh://dionisos@dionisos_pc:22/home/dionisos/save_portable
+export PYTHONPATH="/home/dionisos/projets/programmation/python/lib/"
 
 # c-v + key for find the character sequence emitted by key
 bind '"\e[Z":menu-complete'
@@ -54,4 +55,3 @@ export PROMPT_COMMAND="history -a && $PROMPT_COMMAND"
 shopt -s histverify
 # disable XON/XOFF then you can use ctrl-s with ctrl-r
 stty -ixon
-

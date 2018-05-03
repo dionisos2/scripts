@@ -1,2 +1,4 @@
+#!/bin/sh
+
 setxkbmap fr bepo
-xkbcomp -w 0 ~/scripts/pgm_keyboard/server-0_0.xkb  $DISPLAY
+xkbcomp -w 0 /home/dionisos/scripts/pgm_keyboard/server-0_0.xkb  $DISPLAY
