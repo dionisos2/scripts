@@ -1,6 +1,6 @@
 #!/bin/sh
 
 # see with scanimage -L
-scanimage --device pixma:04A9173D_311906 --format=tiff > "$1.tiff"
-convert "$1.tiff" "$1.jpg"
-rm "$1.tiff"
+scanimage -p --device epson2:net:192.168.1.76 --resolution 1200dpi --format=jpeg > "$1.jpeg"
+# convert "$1.tiff" "$1.jpg"
+# rm "$1.tiff"
