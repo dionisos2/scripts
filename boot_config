@@ -12,7 +12,6 @@ fi
 
 alias rm='echo "rm desactivated, use trash"'
 alias purge='echo "trash-empty 3 (vieux de plus de 3 jours)" && trash-empty 3'
-alias cp='cp -i'
 alias mv='mv -i'
 alias ema='cd ~/.emacs.d/'
 alias cd..='cd ..'
@@ -23,9 +22,15 @@ alias ll='ls -alF'
 alias t="trizen"
 alias rsync="rsync -au --progress"
 alias cp="rsync -au --progress"
+alias tm="tmsu"
+alias tma="tmsu tag --tags"
+alias bl="bluetoothctl"
 
 source /usr/share/bash-completion/completions/trizen
+source /usr/share/bash-completion/completions/tmsu
 complete -o default -F _trizen t
+complete -o default -F _tmsu tm
+complete -o default -F _tmsu tma
 
 export HISTFILESIZE=200000
 export HISTSIZE=100000
@@ -37,7 +42,10 @@ PATH=$PATH:"./"
 PATH=$PATH:"~/scripts"
 PATH=$PATH:"~/.local/bin"
 PATH=$PATH:"/opt/java/bin"
+PATH=$PATH:"~/.local/share/go/bin"
 export PATH
+
+export GOPATH="/home/dionisos/.local/share/go"
 export LANG="fr_FR.utf8"
 export PAGER=less
 export XLIB_SKIP_ARGB_VISUALS=1 # for skype
