@@ -35,6 +35,8 @@ gpk- -> gui pour packagekit (front-end généraliste pour les gestionnaire de pa
 catfish -> recherche de fichiers avec interface simple
 flameshot -> capture d’écran, screenshot
 leechblock -> limite la procratination en bloquant des sites
+evince -> pdf viewer
+atril -> epub et pdf viewer
 
 jeux
 mana -> the mana world (paquet:tmw) (mmorpg)
@@ -47,3 +49,4 @@ boswars -> jeu de stratégie mais qui n’a pas l’air très équilibré
 zero-k -> jeu de stratégie qui a l’air ouf
 megaglest -> jeu de stratégie à test
 supertuxkart -> jeu de kart
+xmoto -> elastomania libre(bizarrement supprimer des paquets le lendemain de l’installation(11/2018))

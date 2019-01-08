@@ -10,7 +10,7 @@ def execute():
     args = parser.parse_args()
 
     result = ""
-    for l in args.string:
+    for l in args.string.lower():
         if ord("a")<=ord(l)<=ord("z"):
             result += chr((ord(l)-ord("a")+13)%26+ord("a"))
         else:

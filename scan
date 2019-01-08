@@ -1,6 +1,26 @@
 #!/bin/sh
 
 # see with scanimage -L
-scanimage -p --device epson2:net:192.168.1.76 --resolution 1200dpi --format=jpeg > "$1.jpeg"
+
+if [ $# -eq 0 ]
+then
+    echo "scan image_name [print_device_name]"
+    echo "'scanimage -L' to get a list of devices"
+fi
+
+if [ $# -eq 1 ]
+then
+    echo "Try to get device…"
+    device=$(scanimage -L | tail -1 | grep -oP "(?<=\`).[^']*")
+    echo "scanimage -p --device $device --resolution 1200dpi --mode Color --format=jpeg > $1.jpeg"
+    scanimage -p --device "$device" --resolution 1200dpi --mode Color --format=jpeg > "$1.jpeg"
+fi
+
+if [ $# -eq 2 ]
+then
+    echo "scanimage -p --device $2 --resolution 1200dpi --mode Color --format=jpeg > $1.jpeg"
+    scanimage -p --device "$2" --resolution 1200dpi --mode Color --format=jpeg > "$1.jpeg"
+fi
+
 # convert "$1.tiff" "$1.jpg"
 # rm "$1.tiff"
