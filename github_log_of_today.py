@@ -28,6 +28,13 @@ class GithubLog(cli.Application):
     Get commits since <date> of the current git directory, and create github links to see it.
     """
     verbose = cli.Flag(["v", "verbose"], help="If given, I will be very talkative")
+    _firefox = True
+
+
+    @cli.switch(["n", "nofirefox"])
+    def not_open_firefox(self):
+        """Don’t open link in firefox"""
+        self._firefox = False
 
 
     def main(self, date_since:DateValidator()=None):
@@ -50,8 +57,8 @@ class GithubLog(cli.Application):
         result = f"https://github.com/dionisos2/{remote}/compare/{previous_commit}...{last_commit}"
 
         print(result)
-        local["firefox-developer-edition"](result)
-
+        if self._firefox:
+            local["firefox-developer-edition"](result)
 
 
 if __name__ == "__main__":
