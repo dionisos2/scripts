@@ -1,7 +1,7 @@
 #!/bin/python
 
 from plumbum import cli, local # See https://plumbum.readthedocs.io/en/latest/cli.html
-from datetime import date
+from datetime import date, timedelta
 import re
 
 
@@ -34,6 +34,8 @@ class GithubLog(cli.Application):
         if date_since is None:
             date_since = date.today()
 
+        date_since = date_since - timedelta(1)
+        print("Used date : " + str(date_since))
         git = local["git"]
         commits = git(["log", "--oneline", f"--since={date_since}"])
 
