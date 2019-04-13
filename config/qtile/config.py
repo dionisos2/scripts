@@ -107,6 +107,8 @@ keys = [
     # Key([mod], "F9", lazy.function(lambda qtile, args=None: widgetGmail.tick())),
     Key([mod], "F8", lazy.spawn("/home/dionisos/scripts/pgm_keyboard/load")),
     Key([mod], "F7", lazy.spawn("setxkbmap fr")),
+    Key([], "XF86Tools", lazy.spawn("quodlibet --next")), # https://quodlibet.readthedocs.io/en/latest/guide/interacting.html
+    Key(["shift"], "XF86Tools", lazy.spawn("quodlibet --previous")),
 
     # Toggle between different layouts as defined below
     Key([mod], "Tab", lazy.next_layout()),
