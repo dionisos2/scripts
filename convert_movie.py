@@ -12,13 +12,19 @@ class ConvertMovie(cli.Application):
     verbose = cli.Flag(["v", "verbose"], help="If given, I will be very talkative")
     delete = cli.Flag(["d", "delete"], help="Delete file after conversion (with trash, 'trash-cli' package needed)")
     recursive = cli.Flag(["r", "recursive"], help="Go through directory recursively")
+    mock = cli.Flag(["m", "mock"], help="Print what it would done but do nothing (override verbose to true)")
 
     def main(self, origin_exts, target_ext="ogg"):
         origin_exts = origin_exts.split(",")
+
+        if self.mock:
+            self.verbose = True
+
         if self.verbose:
             print("verbose = ", self.verbose)
             print("delete = ", self.delete)
             print("recursive = ", self.recursive)
+            print("mock = ", self.mock)
             print("origin_exts = ", origin_exts)
             print("target_ext = ", target_ext)
 
@@ -37,18 +43,21 @@ class ConvertMovie(cli.Application):
 
         if self.verbose:
             print(path_list)
+            print()
 
         for path in path_list:
             basename = os.path.splitext(path)[0]
             cmd = ffmpeg["-i", path, "-acodec", "libvorbis", "-vcodec", "libtheora", f"{basename}.{target_ext}"]
             if self.verbose:
                 print(cmd)
-            cmd & FG
+            if not self.mock:
+                cmd & FG
 
             if self.delete:
                 if self.verbose:
-                    print(f"delete '{path}'")
-                trash(path)
+                    print(f"trash '{path}'")
+                if not self.mock:
+                    trash(path)
 
 if __name__ == "__main__":
     ConvertMovie.run()
