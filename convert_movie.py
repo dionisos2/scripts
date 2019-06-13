@@ -1,6 +1,6 @@
 #!/bin/python
 
-from plumbum import cli, local, FG # See https://plumbum.readthedocs.io/en/latest/cli.html
+from plumbum import cli, local, FG, BG # See https://plumbum.readthedocs.io/en/latest/cli.html
 import os
 import glob
 from dionisos_lib.notifier import Notifier
@@ -16,6 +16,7 @@ class ConvertMovie(cli.Application):
     delete = cli.Flag(["d", "delete"], help="Delete file after conversion (with trash, 'trash-cli' package needed)")
     recursive = cli.Flag(["r", "recursive"], help="Go through directory recursively")
     mock = cli.Flag(["m", "mock"], help="Print what it would done but do nothing (override verbose to true)")
+    tv_compatibility = cli.Flag(["t", "tv_compatibility"], help="convert only what is incompatible with tv")
     _notifier = Notifier()
 
     def notify(self, msg, power=None):
@@ -41,6 +42,7 @@ class ConvertMovie(cli.Application):
             self.notify("delete = " + str(self.delete))
             self.notify("recursive = " + str(self.recursive))
             self.notify("mock = " + str(self.mock))
+            self.notify("tv_compatibility = " + str(self.tv_compatibility))
             if self.origin_exts is not None:
                 self.notify("origin_exts = " + str(self.origin_exts))
             else:
@@ -48,11 +50,9 @@ class ConvertMovie(cli.Application):
 
             self.notify("target_ext = " + str(target_ext))
 
-        # echo "$file → $filename.ogg"
-	# # ffmpeg -i "$file" -f avi -b 2048k -ab 160k -ar 44100 "$filename.avi"
-	# ffmpeg -i "$file" -acodec libvorbis -vcodec libtheora "$filename.ogg"
         ffmpeg = local["ffmpeg"]
         trash = local["trash"]
+        mv = local["mv"]
 
         if self.origin_filepath is not None:
             if not os.path.isfile(self.origin_filepath):
@@ -71,7 +71,40 @@ class ConvertMovie(cli.Application):
 
         for path in path_list:
             basename = os.path.splitext(path)[0]
-            cmd = ffmpeg["-i", path, "-c:v", "libx264", "-preset", "veryfast", f"{basename}.{target_ext}"]
+            to_move = False
+
+            if path == f"{basename}.{target_ext}":
+                basename = basename+"(save)"
+                to_move = True
+
+            if self.tv_compatibility:
+                video_comp = self.is_video_compatible(path)
+                audio_comp = self.is_audio_compatible(path)
+
+                if self.verbose:
+                    self.notify(f"file : {path}")
+                    self.notify("video codec : " + self.get_video_codec(path) + " compatibility → " + str(video_comp))
+                    self.notify("audio codec : " + self.get_audio_codec(path) + " compatibility → " + str(audio_comp))
+
+                if video_comp and audio_comp:
+                    if self.verbose:
+                        self.notify("do nothing")
+                    continue
+
+                if video_comp:
+                    video_codec = "copy"
+                else:
+                    video_codec = "libx264"
+
+                if audio_comp:
+                    audio_codec = "copy"
+                else:
+                    audio_codec = "mp3"
+
+                cmd = ffmpeg["-i", path, "-c:v", video_codec, "-preset", "veryfast", "-c:a", audio_codec, f"{basename}.{target_ext}"]
+            else:
+                cmd = ffmpeg["-i", path, "-c:v", "libx264", "-preset", "veryfast", f"{basename}.{target_ext}"]
+
             if self.verbose:
                 self.notify(str(cmd))
             if not self.mock:
@@ -80,8 +113,46 @@ class ConvertMovie(cli.Application):
             if self.delete:
                 if self.verbose:
                     self.notify(f"trash '{path}'")
+                    if to_move:
+                        self.notify(f"mv '{basename}.{target_ext}' '{path}'")
                 if not self.mock:
                     trash(path)
+                    mv(f'{basename}.{target_ext}', path)
+
+    def get_video_codec(self, path):
+        mediainfo = local["mediainfo"]
+        cmd = mediainfo["--inform=Video;%CodecID%", path]
+        result = cmd()
+
+        return result.strip()
+
+    def get_audio_codec(self, path):
+        mediainfo = local["mediainfo"]
+        cmd = mediainfo["--inform=Audio;%CodecID%", path]
+        result = cmd()
+
+        return result.strip()
+
+    def is_video_compatible(self, path):
+        video_codec = self.get_video_codec(path)
+        if video_codec in ["avc1", "V_MPEG4/ISO/AVC"]:
+            return True
+
+        if video_codec in ["V_VP9", "vp09"]:
+            return False
+
+        self.notify(f"The compatibility of the video codec {video_codec} is unknow (file : '{path}')", Notifier.ERROR)
+
+
+    def is_audio_compatible(self, path):
+        audio_codec = self.get_audio_codec(path)
+        if audio_codec in ["mp4a-40-2", "A_AC3", "mp4a-6B"]:
+            return True
+
+        if audio_codec in ["A_AAC-2", "A_OPUS"]:
+            return False
+
+        self.notify(f"The compatibility of the audio codec {audio_codec} is unknow", Notifier.ERROR)
 
 if __name__ == "__main__":
     ConvertMovie.run()
