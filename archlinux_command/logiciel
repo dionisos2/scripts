@@ -17,6 +17,7 @@ quvi -> télécharger des vidéos (de youtube ou autre)
 jmtpfs /media/dd -> mount pour tablette android
 fusermount -u /media/dd -> unmount after jmtpfs
 krusader -> navigateur de fichiers
+thunar -> navigateur de fichiers
 gnome-clock -> chronomètre et alarme
 conky -> lot of stats
 pure-ftp -> serveur ftp (démarrer avec systemctl start pure-ftpd.service)
@@ -55,3 +56,4 @@ megaglest -> jeu de stratégie à test
 supertuxkart -> jeu de kart
 xmoto -> elastomania libre(bizarrement supprimer des paquets le lendemain de l’installation(11/2018))
 ryzom -> mmorpg open-source et plutôt cool
+freeciv

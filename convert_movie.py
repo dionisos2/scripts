@@ -71,9 +71,11 @@ class ConvertMovie(cli.Application):
 
         for path in path_list:
             basename = os.path.splitext(path)[0]
+            extension = os.path.splitext(path)[1]
             to_move = False
 
             if path == f"{basename}.{target_ext}":
+                basename_old = basename
                 basename = basename+"(save)"
                 to_move = True
 
@@ -86,7 +88,7 @@ class ConvertMovie(cli.Application):
                     self.notify("video codec : " + self.get_video_codec(path) + " compatibility → " + str(video_comp))
                     self.notify("audio codec : " + self.get_audio_codec(path) + " compatibility → " + str(audio_comp))
 
-                if video_comp and audio_comp:
+                if video_comp and audio_comp and extension in [".mp4", ".mkv"]:
                     if self.verbose:
                         self.notify("do nothing")
                     continue
@@ -103,7 +105,7 @@ class ConvertMovie(cli.Application):
 
                 cmd = ffmpeg["-i", path, "-c:v", video_codec, "-preset", "veryfast", "-c:a", audio_codec, f"{basename}.{target_ext}"]
             else:
-                cmd = ffmpeg["-i", path, "-c:v", "libx264", "-preset", "veryfast", f"{basename}.{target_ext}"]
+                cmd = ffmpeg["-i", path, "-c:v", "libx264", "-preset", "veryfast", "-c:a", "mp3", f"{basename}.{target_ext}"]
 
             if self.verbose:
                 self.notify(str(cmd))
@@ -111,13 +113,13 @@ class ConvertMovie(cli.Application):
                 cmd & FG
 
             if self.delete:
-                if self.verbose:
-                    self.notify(f"trash '{path}'")
-                    if to_move:
-                        self.notify(f"mv '{basename}.{target_ext}' '{path}'")
+                self.notify(f"trash '{path}'")
+                if to_move:
+                    self.notify(f"mv '{basename}.{target_ext}' '{basename_old}.{target_ext}'")
                 if not self.mock:
                     trash(path)
-                    mv(f'{basename}.{target_ext}', path)
+                    if to_move:
+                        mv(f'{basename}.{target_ext}', f'{basename_old}.{target_ext}')
 
     def get_video_codec(self, path):
         mediainfo = local["mediainfo"]
