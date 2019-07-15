@@ -88,6 +88,17 @@ class ConvertMovie(cli.Application):
                     self.notify("video codec : " + self.get_video_codec(path) + " compatibility → " + str(video_comp))
                     self.notify("audio codec : " + self.get_audio_codec(path) + " compatibility → " + str(audio_comp))
 
+
+                # TODO : doing something less stupid
+                basename_base = os.path.splitext(path)[0]
+                print(f"{basename_base}.en.vtt")
+                if os.path.isfile(f"{basename_base}.en.vtt") and not os.path.isfile(f"{basename_base}.srt"):
+                    self.notify("found french vtt subtitle but no srt")
+                    create_subtitle = ffmpeg["-i", f"{basename_base}.en.vtt", f"{basename_base}.srt"]
+                    self.notify(str(create_subtitle))
+                    if not self.mock:
+                        create_subtitle & FG
+
                 if video_comp and audio_comp and extension in [".mp4", ".mkv"]:
                     if self.verbose:
                         self.notify("do nothing")
@@ -106,6 +117,8 @@ class ConvertMovie(cli.Application):
                 cmd = ffmpeg["-i", path, "-c:v", video_codec, "-preset", "veryfast", "-c:a", audio_codec, f"{basename}.{target_ext}"]
             else:
                 cmd = ffmpeg["-i", path, "-c:v", "libx264", "-preset", "veryfast", "-c:a", "mp3", f"{basename}.{target_ext}"]
+
+
 
             if self.verbose:
                 self.notify(str(cmd))
