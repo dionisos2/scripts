@@ -1,7 +1,7 @@
 gimp -> traitement d’images
 inkscape -> dessins vectoriels
 geogebra -> géométrie, traçage de courbes
-xpaint, pinta, mypaint -> paint program(not soo good)
+libreoffice-draw(choix), xpaint, pinta, mypaint -> paint program(not soo good)
 scilab -> programmation mathématique
 cheese/guvcview -> webcam
 audacity -> montage son
@@ -43,6 +43,8 @@ pidgin -> irc, jabber(xmpp), etc
 pip-review -> gérer pip (python gestionnaire de packages)
 obs -> screencast, enregistrer vidéo à l’écran
 gnome-system-monitor -> comme htop, voir les processus et les statistiques d’usages
+dia -> création de diagramme
+caprine -> facebook messenger
 
 jeux
 mana -> the mana world (paquet:tmw) (mmorpg)
