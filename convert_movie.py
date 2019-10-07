@@ -78,6 +78,7 @@ class ConvertMovie(cli.Application):
         self.ffmpeg = local["ffmpeg"]
         self.trash = local["trash"]
         self.mv = local["mv"]
+        self.mediainfo = local["mediainfo"]
 
         path_list = self.get_path_list()
 
@@ -92,17 +93,21 @@ class ConvertMovie(cli.Application):
         if self.tv_compatibility:
             video_comp = self.is_video_compatible(path)
             audio_comp = self.is_audio_compatible(path)
+            resolution_comp = self.is_resolution_compatible(path)
+            fps_comp = self.is_fps_compatible(path)
 
 
             self.notify(f"file : {path}")
             self.notify("video codec : " + self.get_video_codec(path) + " compatibility → " + str(video_comp))
             self.notify("audio codec : " + self.get_audio_codec(path) + " compatibility → " + str(audio_comp))
+            self.notify("resolution : " + str(self.get_resolution(path)) + " compatibility → " + str(resolution_comp))
+            self.notify("fps : " + str(self.get_fps(path)) + " compatibility → " + str(fps_comp))
 
-            if video_comp and audio_comp and extension in [".mp4", ".mkv"]:
-                self.notify("no conversion to do")
-                return (None, None)
+            if video_comp and audio_comp and resolution_comp and fps_comp and extension in [".mp4", ".mkv"]:
+                self.notify("movie already in correct format")
+                return (None, f"{path}")
 
-            if video_comp:
+            if video_comp and resolution_comp and fps_comp:
                 video_codec = "copy"
             else:
                 video_codec = "libx264"
@@ -112,20 +117,47 @@ class ConvertMovie(cli.Application):
             else:
                 audio_codec = "mp3"
 
-            cmd = self.ffmpeg["-i", path, "-c:v", video_codec, "-preset", "veryfast", "-c:a", audio_codec, f"{new_path}"]
+            # ffmpeg -i path -c:v libx264 -level:v 4.0 -preset veryfast -c:a mp3 new_path
+            args_list = ["-i", path, "-c:v", video_codec]
+
+            # if not level_comp:
+            #     args_list += ["-level:v", "4.0"]
+
+            if not fps_comp:
+                args_list += ["-r", "30"]
+
+            if not resolution_comp:
+                args_list += ["-vf", "scale=1920:1080"]
+
+            args_list += ["-preset", "veryfast", "-c:a", audio_codec, f"{new_path}"]
+
+
+            cmd = self.ffmpeg[args_list]
         else:
             cmd = self.ffmpeg["-i", path, "-c:v", "libx264", "-preset", "veryfast", "-c:a", "mp3", f"{new_path}"]
 
         return (cmd, new_path)
 
     def get_convert_subtile_cmd(self, basepath, new_basepath):
-        # # TODO : doing something less stupid
-        # basepath_base = os.path.splitext(path)[0]
-        # print(f"{basepath_base}.en.vtt")
-        # if os.path.isfile(f"{basepath_base}.en.vtt") and not os.path.isfile(f"{basepath_base}.srt"):
-        #     self.notify("found french vtt subtitle but no srt")
-        #     create_subtitle = ffmpeg["-i", f"{basepath_base}.en.vtt", f"{basepath_base}.srt"]
-        return 0
+
+        if os.path.exists(f"{new_basepath}.srt"):
+            self.notify("subtitle already here")
+            return None
+
+        possible_exts = ["vtt", "srt"]
+        possible_langs = ["fr", "en"]
+
+        possible_path = [f"{basepath}.{lang}.{ext}" for lang in possible_langs for ext in possible_exts] + [f"{basepath}.{ext}" for ext in possible_exts]
+
+        i = 0
+        while i < len(possible_path) and not os.path.isfile(possible_path[i]):
+            i += 1
+
+        if i >= len(possible_path):
+            self.notify("no subtitle found")
+            return None
+
+        return self.ffmpeg["-i", f"{possible_path[i]}", f"{new_basepath}.srt"]
 
     def convert_file(self, path, target_ext):
 
@@ -136,32 +168,56 @@ class ConvertMovie(cli.Application):
             if not self.mock:
                 convert_cmd & FG
 
-        if self.delete:
-            self.notify(f"trash '{path}'")
-            self.notify(f"mv '{new_path}' '{path}'")
-            if not self.mock:
-                self.trash(path)
-                self.mv(f'{new_path}', f'{path}')
+            if self.delete:
+                same_ext = os.path.splitext(path)[1] == f".{target_ext}"
+                self.notify(f"trash '{path}'")
+                if same_ext:
+                    self.notify(f"mv '{new_path}' '{path}'")
+                if not self.mock:
+                    self.trash(path)
+                    if same_ext:
+                        self.mv(f'{new_path}', f'{path}')
 
         basepath, new_basepath = os.path.splitext(path)[0], os.path.splitext(new_path)[0]
         convert_subtile_cmd = self.get_convert_subtile_cmd(basepath, new_basepath)
-        self.notify(str(convert_subtile_cmd))
-        if not self.mock:
-            convert_subtile_cmd & FG
+
+        if convert_subtile_cmd is not None:
+            self.notify(str(convert_subtile_cmd))
+            if not self.mock:
+                convert_subtile_cmd & FG
 
     def get_video_codec(self, path):
-        mediainfo = local["mediainfo"]
-        cmd = mediainfo["--inform=Video;%CodecID%", path]
+        cmd = self.mediainfo["--inform=Video;%CodecID%", path]
         result = cmd()
 
         return result.strip()
 
     def get_audio_codec(self, path):
-        mediainfo = local["mediainfo"]
-        cmd = mediainfo["--inform=Audio;%CodecID%", path]
+        cmd = self.mediainfo["--inform=Audio;%CodecID%", path]
         result = cmd()
 
         return result.strip()
+
+    def get_resolution(self, path):
+        cmd = self.mediainfo["--Inform=Video;%Width% %Height%", path]
+        result = cmd()
+
+        return result.strip().split()
+
+    def get_fps(self, path):
+        cmd = self.mediainfo["--Inform=Video;%FrameRate%", path]
+        result = cmd()
+
+        return result.strip()
+
+    def is_fps_compatible(self, path):
+        fps = int(float(self.get_fps(path)))
+        width = int(self.get_resolution(path)[0])
+
+        if fps > 60 or (width >= 1920 and fps > 30):
+            return False
+
+        return True
 
     def is_video_compatible(self, path):
         video_codec = self.get_video_codec(path)
@@ -179,10 +235,19 @@ class ConvertMovie(cli.Application):
         if audio_codec in ["mp4a-40-2", "A_AC3", "mp4a-6B"]:
             return True
 
-        if audio_codec in ["A_AAC-2", "A_OPUS"]:
+        if audio_codec in ["A_AAC-2", "A_OPUS", "Opus"]:
             return False
 
         self.notify(f"The compatibility of the audio codec {audio_codec} is unknow", Notifier.ERROR)
+
+    def is_resolution_compatible(self, path):
+        width, height = self.get_resolution(path)
+        width, height = int(width), int(height)
+
+        if width > 1920 or height > 1080:
+            return False
+
+        return True
 
 if __name__ == "__main__":
     ConvertMovie.run()
