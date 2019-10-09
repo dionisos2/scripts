@@ -19,6 +19,7 @@ class ConvertMovie(cli.Application):
     recursive = cli.Flag(["r", "recursive"], help="Go through directory recursively")
     mock = cli.Flag(["m", "mock"], help="Print what it would done but do nothing (override verbose to true)")
     tv_compatibility = cli.Flag(["t", "tv_compatibility"], help="convert only what is incompatible with tv")
+    # extract_audio = cli.Flag(["a", "extract_audio"], help="extract the audio stream")
 
     def notify(self, msg, power=None):
         self._notifier.notify(msg, power)

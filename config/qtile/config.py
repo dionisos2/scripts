@@ -97,7 +97,7 @@ keys = [
     Key([mod, "control"], "f", lazy.spawn("firefox-developer-edition")),
     Key([mod, "control"], "p", lazy.spawn("firefox --private-window")),
     Key([mod, "control"], "e", lazy.spawn("emacsclient -c")),
-    Key([mod, "control"], "m", lazy.spawn("quodlibet")),
+    Key([mod, "control"], "m", lazy.spawn("smplayer")),
     Key([mod, "control"], "k", lazy.spawn("keepassx")),
     Key([mod, "control"], "c", lazy.spawn("/home/dionisos/scripts/com_software")),
     Key([], "Print", lazy.spawn("/home/dionisos/scripts/screenshot")),
@@ -107,8 +107,9 @@ keys = [
     # Key([mod], "F9", lazy.function(lambda qtile, args=None: widgetGmail.tick())),
     Key([mod], "F8", lazy.spawn("/home/dionisos/scripts/pgm_keyboard/load")),
     Key([mod], "F7", lazy.spawn("setxkbmap fr")),
-    Key([], "XF86Tools", lazy.spawn("quodlibet --next")), # https://quodlibet.readthedocs.io/en/latest/guide/interacting.html
-    Key(["shift"], "XF86Tools", lazy.spawn("quodlibet --previous")),
+    Key([], "XF86Tools", lazy.spawn("playerctl next")), # https://quodlibet.readthedocs.io/en/latest/guide/interacting.html
+    Key(["shift"], "XF86Tools", lazy.spawn("playerctl previous")),
+    Key([], "XF86AudioPlay", lazy.spawn("playerctl play-pause")),
 
     # Toggle between different layouts as defined below
     Key([mod], "Tab", lazy.next_layout()),
