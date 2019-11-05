@@ -45,6 +45,7 @@ obs -> screencast, enregistrer vidéo à l’écran
 gnome-system-monitor -> comme htop, voir les processus et les statistiques d’usages
 dia -> création de diagramme
 caprine -> facebook messenger
+kernprof (line_profiler) -> voir les performances des lines de python
 
 jeux
 mana -> the mana world (paquet:tmw) (mmorpg)
