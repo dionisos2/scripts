@@ -13,3 +13,9 @@ sudo modprobe v4l2loopback
 activate "ip-webcam" on the tablet
 start server on the ip-webcam software
 sudo gst-launch-0.10 -v souphttpsrc location='http://192.168.0.15:8080/videofeed' is-live=true ! multipartdemux ! decodebin2 ! v4l2sink device=/dev/video1
+
+
+alcatel pixi:
+android: 6.0
+noyau: 3.18.20
+modèle:5045D

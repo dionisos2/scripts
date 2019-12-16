@@ -98,7 +98,7 @@ keys = [
     Key([mod, "control"], "p", lazy.spawn("firefox --private-window")),
     Key([mod, "control"], "e", lazy.spawn("emacsclient -c")),
     Key([mod, "control"], "m", lazy.spawn("smplayer")),
-    Key([mod, "control"], "k", lazy.spawn("keepassx")),
+    Key([mod, "control"], "k", lazy.spawn("keepassxc")),
     Key([mod, "control"], "c", lazy.spawn("/home/dionisos/scripts/com_software")),
     Key([], "Print", lazy.spawn("/home/dionisos/scripts/screenshot")),
     Key([mod], "m", lazy.spawn("/home/dionisos/scripts/dmenu-qtile-windowslist.py")),

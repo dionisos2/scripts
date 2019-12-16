@@ -2,3 +2,8 @@
 /usr/include/SDL/SDL_keysym.h
 ctrl-shift-u unicode //écrire un caractère
 xev
+
+
+Desactivate touchpad :
+xinput list
+xinput disable [id]
