@@ -1,10 +1,7 @@
 #!/bin/sh
 
-cp ~/.pentadactylrc ~/scripts/config/
-cp ~/.config/awesome/rc.lua ~/scripts/config/awesome/
-cp ~/.config/awesome/environnement.lua ~/scripts/config/awesome/
 cp ~/.config/ranger/commands.py ~/scripts/config/ranger/
 cp ~/.config/ranger/rc.conf ~/scripts/config/ranger/
 cp ~/.config/ranger/rifle.conf ~/scripts/config/ranger/
-cp ~/.config/beancount/beancount.config ~/scripts/config/beancount/
-cp ~/.config/qtile/* ~/scripts/config/qtile/
+cp ~/.config/qtile/config.py ~/scripts/config/qtile/
+cp ~/.config/qtile/autostart.sh ~/scripts/config/qtile/

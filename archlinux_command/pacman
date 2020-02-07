@@ -11,3 +11,7 @@ pacman -Qm // get aur and other external packages
 pacman -Slq core // get all core packages
 
 pacman -Qi // get info on a package
+
+cat /var/log/pacman.log // last installed packages
+or
+expac --timefmt='%Y-%m-%d %T' '%l\t%n'|sort -n
