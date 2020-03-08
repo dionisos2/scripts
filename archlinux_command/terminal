@@ -10,6 +10,7 @@ $ history | grep 'ipt'
 $ !2     # will execute the iptables command
 
 history 3 # will only show the last 3 commands
+history delete --contains "foo"
 
 $ command #useful # add a comment
 ctrl+r #useful # then you can search for this comment

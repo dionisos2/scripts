@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env /bin/python
 
 from libqtile.command import Client
 import subprocess

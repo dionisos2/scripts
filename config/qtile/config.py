@@ -95,6 +95,7 @@ keys = [
     Key([mod, "shift"], "Return", lazy.layout.toggle_split()),
     Key([mod], "Return", lazy.spawn("terminator")),
     Key([mod, "control"], "f", lazy.spawn("firefox-developer-edition")),
+    Key([mod, "control"], "t", lazy.spawn("gnome-clocks")),
     Key([mod, "control"], "p", lazy.spawn("firefox --private-window")),
     Key([mod, "control"], "e", lazy.spawn("emacsclient -c")),
     Key([mod, "control"], "m", lazy.spawn("smplayer")),
