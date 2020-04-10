@@ -171,7 +171,7 @@ screens = [
                 widget.WindowName(),
                 # widget.TextBox(),
                 OrgMode(),
-                widget.Battery(),
+                widget.Battery(format='[{char} {percent:2.0%}]'),
                 widgetVolume,
                 # widgetGmail,
                 widget.Systray(),
