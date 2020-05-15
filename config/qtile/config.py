@@ -25,7 +25,7 @@
 # SOFTWARE.
 
 from libqtile.config import Key, Screen, Group, Drag, Click, Match
-from libqtile.command import lazy, Client
+from libqtile.command import lazy
 from libqtile import layout, bar, widget, hook
 import subprocess
 import os
@@ -36,7 +36,7 @@ from org_mode_widget import OrgMode
 
 mod = "mod4"
 
-gmail_password = subprocess.getoutput("/home/dionisos/scripts/.psw -p gmail")
+# gmail_password = subprocess.getoutput("/home/dionisos/scripts/.psw -p gmail")
 # widgetGmail = widget.GmailChecker(username="denis.baudouin@gmail.com", password=gmail_password, fmt="{%s}", status_only_unseen=True, update_interval=67)
 widgetVolume = widget.Volume(update_interval=200)
 
@@ -50,7 +50,6 @@ def autostart():
 def updateVolume(qtile, args=None):
     time.sleep(.100)
     widgetVolume.update()
-
 
 keys = [
         # Sound and Mpd
@@ -142,7 +141,7 @@ lazy.group["c"].matches([Match(wm_class=["Firefox"])])
 for index,group in enumerate(groups):
     keys.extend([
         # mod1 + letter of group = switch to group
-        Key([mod], keybings[index], lazy.group[group.name].toscreen()),
+        Key([mod], keybings[index], lazy.group[group.name].toscreen(None, False)),
 
         # mod1 + shift + letter of group = switch to & move focused window to group
         Key([mod, "shift"], keybings[index], lazy.window.togroup(group.name)),
