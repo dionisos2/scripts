@@ -696,11 +696,7 @@ xkb_compatibility "complete+ledscroll(group_lock)" {
         useModMapMods=level1;
         action= LatchGroup(group=2);
     };
-    interpret ISO_Next_Group+AnyOfOrNone(all) {
-        virtualModifier= AltGr;
-        useModMapMods=level1;
-        action= LockGroup(group=+1);
-    };
+
     interpret ISO_Prev_Group+AnyOfOrNone(all) {
         virtualModifier= AltGr;
         useModMapMods=level1;
