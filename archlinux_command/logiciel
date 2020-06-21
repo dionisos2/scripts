@@ -1,4 +1,4 @@
-gimp -> traitement d’images
+gimp, krita -> traitement d’images
 inkscape -> dessins vectoriels
 geogebra -> géométrie, traçage de courbes
 libreoffice-draw(choix), xpaint, pinta, mypaint -> paint program(not soo good)
@@ -46,6 +46,7 @@ gnome-system-monitor -> comme htop, voir les processus et les statistiques d’u
 dia -> création de diagramme
 caprine -> facebook messenger
 kernprof (line_profiler) -> voir les performances des lines de python
+sqlitebrowser -> sqlite viewer
 
 jeux
 mana -> the mana world (paquet:tmw) (mmorpg)

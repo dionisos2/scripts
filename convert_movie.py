@@ -1,4 +1,4 @@
-#!/bin/python
+#!/usr/bin/env python
 
 from plumbum import cli, local, FG, BG # See https://plumbum.readthedocs.io/en/latest/cli.html
 import os
@@ -225,7 +225,7 @@ class ConvertMovie(cli.Application):
         if video_codec in ["avc1", "V_MPEG4/ISO/AVC"]:
             return True
 
-        if video_codec in ["V_VP9", "vp09"]:
+        if video_codec in ["V_VP9", "vp09", "hvc1"]:
             return False
 
         self.notify(f"The compatibility of the video codec {video_codec} is unknow (file : '{path}')", Notifier.ERROR)
