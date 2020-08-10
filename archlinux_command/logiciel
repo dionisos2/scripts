@@ -47,6 +47,8 @@ dia -> création de diagramme
 caprine -> facebook messenger
 kernprof (line_profiler) -> voir les performances des lines de python
 sqlitebrowser -> sqlite viewer
+httrack -> aspirateur de site
+wget --mirror --convert-links --adjust-extension --page-requisites --no-parent url -> aspirateur de site
 
 jeux
 mana -> the mana world (paquet:tmw) (mmorpg)
