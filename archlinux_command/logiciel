@@ -49,6 +49,7 @@ kernprof (line_profiler) -> voir les performances des lines de python
 sqlitebrowser -> sqlite viewer
 httrack -> aspirateur de site
 wget --mirror --convert-links --adjust-extension --page-requisites --no-parent url -> aspirateur de site
+hardinfo -> information système
 
 jeux
 mana -> the mana world (paquet:tmw) (mmorpg)

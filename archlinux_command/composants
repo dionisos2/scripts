@@ -1,3 +1,4 @@
+hardinfo
 inxi -Fxz
 lsusb
 lsusb -v -s bus:device
