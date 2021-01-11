@@ -225,7 +225,7 @@ class ConvertMovie(cli.Application):
         if video_codec in ["avc1", "V_MPEG4/ISO/AVC"]:
             return True
 
-        if video_codec in ["V_VP9", "vp09", "hvc1"]:
+        if video_codec in ["V_VP9", "vp09", "hvc1", "wma", ""]:
             return False
 
         self.notify(f"The compatibility of the video codec {video_codec} is unknow (file : '{path}')", Notifier.ERROR)
@@ -236,7 +236,7 @@ class ConvertMovie(cli.Application):
         if audio_codec in ["mp4a-40-2", "A_AC3", "mp4a-6B"]:
             return True
 
-        if audio_codec in ["A_AAC-2", "A_OPUS", "Opus"]:
+        if audio_codec in ["A_AAC-2", "A_OPUS", "Opus", "161"]:
             return False
 
         self.notify(f"The compatibility of the audio codec {audio_codec} is unknow", Notifier.ERROR)
