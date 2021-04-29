@@ -7,7 +7,7 @@ then
 fi
 
 # borg init -e repokey /path/to/repo
-export BORG_REPO=ssh://dionisos@192.168.0.67:22/home/dionisos/save_portable
+export BORG_REPO=ssh://dionisos@192.168.0.14:22/home/dionisos/save_portable
 
 to_save="/home/dionisos/scripts/files_to_save"
 to_exclude="/home/dionisos/scripts/files_to_exclude"
