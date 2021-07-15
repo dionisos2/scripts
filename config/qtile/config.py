@@ -92,7 +92,7 @@ keys = [
     # Unsplit = 1 window displayed, like Max layout, but still with
     # multiple stack panes
     Key([mod, "shift"], "Return", lazy.layout.toggle_split()),
-    Key([mod], "Return", lazy.spawn("terminator")),
+    Key([mod], "Return", lazy.spawn("alacritty")),
     Key([mod, "control"], "f", lazy.spawn("firefox-developer-edition")),
     Key([mod, "control"], "t", lazy.spawn("gnome-clocks")),
     Key([mod, "control"], "p", lazy.spawn("firefox --private-window")),
@@ -170,7 +170,7 @@ screens = [
                 widget.WindowName(),
                 # widget.TextBox(),
                 OrgMode(),
-                widget.Battery(format='[{char} {percent:2.0%}]'),
+                # widget.Battery(format='[{char} {percent:2.0%}]'),
                 widgetVolume,
                 # widgetGmail,
                 widget.Systray(),

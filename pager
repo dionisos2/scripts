@@ -16,10 +16,10 @@ do
 	 echo $line >> $file
 done
 
-if [ "$1" == "" ]
+if [ "$1" == "-c" ]
 then
 	emacsclient -c -nw $file
-elif [ "$1" == "-c" ]
+elif [ "$1" == "" ]
 then
 	emacsclient -c $file
 else
