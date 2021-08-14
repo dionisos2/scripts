@@ -9,7 +9,7 @@ fi
 date=`date "+%Y-%m-%d-%S-%N"`
 file="/tmp/pager_$date"
 
-> $file
+touch $file
 
 while read line
 do

@@ -1,15 +1,33 @@
 #!/bin/bash
 
-if [ $# -ne 1 ]
+if [ $# -ne 2 ]
 then
-    echo "first parameter is the commit name"
+    echo "first parameter is type and second parameter is the commit name"
 	  exit 1
 fi
 
+if [ "$1" != "-l" ] && [ "$1" != "-q" ]
+then
+		echo "First parameter should be -l for long(on server) or -q for quick(on /stockage/)"
+		exit 1
+fi
+
 # borg init -e repokey /path/to/repo
-export BORG_REPO=ssh://dionisos@192.168.0.14:22/home/dionisos/save_portable
+export BORG_SERVER_REPO="ssh://dionisos@192.168.0.14:22/home/dionisos/save_portable"
+export BORG_DD_REPO="/stockage/borg_save"
 
 to_save="/home/dionisos/scripts/files_to_save"
 to_exclude="/home/dionisos/scripts/files_to_exclude"
 
-sudo -u root borg create --stats --progress $BORG_REPO::"$1" $(cat $to_save)  --exclude-caches --exclude-from $to_exclude
+echo "Parameters ok."
+if [ "$1" == "-l" ]
+then
+		echo "Save in $BORG_SERVER_REPO::$2"
+		sudo -u root borg create --stats --progress "$BORG_SERVER_REPO"::"$2" $(cat $to_save)  --exclude-caches --exclude-from $to_exclude
+fi
+
+if [ "$1" == "-q" ]
+then
+		echo "Save in $BORG_DD_REPO::$2"
+		sudo -u root borg create --stats --progress "$BORG_DD_REPO"::"$2" $(cat $to_save)  --exclude-caches --exclude-from $to_exclude
+fi

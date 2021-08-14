@@ -1,0 +1,7 @@
+#!/bin/bash
+
+exe=$(readlink -f "$1")
+dir=$(dirname "$exe")
+
+echo "firejail --noprofile --net=none --whitelist=\"$dir\" --whitelist=\"/home/dionisos/.wine/\" \"$exe\""
+firejail --noprofile --net=none --whitelist="$dir" --whitelist="/home/dionisos/.wine/" "$exe"

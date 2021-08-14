@@ -10,7 +10,7 @@ ldm -> lith way device mounter
 ntp(ntpd -q)-> sync date (sudo ntpd -qg for put right universal time)
 xsensor -> température
 figlet -> create ascii art
-mirage/eog -> image viewer (plus à jour)
+mirage/eog -> image viewer (obsolète)
 geeqie -> image viewer
 pitivi -> édition vidéo
 quvi -> télécharger des vidéos (de youtube ou autre)
