@@ -68,3 +68,9 @@ freeciv -> civilisation
 performouse → stepmania like
 klavaro & typespeed → entrainement d’écriture au clavier
 retroarch → simulation
+
+sécurité
+lynis -> audit de sécurité
+arch-audit
+(/usr/bin/systemd-analyze security 'fstrim.service')
+rkhunter

@@ -1,0 +1,36 @@
+#!/bin/sh
+
+# Based on https://github.com/mbriggs/emacs-pager/pull/2
+
+echo "run pager"
+
+tdir="/tmp/emacs-pager-$USER"
+mkdir -p "$tdir"
+
+# pages the file specified by $1, if any, otherwise stdin.
+pageone() {
+    local infile
+    local suffix
+    if [[ $# -gt 0 ]]; then
+        suffix=".$1"
+        infile="$1"
+    else
+        suffix=".stdin"
+        infile="-"
+    fi
+    suffix="${suffix}.emacs-pager"
+    t=$(mktemp -p "$tdir" --suffix "$suffix") || exit 1
+    cat "$infile" > "$t"
+    trap "rm -f -- $t" EXIT
+    echo 'reading into emacs...'
+    emacsclient -c -a "" "$t"
+}
+
+if [[ $# -eq 0 ]]; then
+    pageone
+else
+    while [[ $# -gt 0 ]]; do
+        pageone $1
+        shift
+    done
+fi
