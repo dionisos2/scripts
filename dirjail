@@ -2,6 +2,7 @@
 
 exe=$(readlink -f "$1")
 dir=$(dirname "$exe")
+name=$(basename "$1")
 
-echo "firejail --noprofile --net=none --whitelist=\"$dir\" --whitelist=\"/home/dionisos/.wine/\" \"$exe\""
-firejail --noprofile --net=none --whitelist="$dir" --whitelist="/home/dionisos/.wine/" "$exe"
+echo "firejail --tracelog --name=$name --profile=default --net=none --whitelist=\"$dir\" --whitelist=\"/home/dionisos/My Games/\" --whitelist=\"/home/dionisos/.wine/\" \"$exe\""
+firejail --tracelog --name="$name" --noblacklist="/home/dionisos/.wine" --profile=default  --blacklist="/stockage" --blacklist="/mnt" --private-tmp --net=none --whitelist="$dir" --whitelist="/home/dionisos/My Games/" --whitelist="/home/dionisos/.wine/" "$exe"
