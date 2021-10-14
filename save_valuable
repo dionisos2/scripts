@@ -2,7 +2,8 @@
 
 if [ $# -ne 2 ]
 then
-    echo "first parameter is type and second parameter is the commit name"
+		echo "First parameter should be -l for long(on server) or -q for quick(on /stockage/)"
+    echo "Second parameter is the commit name (ex : 13-11-2020)"
 	  exit 1
 fi
 
