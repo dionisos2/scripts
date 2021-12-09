@@ -12,6 +12,7 @@ xsensors -> température
 figlet -> create ascii art
 mirage/eog -> image viewer (obsolète)
 geeqie -> image viewer
+gthumb -> image viewer
 pitivi -> édition vidéo
 quvi -> télécharger des vidéos (de youtube ou autre)
 jmtpfs /media/dd -> mount pour tablette android
@@ -74,3 +75,4 @@ lynis -> audit de sécurité
 arch-audit
 (/usr/bin/systemd-analyze security 'fstrim.service')
 rkhunter
+clamav

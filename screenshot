@@ -1,6 +1,7 @@
 #!/bin/bash
 
-date=$(format_date)
+date=$(/home/dionisos/scripts/format_date)
+
 
 import -window root /home/dionisos/screenshots/root_screen_$date.png
 convert /home/dionisos/screenshots/root_screen_$date.png /home/dionisos/screenshots/root_screen_$date.jpg

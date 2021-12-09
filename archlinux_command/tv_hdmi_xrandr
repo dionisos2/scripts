@@ -10,3 +10,5 @@ pc salon:
 arand → 1360X768 pour les deux écrans et les mettre ensembles
 puis redémarrer qtile(control-windows-r)
 puis pavucontrol → configuration → HDMI machin
+
+xrandr --output VGA-0 --brightness 0.7
