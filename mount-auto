@@ -3,7 +3,7 @@
 case "$1" in
 		start)
 				if [ -f "/home/dionisos/11-media-by-label-with-pmount.rules" ]; then
-						sudo mv /home/dionisos/11-media-by-label-with-pmount.rules /etc/udev/rules.d/
+						doas mv /home/dionisos/11-media-by-label-with-pmount.rules /etc/udev/rules.d/
 						echo "automatique-mount start"
 				else
 						echo "already start"
@@ -12,7 +12,7 @@ case "$1" in
 				;;
 		stop)
 				if [ -f "/etc/udev/rules.d/11-media-by-label-with-pmount.rules" ]; then
-						sudo mv /etc/udev/rules.d/11-media-by-label-with-pmount.rules /home/dionisos/
+						doas mv /etc/udev/rules.d/11-media-by-label-with-pmount.rules /home/dionisos/
 						echo "automatique-mount stop"
 				else
 						echo "already stop"

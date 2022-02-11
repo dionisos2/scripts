@@ -1,13 +1,13 @@
-sudo groupadd <group>
+doas groupadd <group>
 
 
 adduser //liste de questions ou:
 
-sudo useradd backup
-sudo passwd backup
+doas useradd backup
+doas passwd backup
 echo ~backup
-sudo chown backup /home/backup/
-sudo chgrp backup /home/backup/
+doas chown backup /home/backup/
+doas chgrp backup /home/backup/
 
 
 /etc/passwd
@@ -15,7 +15,7 @@ sudo chgrp backup /home/backup/
 g=$(cat /etc/group | cut -d: -f1 | tr '\n' ',')
 g=${g%?}
 
-sudo usermod -a -G group,group2 username // ajoute group à l’utilisateur
+doas usermod -a -G group,group2 username // ajoute group à l’utilisateur
 // -a pour append, et -G pour groups
 
 

@@ -24,11 +24,11 @@ echo "Parameters ok."
 if [ "$1" == "-l" ]
 then
 		echo "Save in $BORG_SERVER_REPO::$2"
-		sudo -u root borg create --stats --progress "$BORG_SERVER_REPO"::"$2" $(cat $to_save)  --exclude-caches --exclude-from $to_exclude
+		doas -u root borg create --stats --progress "$BORG_SERVER_REPO"::"$2" $(cat $to_save)  --exclude-caches --exclude-from $to_exclude
 fi
 
 if [ "$1" == "-q" ]
 then
 		echo "Save in $BORG_DD_REPO::$2"
-		sudo -u root borg create --stats --progress "$BORG_DD_REPO"::"$2" $(cat $to_save)  --exclude-caches --exclude-from $to_exclude
+		doas -u root borg create --stats --progress "$BORG_DD_REPO"::"$2" $(cat $to_save)  --exclude-caches --exclude-from $to_exclude
 fi

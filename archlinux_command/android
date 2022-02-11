@@ -9,10 +9,10 @@ jmtpfs /media/dd
 
 
 webcam
-sudo modprobe v4l2loopback
+doas modprobe v4l2loopback
 activate "ip-webcam" on the tablet
 start server on the ip-webcam software
-sudo gst-launch-0.10 -v souphttpsrc location='http://192.168.0.15:8080/videofeed' is-live=true ! multipartdemux ! decodebin2 ! v4l2sink device=/dev/video1
+doas gst-launch-0.10 -v souphttpsrc location='http://192.168.0.15:8080/videofeed' is-live=true ! multipartdemux ! decodebin2 ! v4l2sink device=/dev/video1
 
 
 alcatel pixi:

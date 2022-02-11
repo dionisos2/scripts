@@ -3,5 +3,5 @@
 rm web/css/*
 rm web/js/*
 cp app/Resources/css/bootstrap.min.css web/css/
-sudo -u http php ./app/console assetic:dump
-sudo -u http php ./app/console assetic:dump --env=prod --no-debug
+doas -u http php ./app/console assetic:dump
+doas -u http php ./app/console assetic:dump --env=prod --no-debug

@@ -3,4 +3,4 @@ du -hs //repository size summarize
 ncdu //ncurses disk usage
 blkid //some useful information
 lsblk // list of media and mountage
-sudo mount /dev/sda1 /media/dd/ -o umask=000
+doas mount /dev/sda1 /media/dd/ -o umask=000

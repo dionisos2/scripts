@@ -57,4 +57,4 @@ Step 4. Finally, provide an IP address to the network interface. Simple examples
 
 # dhcpcd wlan0
 
-sudo rfkillunblock all
+doas rfkillunblock all

@@ -7,7 +7,7 @@ cheese/guvcview -> webcam
 audacity -> montage son
 ncdu -> disk usage analyser
 ldm -> lith way device mounter
-ntp(ntpd -q)-> sync date (sudo ntpd -qg for put right universal time)
+ntp(ntpd -q)-> sync date (doas ntpd -qg for put right universal time)
 xsensors -> température
 figlet -> create ascii art
 mirage/eog -> image viewer (obsolète)
