@@ -93,13 +93,15 @@ keys = [
     # multiple stack panes
     Key([mod, "shift"], "Return", lazy.layout.toggle_split()),
     Key([mod], "Return", lazy.spawn("alacritty")),
-    Key([mod, "control"], "f", lazy.spawn("firefox-developer-edition")),
+    Key([mod, "control"], "f", lazy.spawn("brave")),
+    Key([mod, "control"], "h", lazy.spawn("hexchat")),
+    Key([mod, "control"], "c", lazy.spawn("claws-mail")),
     Key([mod, "control"], "t", lazy.spawn("gnome-clocks")),
     Key([mod, "control"], "p", lazy.spawn("firefox --private-window")),
     Key([mod, "control"], "e", lazy.spawn("emacsclient -c")),
     Key([mod, "control"], "m", lazy.spawn("smplayer")),
     Key([mod, "control"], "k", lazy.spawn("keepassxc")),
-    Key([mod, "control"], "c", lazy.spawn("/home/dionisos/scripts/com_software")),
+    # Key([mod, "control"], "c", lazy.spawn("/home/dionisos/scripts/com_software")),
     Key([], "Print", lazy.spawn("/home/dionisos/scripts/screenshot")),
     Key([mod], "m", lazy.spawn("/home/dionisos/scripts/dmenu-qtile-windowslist.py")),
     Key([mod, "control"], "s", lazy.spawn("systemctl suspend")),
@@ -128,7 +130,7 @@ keys = [
 groups = [
     Group("a"),
     Group("u"),
-    Group("i", matches=[Match(wm_class=["whats-app-nativefier-7bbd2c","Skype","Pidgin"])]),
+    Group("i", matches=[Match(wm_class=["whats-app-nativefier-7bbd2c","Skype","Pidgin","Hexchat"])]),
     Group("e"),
     Group("c"),
 ]
