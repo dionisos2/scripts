@@ -95,7 +95,7 @@ keys = [
     Key([mod], "Return", lazy.spawn("alacritty")),
     Key([mod, "control"], "f", lazy.spawn("brave")),
     Key([mod, "control"], "h", lazy.spawn("hexchat")),
-    Key([mod, "control"], "c", lazy.spawn("claws-mail")),
+    Key([mod, "control"], "c", lazy.spawn("evolution")),
     Key([mod, "control"], "t", lazy.spawn("gnome-clocks")),
     Key([mod, "control"], "p", lazy.spawn("firefox --private-window")),
     Key([mod, "control"], "e", lazy.spawn("emacsclient -c")),

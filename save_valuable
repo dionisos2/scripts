@@ -14,7 +14,7 @@ then
 fi
 
 # borg init -e repokey /path/to/repo
-export BORG_SERVER_REPO="ssh://dionisos@192.168.0.48:22/home/dionisos/save_portable"
+export BORG_SERVER_REPO="ssh://dionisos@192.168.1.48:22/home/dionisos/save_portable"
 export BORG_DD_REPO="/stockage/borg_save"
 
 to_save="/home/dionisos/scripts/files_to_save"
