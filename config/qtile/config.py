@@ -93,7 +93,7 @@ keys = [
     # multiple stack panes
     Key([mod, "shift"], "Return", lazy.layout.toggle_split()),
     Key([mod], "Return", lazy.spawn("alacritty")),
-    Key([mod, "control"], "f", lazy.spawn("brave")),
+    Key([mod, "control"], "f", lazy.spawn("firefox-developer-edition")),
     Key([mod, "control"], "h", lazy.spawn("hexchat")),
     Key([mod, "control"], "c", lazy.spawn("evolution")),
     Key([mod, "control"], "t", lazy.spawn("gnome-clocks")),
