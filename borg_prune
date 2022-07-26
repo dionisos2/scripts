@@ -1,3 +1,47 @@
 #!/bin/bash
 
-borg prune -v --list --keep-yearly=1 --keep-monthly=2 ssh://dionisos@192.168.0.67:22/home/dionisos/save_portable
+if [ $# -ne 1 ] || ([ "$1" != "-l" ] && [ "$1" != "-q" ])
+then
+		echo "First parameter should be -l for long(on server) or -q for quick(on /stockage/)"
+	  exit 1
+fi
+
+if [ "$(whoami)" != "root" ]
+then
+		echo "Please run as root"
+		exit 2
+fi
+
+if [ "$1" == "-l" ]
+then
+		export BORG_SERVER_REPO="ssh://dionisos@192.168.1.48:22/home/dionisos/save_portable"
+fi
+
+if [ "$1" == "-q" ]
+then
+		export BORG_SERVER_REPO="/stockage/borg_save"
+fi
+
+echo "-----------start DRY-RUN-----------"
+borg prune --dry-run -v --list --keep-yearly="-1" --keep-monthly=5 --keep-last=5 "$BORG_SERVER_REPO"
+echo "-----------end DRY-RUN-----------"
+
+echo "Do it ? (yes→yes, other→no)"
+start=$(df -h | grep stockage | tr -s ' ' | cut -d ' ' -f 4)
+
+read proceed
+
+if [ "$proceed" == "yes" ]
+then
+		echo "PRUNE"
+		borg prune -v --list --keep-yearly="-1" --keep-monthly=5 --keep-last=5 "$BORG_SERVER_REPO"
+		echo "COMPACT"
+		borg compact --progress "$BORG_SERVER_REPO"
+fi
+
+end=$(df -h | grep stockage | tr -s ' ' | cut -d ' ' -f 4)
+
+echo "-----------------------------------"
+echo "Memory available in directory '/stockage' ('/dev/sda5')"
+echo "At the start : $start"
+echo "At the end : $end"
