@@ -1,0 +1,3 @@
+#!/bin/bash
+
+firejail /home/dionisos/divertissements/jeux/factorio/factorio
