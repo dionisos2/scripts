@@ -1,3 +1,4 @@
 #!/bin/bash
 
-tmux new-session -d -s tiddly_perso "/home/dionisos/.npm/packages/bin/tiddlywiki '/home/dionisos/projets/RD/tiddly_perso' --listen port=1212"
+# # tmux new-session -d -s tiddly_perso "/home/dionisos/.npm/packages/bin/tiddlywiki '/home/dionisos/projets/RD/tiddly_perso' --listen port=1212"
+tmux new-session -d -s tiddly_perso "/home/dionisos/logiciels/tiddlywiki/TiddlyWiki5/tiddlywiki.js '/home/dionisos/projets/RD/tiddly_perso' --listen port=1212"
