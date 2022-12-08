@@ -15,4 +15,4 @@ echo "remove cache"
 \rm -r /home/dionisos/.cache/*
 # fi
 
-paccache -rk 2
+doas paccache -rk 2

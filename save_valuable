@@ -1,26 +1,30 @@
 #!/bin/bash
 
+params="First parameter should be -l for long(on server) or -q for quick(on /stockage/ or -u for usb (/mnt/dd/save_pc_fixe/))"
+
 if [ $# -ne 2 ]
 then
-		echo "First parameter should be -l for long(on server) or -q for quick(on /stockage/)"
+		echo $params
     echo "Second parameter is the commit name (ex : 13-11-2020)"
 	  exit 1
 fi
 
-if [ "$1" != "-l" ] && [ "$1" != "-q" ]
+if [ "$1" != "-l" ] && [ "$1" != "-q" ] && [ "$1" != "-u" ]
 then
-		echo "First parameter should be -l for long(on server) or -q for quick(on /stockage/)"
+		echo $params
 		exit 1
 fi
 
 # borg init -e repokey /path/to/repo
 export BORG_SERVER_REPO="ssh://dionisos@192.168.1.48:22/home/dionisos/save_portable"
 export BORG_DD_REPO="/stockage/borg_save"
+export BORG_USB_DD_REPO="/mnt/dd/save_pc_fixe"
 
 to_save="/home/dionisos/scripts/files_to_save"
 to_exclude="/home/dionisos/scripts/files_to_exclude"
 
 echo "Parameters ok."
+
 if [ "$1" == "-l" ]
 then
 		echo "Save in $BORG_SERVER_REPO::$2"
@@ -31,4 +35,10 @@ if [ "$1" == "-q" ]
 then
 		echo "Save in $BORG_DD_REPO::$2"
 		doas -u root borg create --stats --progress "$BORG_DD_REPO"::"$2" $(cat $to_save)  --exclude-caches --exclude-from $to_exclude
+fi
+
+if [ "$1" == "-u" ]
+then
+		echo "Save in $BORG_USB_DD_REPO$2"
+		doas -u root borg create --stats --progress "$BORG_USB_DD_REPO"::"$2" $(cat $to_save)  --exclude-caches --exclude-from $to_exclude
 fi
