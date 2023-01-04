@@ -7,7 +7,7 @@ import re
 
 class DateValidator(cli.switches.Validator):
     """
-    A switch-type validator that checks the argument is a date
+    A switch-type validator that checks if the argument is a date
     """
 
     def __call__(self, obj):
