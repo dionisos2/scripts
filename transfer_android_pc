@@ -1,0 +1,36 @@
+#!/bin/bash
+
+echo "Transfer OpenCamera directory"
+open_camera="/storage/emulated/0/DCIM/OpenCamera"
+adb pull "$open_camera" ~/téléchargements/ && adb shell rm -rR "$open_camera"
+echo "Done"
+
+echo "Transfer Pictures directory"
+pictures="/storage/emulated/0/Pictures"
+adb pull "$pictures" ~/téléchargements/ && adb shell rm -rR "$pictures"
+echo "Done"
+
+echo "Transfer Movies directory"
+movies="/storage/emulated/0/Movies"
+adb pull "$movies" ~/téléchargements/ && adb shell rm -rR "$movies"
+echo "Done"
+
+echo "Transfer Waistline backups"
+waistline="/storage/emulated/0/Documents/Waistline"
+adb pull "$waistline" ~/téléchargements/
+echo "Done"
+
+whatsapp="/storage/emulated/0/Android/media/com.whatsapp/WhatsApp/Media"
+
+echo "Transfer WhatsApp Images directory"
+adb pull "$whatsapp/WhatsApp Images/" ~/téléchargements/ && adb shell rm -rR "$whatsapp/WhatsApp\ Images/"
+echo "Done"
+
+echo "Transfer WhatsApp Video directory"
+adb pull "$whatsapp/WhatsApp Video/" ~/téléchargements/ && adb shell rm -rR "$whatsapp/WhatsApp\ Video/"
+echo "Done"
+
+echo "Transfer WhatsApp Documents directory"
+adb pull "$whatsapp/WhatsApp Documents/" ~/téléchargements/ && adb shell rm -rR "$whatsapp/WhatsApp\ Documents/"
+echo "Done"
+
