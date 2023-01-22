@@ -31,6 +31,6 @@ adb pull "$whatsapp/WhatsApp Video/" ~/téléchargements/ && adb shell rm -rR "$
 echo "Done"
 
 echo "Transfer WhatsApp Documents directory"
-adb pull "$whatsapp/WhatsApp Documents/" ~/téléchargements/ && adb shell rm -rR "$whatsapp/WhatsApp\ Documents/"
+adb pull "$whatsapp/WhatsApp Documents/" ~/téléchargements/
 echo "Done"
 

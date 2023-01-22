@@ -1,0 +1,13 @@
+#!/bin/bash
+
+dest_dir="/mnt/dd/transfert_$(date "+%d-%m-%Y")/"
+
+mkdir -p "$dest_dir"
+rsync -au --progress "/home/dionisos/.ssh" "$dest_dir"
+rsync -au --progress "/home/dionisos/organisation" "$dest_dir"
+rsync -au --progress "/home/dionisos/projets/RD/tiddly_perso" "$dest_dir"
+rsync -au --progress "/home/dionisos/logiciels/shaarli/data" "$dest_dir"
+
+#https://support.mozilla.org/en-US/kb/profiles-where-firefox-stores-user-data
+rsync -au --progress "/home/dionisos/.mozilla/firefox/hyzy36bo.dev-edition-default/places.sqlite" "$dest_dir"
+rsync -au --progress "/home/dionisos/.mozilla/firefox/hyzy36bo.dev-edition-default/favicons.sqlite" "$dest_dir"
