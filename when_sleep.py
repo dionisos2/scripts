@@ -25,7 +25,8 @@ class WhenSleep(cli.Application):
 		# journalctl --no-pager -r -n 6 -o json -u "systemd-suspend" --grep "Entering"
 		systemd_suspend_sleep = self.run_journalctl(basics_options + ["-u", "systemd-suspend", "--grep", "Entering"], "systemd_suspend sleep")
 		# journalctl --no-pager -r -n 6 -o json --grep "SYSTEM_BOOT"
-		system_boot = self.run_journalctl(basics_options + ["--grep", "SYSTEM_BOOT"], "boot")
+		# system_boot = self.run_journalctl(basics_options + ["--grep", "SYSTEM_BOOT"], "boot")
+		system_boot = [] # Don’t work anymore for unknown reason
 
 
 		log_list = systemd_poweroff + systemd_suspend_wake_up + systemd_suspend_sleep + system_boot
@@ -34,6 +35,7 @@ class WhenSleep(cli.Application):
 			print(self.log_to_str(log))
 
 	def run_journalctl(self, options, name):
+		print(options)
 		result = self.journalctl(options)
 		result = "[" + ",".join(result.split("\n")[:-1]) + "]" # Because it somehow doesn’t format it as a json list by default
 		result = json.loads(result)
@@ -51,10 +53,10 @@ class WhenSleep(cli.Application):
 		date_str = date.strftime("%d/%m/%Y %H:%M:%S")
 		name = log["name"]
 		message = log["MESSAGE"]
-		
+
 		result = f"{date_str} : {name} : {message}"
 
-		
+
 		return result
 
 if __name__ == "__main__":
