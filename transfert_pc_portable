@@ -12,6 +12,12 @@ rsync -au --progress "/home/dionisos/.aspell.fr.pws" "$dest_dir"
 rsync -au --progress "/home/dionisos/.aspell.en.pws" "$dest_dir"
 rsync -au --progress "/home/dionisos/.ssh" "$dest_dir"
 
+rsync -au --progress "/home/dionisos/personnelle/administratif" "$dest_dir"
+rsync -au --progress "/home/dionisos/projets/programmation/julia" "$dest_dir"
+rsync -au --progress "/home/dionisos/projets/programmation/python" "$dest_dir"
+rsync -au --progress "/home/dionisos/projets/programmation/unity" "$dest_dir"
+rsync -au --progress "/home/dionisos/projets/programmation/name_conventions" "$dest_dir"
+
 #https://support.mozilla.org/en-US/kb/profiles-where-firefox-stores-user-data
 rsync -au --progress "/home/dionisos/.mozilla/firefox/cysf0lb1.dev-edition-default-1680100960076/places.sqlite" "$dest_dir"
 rsync -au --progress "/home/dionisos/.mozilla/firefox/cysf0lb1.dev-edition-default-1680100960076/favicons.sqlite" "$dest_dir"
