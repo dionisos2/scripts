@@ -1,7 +1,5 @@
 #!/bin/sh
 
-cp ~/.config/ranger/commands.py ~/scripts/config/ranger/
-cp ~/.config/ranger/rc.conf ~/scripts/config/ranger/
-cp ~/.config/ranger/rifle.conf ~/scripts/config/ranger/
+cp ~/.config/lf/lfrc ~/scripts/config/lf/
 cp ~/.config/qtile/config.py ~/scripts/config/qtile/
 cp ~/.config/qtile/autostart.sh ~/scripts/config/qtile/

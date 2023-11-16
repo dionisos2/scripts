@@ -95,7 +95,7 @@ keys = [
     Key([mod], "Return", lazy.spawn("alacritty")),
     Key([mod, "control"], "f", lazy.spawn("firefox-developer-edition")),
     Key([mod, "control"], "h", lazy.spawn("hexchat")),
-    Key([mod, "control"], "c", lazy.spawn("evolution")),
+    Key([mod, "control"], "c", lazy.spawn("element-desktop")),
     Key([mod, "control"], "t", lazy.spawn("gnome-clocks")),
     Key([mod, "control"], "p", lazy.spawn("firefox --private-window")),
     Key([mod, "control"], "e", lazy.spawn("emacsclient -c")),
@@ -130,8 +130,8 @@ keys = [
 groups = [
     Group("a"),
     Group("u"),
-    Group("i", matches=[Match(wm_class=["whats-app-nativefier-7bbd2c","Skype","Pidgin","Hexchat"])]),
-    Group("e"),
+    Group("i", matches=[Match(wm_class=["whats-app-nativefier-7bbd2c", "Skype", "Pidgin", "Hexchat"])]),
+    Group("e", matches=[Match(wm_class=["Element"])]),
     Group("c"),
 ]
 
