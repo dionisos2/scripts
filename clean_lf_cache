@@ -1,0 +1,7 @@
+#!/bin/sh
+
+if [ -d "/home/dionisos/.cache/ctpv" ]
+then
+		echo "clean cache"
+		\rm -r /home/dionisos/.cache/ctpv
+fi
