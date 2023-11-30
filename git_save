@@ -25,4 +25,4 @@ cd ~/projets/RD/tiddly_perso/
 xonsh -DPROMPT='{env_name}{BOLD_GREEN}{user}@{hostname} TIDDLY_PERSO 5/5{BOLD_BLUE} {cwd}{branch_color}{curr_branch: {}}{RESET} {BOLD_BLUE}{prompt_end}{RESET} '
 
 
-echo "Finiched :-)"
+echo "Finished :-)"
