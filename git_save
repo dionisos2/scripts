@@ -1,0 +1,28 @@
+#!/bin/sh
+
+echo "Start the git save process"
+
+
+echo "ORGANISATION"
+cd ~/organisation/
+xonsh -DPROMPT='{env_name}{BOLD_GREEN}{user}@{hostname} ORGANISATION 1/5{BOLD_BLUE} {cwd}{branch_color}{curr_branch: {}}{RESET} {BOLD_BLUE}{prompt_end}{RESET} '
+
+echo "EMACS"
+cd ~/.config/emacs
+xonsh -DPROMPT='{env_name}{BOLD_GREEN}{user}@{hostname} EMACS 2/5{BOLD_BLUE} {cwd}{branch_color}{curr_branch: {}}{RESET} {BOLD_BLUE}{prompt_end}{RESET} '
+
+echo "EMACS PRIVATE"
+cd ~/.config/emacs/private
+xonsh -DPROMPT='{env_name}{BOLD_GREEN}{user}@{hostname} EMACS_PRIVATE 3/5{BOLD_BLUE} {cwd}{branch_color}{curr_branch: {}}{RESET} {BOLD_BLUE}{prompt_end}{RESET} '
+
+echo "SCRIPTS"
+cd ~/scripts
+~/scripts/get_all_config
+xonsh -DPROMPT='{env_name}{BOLD_GREEN}{user}@{hostname} SCRIPT 4/5{BOLD_BLUE} {cwd}{branch_color}{curr_branch: {}}{RESET} {BOLD_BLUE}{prompt_end}{RESET} '
+
+echo "TIDDLY_PERSO"
+cd ~/projets/RD/tiddly_perso/
+xonsh -DPROMPT='{env_name}{BOLD_GREEN}{user}@{hostname} TIDDLY_PERSO 5/5{BOLD_BLUE} {cwd}{branch_color}{curr_branch: {}}{RESET} {BOLD_BLUE}{prompt_end}{RESET} '
+
+
+echo "Finiched :-)"
