@@ -43,96 +43,97 @@ widgetVolume = widget.Volume(update_interval=200)
 
 @hook.subscribe.startup_once
 def autostart():
-    start = os.path.expanduser('~/.config/qtile/autostart.sh')
-    subprocess.call([start])
+  start = os.path.expanduser('~/.config/qtile/autostart.sh')
+  subprocess.call([start])
 
 
 def updateVolume(qtile, args=None):
-    time.sleep(.100)
-    widgetVolume.update()
+  time.sleep(.100)
+  widgetVolume.update()
 
 keys = [
-        # Sound and Mpd
+  # Sound and Mpd
     Key([], "XF86AudioRaiseVolume",
         lazy.spawn("amixer sset Master 5%+"), lazy.function(updateVolume)),
-    Key([], "XF86AudioLowerVolume",
-        lazy.spawn("amixer sset Master 5%-"), lazy.function(updateVolume)),
-    Key([], "XF86AudioMute",
-        lazy.spawn("amixer sset Master toggle"), lazy.function(updateVolume)),
+  Key([], "XF86AudioLowerVolume",
+      lazy.spawn("amixer sset Master 5%-"), lazy.function(updateVolume)),
+  Key([], "XF86AudioMute",
+      lazy.spawn("amixer sset Master toggle"), lazy.function(updateVolume)),
 
     # Switch between windows in current stack pane
     Key([mod], "s", lazy.layout.down()),
-    Key([mod], "d", lazy.layout.up()),
+  Key([mod], "d", lazy.layout.up()),
 
     Key([mod], "v", lazy.window.toggle_floating()),
-    Key([mod, "shift"], "v", lazy.window.toggle_fullscreen()),
+  Key([mod, "shift"], "v", lazy.window.toggle_fullscreen()),
 
     # size
     Key([mod, "shift"], "Right", lazy.layout.increase_ratio()),
-    Key([mod, "shift"], "Left", lazy.layout.decrease_ratio()),
+  Key([mod, "shift"], "Left", lazy.layout.decrease_ratio()),
 
     # Move windows up or down in current stack
     Key([mod, "control"], "k", lazy.layout.shuffle_down()),
-    Key([mod, "control"], "j", lazy.layout.shuffle_up()),
+  Key([mod, "control"], "j", lazy.layout.shuffle_up()),
 
     # Switch window focus to other pane(s) of stack
-    # Key([mod], "o", lazy.group.focus_next()),
+  # Key([mod], "o", lazy.group.focus_next()),
     Key([mod], "r", lazy.layout.next()),
-    Key([mod], "t", lazy.group.prev()),
-    Key([mod], "Right", lazy.group.next_window()),
-    Key([mod], "Left", lazy.group.prev_window()),
+  Key([mod], "t", lazy.group.prev()),
+  Key([mod], "Right", lazy.group.next_window()),
+  Key([mod], "Left", lazy.group.prev_window()),
 
 
     # Swap panes of split stack
-    # Key([mod, "shift"], "r", lazy.layout.rotate()),
+  # Key([mod, "shift"], "r", lazy.layout.rotate()),
     Key([mod, "shift"], "r", lazy.layout.client_to_next()),
 
     # Toggle between split and unsplit sides of stack.
-    # Split = all windows displayed
-    # Unsplit = 1 window displayed, like Max layout, but still with
-    # multiple stack panes
+  # Split = all windows displayed
+  # Unsplit = 1 window displayed, like Max layout, but still with
+  # multiple stack panes
     Key([mod, "shift"], "Return", lazy.layout.toggle_split()),
-    Key([mod], "Return", lazy.spawn("alacritty")),
-    Key([mod, "control"], "f", lazy.spawn("firefox-developer-edition")),
-    Key([mod, "control"], "h", lazy.spawn("hexchat")),
-    Key([mod, "control"], "c", lazy.spawn("element-desktop")),
-    Key([mod, "control"], "t", lazy.spawn("gnome-clocks")),
-    Key([mod, "control"], "p", lazy.spawn("firefox --private-window")),
-    Key([mod, "control"], "e", lazy.spawn("emacsclient -c")),
-    Key([mod, "control"], "m", lazy.spawn("smplayer")),
-    Key([mod, "control"], "k", lazy.spawn("keepassxc")),
-    # Key([mod, "control"], "c", lazy.spawn("/home/dionisos/scripts/com_software")),
+  Key([mod], "Return", lazy.spawn("alacritty")),
+  Key([mod, "control"], "f", lazy.spawn("firefox-developer-edition")),
+  Key([mod], "t", lazy.spawn("dmenu_run")),
+  Key([mod, "control"], "h", lazy.spawn("hexchat")),
+  Key([mod, "control"], "c", lazy.spawn("element-desktop")),
+  Key([mod, "control"], "t", lazy.spawn("gnome-clocks")),
+  Key([mod, "control"], "p", lazy.spawn("firefox --private-window")),
+  Key([mod, "control"], "e", lazy.spawn("emacsclient -c")),
+  Key([mod, "control"], "m", lazy.spawn("smplayer")),
+  Key([mod, "control"], "k", lazy.spawn("keepassxc")),
+  # Key([mod, "control"], "c", lazy.spawn("/home/dionisos/scripts/com_software")),
     Key([], "Print", lazy.spawn("/home/dionisos/scripts/screenshot")),
-    Key([mod], "m", lazy.spawn("/home/dionisos/scripts/dmenu-qtile-windowslist.py")),
-    Key([mod, "control"], "s", lazy.spawn("systemctl suspend")),
-    Key([mod, "shift"], "s", lazy.spawn("/home/dionisos/scripts/screensaver")),
-    # Key([mod], "F9", lazy.function(lambda qtile, args=None: widgetGmail.tick())),
+  Key([mod], "m", lazy.spawn("/home/dionisos/scripts/dmenu-qtile-windowslist.py")),
+  Key([mod, "control"], "s", lazy.spawn("systemctl suspend")),
+  Key([mod, "shift"], "s", lazy.spawn("/home/dionisos/scripts/screensaver")),
+  # Key([mod], "F9", lazy.function(lambda qtile, args=None: widgetGmail.tick())),
     Key([mod], "F8", lazy.spawn("/home/dionisos/scripts/pgm_keyboard/load")),
-    Key([mod], "F7", lazy.spawn("setxkbmap fr")),
-    Key([], "XF86Tools", lazy.spawn("playerctl next")), # https://quodlibet.readthedocs.io/en/latest/guide/interacting.html
-    Key(["shift"], "XF86Tools", lazy.spawn("playerctl previous")),
-    Key([], "XF86AudioPlay", lazy.spawn("playerctl play-pause")),
+  Key([mod], "F7", lazy.spawn("setxkbmap fr")),
+  Key([], "XF86Tools", lazy.spawn("playerctl next")), # https://quodlibet.readthedocs.io/en/latest/guide/interacting.html
+  Key(["shift"], "XF86Tools", lazy.spawn("playerctl previous")),
+  Key([], "XF86AudioPlay", lazy.spawn("playerctl play-pause")),
 
     # Toggle between different layouts as defined below
-    Key([mod], "Tab", lazy.next_layout()),
-    Key([mod], "space", lazy.next_layout()),
-    Key([mod], "q", lazy.window.kill()),
-    Key([], "XF86HomePage", lazy.window.kill()),
+  Key([mod], "Tab", lazy.next_layout()),
+  Key([mod], "space", lazy.next_layout()),
+  Key([mod], "q", lazy.window.kill()),
+  Key([], "XF86HomePage", lazy.window.kill()),
 
     Key([mod, "control"], "r", lazy.restart()),
-    # Key([mod, "control"], "q", lazy.shutdown()),
+  # Key([mod, "control"], "q", lazy.shutdown()),
     Key([mod], "x", lazy.spawncmd()),
-    Key([mod], "y", lazy.spawncmd()),
+  Key([mod], "y", lazy.spawncmd()),
 ]
 
 # groups = [Group(i) for i in "auie"]
 
 groups = [
-    Group("a"),
-    Group("u"),
-    Group("i", matches=[Match(wm_class=["whats-app-nativefier-7bbd2c", "Skype", "Pidgin", "Hexchat"])]),
-    Group("e", matches=[Match(wm_class=["Element"])]),
-    Group("c"),
+  Group("a"),
+  Group("u"),
+  Group("i", matches=[Match(wm_class=["whats-app-nativefier-7bbd2c", "Skype", "Pidgin", "Hexchat"])]),
+  Group("e", matches=[Match(wm_class=["Element"])]),
+  Group("c"),
 ]
 
 
@@ -140,60 +141,60 @@ keybings = "auiec"
 
 lazy.group["c"].matches([Match(wm_class=["Firefox"])])
 
-for index,group in enumerate(groups):
-    keys.extend([
-        # mod1 + letter of group = switch to group
-        Key([mod], keybings[index], lazy.group[group.name].toscreen(None, False)),
+for index, group in enumerate(groups):
+  keys.extend([
+    # mod1 + letter of group = switch to group
+    Key([mod], keybings[index], lazy.group[group.name].toscreen(None, False)),
 
-        # mod1 + shift + letter of group = switch to & move focused window to group
-        Key([mod, "shift"], keybings[index], lazy.window.togroup(group.name)),
-    ])
+    # mod1 + shift + letter of group = switch to & move focused window to group
+    Key([mod, "shift"], keybings[index], lazy.window.togroup(group.name)),
+  ])
 
 layouts = [
-    layout.Max(),
-    layout.Stack(num_stacks=2)
+  layout.Max(),
+  layout.Stack(num_stacks=2)
 ]
 
 
 widget_defaults = dict(
-    font='sans',
-    fontsize=14,
-    padding=3,
+  font='sans',
+  fontsize=14,
+  padding=3,
 )
 extension_defaults = widget_defaults.copy()
 
 
 screens = [
-    Screen(
-        bottom=bar.Bar(
-            [
-                widget.DF(partition="/"),
-                widget.GroupBox(),
-                widget.Prompt(),
-                widget.WindowName(),
-                # widget.TextBox(),
+  Screen(
+    bottom=bar.Bar(
+      [
+        widget.DF(partition="/"),
+        widget.GroupBox(),
+        widget.Prompt(),
+        widget.WindowName(),
+        # widget.TextBox(),
                 OrgMode(),
-                # widget.Battery(format='[{char} {percent:2.0%}]'),
+        # widget.Battery(format='[{char} {percent:2.0%}]'),
                 widgetVolume,
-                # widgetGmail,
+        # widgetGmail,
                 widget.Systray(),
-                # widget.Wlan(),
+        # widget.Wlan(),
                 widget.Clock(format='%d-%m-%Y %a %R'),
-                # widget.Notify(default_timeout=10)
+        # widget.Notify(default_timeout=10)
             ],
-            24,
-        ),
+      24,
     ),
+  ),
 ]
 
 
 # Drag floating layouts.
 mouse = [
-    Drag([mod], "Button1", lazy.window.set_position_floating(),
-         start=lazy.window.get_position()),
-    Drag([mod], "Button3", lazy.window.set_size_floating(),
-         start=lazy.window.get_size()),
-    Click([mod], "Button2", lazy.window.bring_to_front())
+  Drag([mod], "Button1", lazy.window.set_position_floating(),
+       start=lazy.window.get_position()),
+  Drag([mod], "Button3", lazy.window.set_size_floating(),
+       start=lazy.window.get_size()),
+  Click([mod], "Button2", lazy.window.bring_to_front())
 ]
 
 dgroups_key_binder = None
@@ -212,7 +213,7 @@ floating_layout = layout.Floating(float_rules=[
 	Match(wm_class='ssh-askpass'), # ssh-askpass
 	Match(title='branchdialog'), # gitk
 	Match(title='pinentry'), # GPG key password entry
-	])
+])
 
 # floating_layout = layout.Floating(float_rules=[
 #     {'wmclass': 'confirm'},
