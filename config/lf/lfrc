@@ -1,7 +1,7 @@
 # fzf-jump
 
 cmd fzf_jump ${{
-    res="$(find . -maxdepth 1 | fzf --reverse --header='Jump to location')"
+    res="$(find . -maxdepth 1 | fzf --reverse --header='Jump to location' --bind 'alt-s:down,alt-d:up')"
     if [ -n "$res" ]; then
         if [ -d "$res" ]; then
             cmd="cd"
@@ -14,7 +14,7 @@ cmd fzf_jump ${{
 }}
 
 cmd fzf_jump_deep ${{
-    res="$(locate -b "$1" | fzf --reverse --header='Jump to location')"
+    res="$(locate -b "$1" | fzf --reverse --header='Jump to location' --bind 'alt-s:down,alt-d:up')"
 
 		if [ -n "$res" ]; then
         if [ -d "$res" ]; then

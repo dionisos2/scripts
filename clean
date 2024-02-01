@@ -12,7 +12,7 @@ echo "remove thumbnails"
 # if [[ $size_cache -ge 1000 ]]
 # then
 echo "remove cache"
-\rm -r /home/dionisos/.cache/*
+doas \rm -r /home/dionisos/.cache/*
 # fi
 
 doas paccache -rk 2

@@ -39,6 +39,6 @@ fi
 
 if [ "$1" == "-u" ]
 then
-		echo "Save in $BORG_USB_DD_REPO$2"
+		echo "Save in $BORG_USB_DD_REPO::$2"
 		doas -u root borg create --stats --progress "$BORG_USB_DD_REPO"::"$2" $(cat $to_save)  --exclude-caches --exclude-from $to_exclude
 fi
