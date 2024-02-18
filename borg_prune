@@ -1,8 +1,8 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-if [ $# -ne 1 ] || ([ "$1" != "-l" ] && [ "$1" != "-q" ])
+if [ $# -ne 1 ] || ([ "$1" != "-l" ] && [ "$1" != "-q" ] && [ "$1" != "-u" ])
 then
-		echo "First parameter should be -l for long(on server) or -q for quick(on /stockage/)"
+		echo "First parameter should be -l for long(on server) or -q for quick(on /stockage/ or -u for USB (on /mnt/dd))"
 	  exit 1
 fi
 
@@ -20,6 +20,11 @@ fi
 if [ "$1" == "-q" ]
 then
 		export BORG_SERVER_REPO="/stockage/borg_save"
+fi
+
+if [ "$1" == "-u" ]
+then
+		export BORG_SERVER_REPO="/mnt/dd/save_pc_fixe"
 fi
 
 echo "-----------start DRY-RUN-----------"
