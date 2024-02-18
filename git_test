@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+mkdir test_git
+cd test_git
+
+echo "CREATE REMOTE"
+mkdir remote
+cd remote
+git init --bare
+cd ..
+
+echo "CREATE ALICE"
+mkdir alice
+cd alice
+git init
+echo plop > a.txt
+git add --all
+git commit -am"first commit"
+git remote add origin ../remote/
+git push --set-upstream origin master
+cd ..
+
+echo "CREATE BOB"
+git clone remote bob
+cd bob
+
+echo plop2 >> a.txt
+git commit -am"plop2"
+git push
+
+cd ../alice
+echo plop3 >> a.txt
+git commit -am"plop3"
+
+
+
