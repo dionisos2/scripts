@@ -1,6 +1,6 @@
 #!/bin/sh
 shopt -s expand_aliases
-source ~/.bash_aliases
+# source ~/.bash_aliases
 
 if [ $# -ne 2 ]
 then
