@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 sound_controle=$(current_sound_controller)
 amixer sset $sound_controle $1%+

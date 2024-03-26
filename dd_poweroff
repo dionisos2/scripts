@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 echo "y=poweroff, r=reboot, l=lock, s=suspend, h=hibernation other=nothing"
 read reponse

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # rajouter "source ~/scripts/boot_config" dans "/home/dionisos/.profile et .bashrc" !!!
 

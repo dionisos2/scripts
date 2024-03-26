@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 date=$(/home/dionisos/scripts/format_date)
 

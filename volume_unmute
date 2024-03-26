@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 amixer sset Master unmute
 amixer sset Headphone unmute

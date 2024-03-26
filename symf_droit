@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 chmod -R g+w ./
 chgrp -R dionisos ./

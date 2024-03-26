@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 params="First parameter should be -l for long(on server) or -q for quick(on /stockage/ or -u for usb (/mnt/dd/save_pc_fixe/))"
 

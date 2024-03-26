@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 for branch in $(git branch --all | grep '^\s*remotes' | egrep --invert-match '(:?HEAD|master)$'); do
     echo git branch --track "${branch##*/}" "$branch"
 		git branch --track "${branch##*/}" "$branch"

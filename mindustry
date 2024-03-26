@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 export PATH="/usr/lib/jvm/java-17-openjdk/bin/:$PATH"
 cd /home/dionisos/divertissements/jeux/Mindustry/

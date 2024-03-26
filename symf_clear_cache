@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 doas -u http php ./app/console cache:clear
 doas -u http php ./app/console cache:clear --env=prod

@@ -1,4 +1,4 @@
-#!/usr/bin/julia
+#!/usr/bin/env julia
 
 if length(ARGS) == 1
   println("Create $(ARGS[1]) project")

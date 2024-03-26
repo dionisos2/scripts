@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 echo "Transfer OpenCamera directory"
 open_camera="/storage/emulated/0/DCIM/OpenCamera"

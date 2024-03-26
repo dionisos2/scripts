@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 cp ~/.config/lf/lfrc ~/scripts/config/lf/
 cp ~/.config/qtile/config.py ~/scripts/config/qtile/

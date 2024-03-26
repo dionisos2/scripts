@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 stopwatch_file="/home/dionisos/à_supr/stopwatch_tmp"
 

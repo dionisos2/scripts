@@ -1,4 +1,4 @@
-#!/bin/python
+#!/usr/bin/env python
 
 from plumbum import cli, local # See https://plumbum.readthedocs.io/en/latest/cli.html
 from datetime import datetime

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 
 commands=$(more ~/.bash_history | egrep -v "(^#|^$)" | awk '{print $1}'|sort|uniq -c|sort -rg)

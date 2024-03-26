@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 # size_thumbnails=$(du -s ~/.thumbnails/ | awk '{print $1}')
 # size_cache=$(du -s ~/.cache/ | awk '{print $1}')

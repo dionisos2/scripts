@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 echo "export DISPLAY" > /dev/tty1
 export DISPLAY=":0.0"
