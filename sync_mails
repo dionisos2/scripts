@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
 echo "synchronise mails (mbsync gmail-recent)"
-mbsync gmail-recent
+mbsync gmail-complete
 echo "add tags to new mail (notmuch new --quiet)"
 notmuch new
