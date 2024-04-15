@@ -20,11 +20,13 @@ fi
 if [ "$1" == "-q" ]
 then
 		export BORG_SERVER_REPO="/stockage/borg_save"
+		directory="stockage"
 fi
 
 if [ "$1" == "-u" ]
 then
 		export BORG_SERVER_REPO="/mnt/dd/save_pc_fixe"
+		directory="dd"
 fi
 
 echo "-----------start DRY-RUN-----------"
@@ -32,7 +34,7 @@ borg prune --dry-run -v --list --keep-yearly="-1" --keep-monthly=5 --keep-last=5
 echo "-----------end DRY-RUN-----------"
 
 echo "Do it ? (yes→yes, other→no)"
-start=$(df -h | grep stockage | tr -s ' ' | cut -d ' ' -f 4)
+start=$(df -h | grep "$directory" | tr -s ' ' | cut -d ' ' -f 4)
 
 read proceed
 
@@ -44,9 +46,16 @@ then
 		borg compact --progress "$BORG_SERVER_REPO"
 fi
 
-end=$(df -h | grep stockage | tr -s ' ' | cut -d ' ' -f 4)
+end=$(df -h | grep "$directory" | tr -s ' ' | cut -d ' ' -f 4)
 
 echo "-----------------------------------"
-echo "Memory available in directory '/stockage' ('/dev/sda5')"
+
+if [ "$directory" == "stockage" ]
+then
+		echo "Memory available in directory '/stockage' ('/dev/sda5')"
+else
+		echo "Memory available in directory '/mnt/dd' ('/dev/sdb1')"
+fi
+
 echo "At the start : $start"
 echo "At the end : $end"
