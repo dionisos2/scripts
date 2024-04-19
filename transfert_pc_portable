@@ -2,7 +2,7 @@
 
 
 
-doas mount /dev/sdb1 /mnt/dd/
+# doas mount /dev/sdb1 /mnt/dd/
 dest_dir="/mnt/dd/transfert_$(date "+%d-%m-%Y")/"
 mkdir -p "$dest_dir"
 
