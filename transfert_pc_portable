@@ -100,8 +100,8 @@ then
 				log "Pull failed : Push then Pull from same computer"
 				exit 1
 		fi
-		rsync -au --progress "$divers_dir" "$divers_local_dir"
-		log "Transfer of divers completed"
+		# rsync -au --progress "$divers_dir" "$divers_local_dir"
+		# log "Transfer of divers completed"
 elif [ "$command" == "push" ]
 then
 
