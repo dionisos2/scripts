@@ -1,29 +1,100 @@
 #!/usr/bin/env bash
 
+if [ $# -ne 1 ] || { [ "$1" != "push" ] && [ "$1" != "pull" ]; }
+then
+		echo "The first (and only) parameter should be 'push' or 'pull'"
+		exit 1
+else
+		command="$1"
+fi
+
+if [ -d "/mnt/dd/transferts" ]
+then
+		cd "/mnt/dd/transferts" || exit
+else
+		echo "'/mnt/dd/transferts' not found, are the external disk mounted ?"
+		exit 1
+fi
+
+date="$(date "+%d-%m-%Y_%Hh%M")"
+
+divers_dir="./divers"
+divers_local_dir="/home/dionisos/téléchargements/transfer_$(date +%d-%m-%Y)/"
+git_dir="./git_save"
+
+log_path="./log.txt"
+from_path="./from.txt"
+date_path="./date.txt"
+
+if [[ ! -d "$divers_dir" ]]
+then
+		mkdir -p "$divers_dir"
+fi
+
+if [[ ! -d "$git_dir" ]]
+then
+		mkdir -p "$git_dir"
+fi
+
+if [[ ! -d "$log_path" ]]
+then
+		touch "$log_path"
+fi
+
+if [[ ! -d "$from_path" ]]
+then
+		echo "nobody" > "$from_path"
+fi
+
+if [[ ! -d "$date_path" ]]
+then
+		echo "no date" > "$date_path"
+fi
+
+last_from="$(more $from_path)"
+last_date="$(more $date_path)"
 
 
-# doas mount /dev/sdb1 /mnt/dd/
-dest_dir="/mnt/dd/transfert_$(date "+%d-%m-%Y")/"
-mkdir -p "$dest_dir"
+divers_path_to_save=("/home/dionisos/.ssh"
+										 "/home/dionisos/logiciels/shaarli/data"
+										 "/home/dionisos/.aspell.fr.pws"
+										 "/home/dionisos/.aspell.en.pws"
+										 "/home/dionisos/personnelle/administratif"
+										 "/home/dionisos/projets/programmation/julia"
+										 "/home/dionisos/projets/programmation/python"
+										 "/home/dionisos/projets/programmation/unity"
+										 "/home/dionisos/projets/programmation/name_conventions"
+										 #https://support.mozilla.org/en-US/kb/profiles-where-firefox-stores-user-data
+										 "/home/dionisos/.mozilla/firefox/cysf0lb1.dev-edition-default-1680100960076/places.sqlite"
+										 "/home/dionisos/.mozilla/firefox/cysf0lb1.dev-edition-default-1680100960076/favicons.sqlite"
+										)
 
-git_save
-rsync -au --progress "/home/dionisos/personnelle/records_and_save/git_save/" "$dest_dir"
+echo "$date" >> "$log_path"
 
-rsync -au --progress "/home/dionisos/.ssh" "$dest_dir"
-rsync -au --progress "/home/dionisos/organisation" "$dest_dir"
-rsync -au --progress "/home/dionisos/projets/RD/tiddly_perso" "$dest_dir"
-rsync -au --progress "/home/dionisos/logiciels/shaarli/data" "$dest_dir"
-rsync -au --progress "/home/dionisos/.emacs.d/private" "$dest_dir"
-rsync -au --progress "/home/dionisos/.aspell.fr.pws" "$dest_dir"
-rsync -au --progress "/home/dionisos/.aspell.en.pws" "$dest_dir"
-rsync -au --progress "/home/dionisos/.ssh" "$dest_dir"
+if git_save
+then
+		printf "git_save done\n\n" >> "$log_path"
+else
+		printf "git_save aborted (code:%s)\n\n" %? >> "$log_path"
+		echo "End: git_save aborted"
+		exit 1
+fi
 
-rsync -au --progress "/home/dionisos/personnelle/administratif" "$dest_dir"
-rsync -au --progress "/home/dionisos/projets/programmation/julia" "$dest_dir"
-rsync -au --progress "/home/dionisos/projets/programmation/python" "$dest_dir"
-rsync -au --progress "/home/dionisos/projets/programmation/unity" "$dest_dir"
-rsync -au --progress "/home/dionisos/projets/programmation/name_conventions" "$dest_dir"
+if [ "$command" == "pull" ]
+then
+		if [ "$last_from" == "$(uname -m)" ]
+		then
+				echo "Last pull transfer from same computer ($last_from), did you forget to do it on the other one ?"
+				exit 1
+		fi
+		echo "Transfer divers from '$last_from' (at $last_date) to '$(uname -n)'" >> "$log_path"
+		rsync -au --progress "$divers_dir" "$divers_local_dir"
+		echo "Transfer of divers completed"
+elif [ "$command" == "push" ]
+then
+		echo "Verifying everything is correctly pushed with git_save"
+fi
 
-#https://support.mozilla.org/en-US/kb/profiles-where-firefox-stores-user-data
-rsync -au --progress "/home/dionisos/.mozilla/firefox/cysf0lb1.dev-edition-default-1680100960076/places.sqlite" "$dest_dir"
-rsync -au --progress "/home/dionisos/.mozilla/firefox/cysf0lb1.dev-edition-default-1680100960076/favicons.sqlite" "$dest_dir"
+echo "$date" > "$date_path"
+uname -n > "$from_path"
+echo "End: everything seems ok"
