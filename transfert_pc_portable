@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+
 if [ $# -ne 1 ] || { [ "$1" != "push" ] && [ "$1" != "pull" ]; }
 then
 		echo "The first (and only) parameter should be 'push' or 'pull'"
@@ -25,6 +26,11 @@ git_dir="./git_save"
 log_path="./log.txt"
 from_path="./from.txt"
 date_path="./date.txt"
+
+function log() {
+		printf "%b\n" "$1" >> "$log_path"
+		printf "Log : %b\n" "$1"
+}
 
 if [[ ! -d "$divers_dir" ]]
 then
@@ -69,14 +75,20 @@ divers_path_to_save=("/home/dionisos/.ssh"
 										 "/home/dionisos/.mozilla/firefox/cysf0lb1.dev-edition-default-1680100960076/favicons.sqlite"
 										)
 
-echo "$date" >> "$log_path"
+log "$date"
+
+if [ "$command" == "pull" ]
+then
+		log "Pull transfer : from '$last_from' (at $last_date) to '$(uname -n)'"
+else
+		log "Push transfer : from '$(uname -n)'"
+fi
 
 if git_save
 then
-		printf "git_save done\n\n" >> "$log_path"
+		log "git_save done"
 else
-		printf "git_save aborted (code:%s)\n\n" %? >> "$log_path"
-		echo "End: git_save aborted"
+		log "End : git_save aborted (code:$?)\n"
 		exit 1
 fi
 
@@ -85,16 +97,23 @@ then
 		if [ "$last_from" == "$(uname -m)" ]
 		then
 				echo "Last pull transfer from same computer ($last_from), did you forget to do it on the other one ?"
+				log "Pull failed : Push then Pull from same computer"
 				exit 1
 		fi
-		echo "Transfer divers from '$last_from' (at $last_date) to '$(uname -n)'" >> "$log_path"
 		rsync -au --progress "$divers_dir" "$divers_local_dir"
-		echo "Transfer of divers completed"
+		log "Transfer of divers completed"
 elif [ "$command" == "push" ]
 then
-		echo "Verifying everything is correctly pushed with git_save"
+
+		for path in "${divers_path_to_save[@]}"
+		do
+				rsync -au --progress "$path" "$divers_dir"
+		done
+		rm "$git_dir"
+		rsync -au --progress "/home/dionisos/personnelle/records_and_save/git_save/" "$git_dir"
+		echo "Transfer of divers completed"
 fi
 
 echo "$date" > "$date_path"
 uname -n > "$from_path"
-echo "End: everything seems ok"
+log "End : everything seems ok\n"
