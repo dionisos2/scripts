@@ -107,10 +107,14 @@ then
 
 		for path in "${divers_path_to_save[@]}"
 		do
-				rsync -au --progress "$path" "$divers_dir"
+				if [ -e "$path$" ]
+				then
+						rsync -au --progress "$path" "$divers_dir"
+				else
+						echo "Skip (because not existing) : $path"
+				fi
 		done
-		rm "$git_dir"
-		rsync -au --progress "/home/dionisos/personnelle/records_and_save/git_save/" "$git_dir"
+		rsync -au --progress --delete "/home/dionisos/personnelle/records_and_save/git_save/" "$git_dir"
 		echo "Transfer of divers completed"
 fi
 
