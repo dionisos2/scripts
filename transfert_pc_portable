@@ -42,17 +42,17 @@ then
 		mkdir -p "$git_dir"
 fi
 
-if [[ ! -d "$log_path" ]]
+if [[ ! -f "$log_path" ]]
 then
 		touch "$log_path"
 fi
 
-if [[ ! -d "$from_path" ]]
+if [[ ! -f "$from_path" ]]
 then
 		echo "nobody" > "$from_path"
 fi
 
-if [[ ! -d "$date_path" ]]
+if [[ ! -f "$date_path" ]]
 then
 		echo "no date" > "$date_path"
 fi
