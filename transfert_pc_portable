@@ -27,6 +27,15 @@ log_path="$(readlink -f ./log.txt)"
 from_path="$(readlink -f ./from.txt)"
 date_path="$(readlink -f ./date.txt)"
 
+function remove_leading_slash () {
+	# You should not pass an array named "my_local_array" to this function (see: https://unix.stackexchange.com/questions/302578/circular-name-references-in-bash-shell-function-but-not-in-ksh)
+	local -n my_local_array=$1
+	for index in "${!my_local_array[@]}"
+	do
+		my_local_array[index]=$(readlink -f "${my_local_array[$index]}")
+	done
+}
+
 divers_path_to_save=("/home/dionisos/.ssh"
 										 "/home/dionisos/a_trier/"
 										 "/home/dionisos/logiciels/shaarli/data"
@@ -40,6 +49,8 @@ divers_path_to_save=("/home/dionisos/.ssh"
 										 "/home/dionisos/.mozilla/firefox/cysf0lb1.dev-edition-default-1680100960076/favicons.sqlite"
 										)
 
+remove_leading_slash divers_path_to_save
+
 divers_path_to_overwrite=("/home/dionisos/a_trier/"
 													"/home/dionisos/projets/programmation/julia"
 													"/home/dionisos/projets/programmation/python"
@@ -49,7 +60,10 @@ divers_path_to_overwrite=("/home/dionisos/a_trier/"
 													"/home/dionisos/.mozilla/firefox/cysf0lb1.dev-edition-default-1680100960076/favicons.sqlite"
 												 )
 
-contains () {
+remove_leading_slash divers_path_to_overwrite
+
+
+function contains () {
 	local element="$1"
 	shift # Shift element of $@ to the left
 	for el in "$@"
