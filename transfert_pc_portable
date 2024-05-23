@@ -1,70 +1,35 @@
 #!/usr/bin/env bash
 
 
-if [ $# -ne 1 ] || { [ "$1" != "push" ] && [ "$1" != "pull" ]; }
+if [[ $# -ne 1 ]] || { [[ "$1" != "push" ]] && [[ "$1" != "pull" ]]; }
 then
-		echo "The first (and only) parameter should be 'push' or 'pull'"
-		exit 1
+	echo "The first (and only) parameter should be 'push' or 'pull'"
+	exit 1
 else
-		command="$1"
+	command="$1"
 fi
 
-if [ -d "/mnt/dd/transferts" ]
+if [[ -d "/mnt/dd/transferts" ]]
 then
-		cd "/mnt/dd/transferts" || exit
+	cd "/mnt/dd/transferts" || exit
 else
-		echo "'/mnt/dd/transferts' not found, are the external disk mounted ?"
-		exit 1
+	echo "'/mnt/dd/transferts' not found, are the external disk mounted ?"
+	exit 1
 fi
 
 date="$(date "+%d-%m-%Y_%Hh%M")"
 
-divers_dir="./divers"
-divers_local_dir="/home/dionisos/téléchargements/transfer_$(date +%d-%m-%Y)/"
-git_dir="./git_save"
+divers_dir="$(readlink -f ./divers)"
+# divers_local_dir="/home/dionisos/téléchargements/transfer_$(date +%d-%m-%Y)/"
+git_dir="$(readlink -f ./git_save)"
 
-log_path="./log.txt"
-from_path="./from.txt"
-date_path="./date.txt"
-
-function log() {
-		printf "%b\n" "$1" >> "$log_path"
-		printf "Log : %b\n" "$1"
-}
-
-if [[ ! -d "$divers_dir" ]]
-then
-		mkdir -p "$divers_dir"
-fi
-
-if [[ ! -d "$git_dir" ]]
-then
-		mkdir -p "$git_dir"
-fi
-
-if [[ ! -f "$log_path" ]]
-then
-		touch "$log_path"
-fi
-
-if [[ ! -f "$from_path" ]]
-then
-		echo "nobody" > "$from_path"
-fi
-
-if [[ ! -f "$date_path" ]]
-then
-		echo "no date" > "$date_path"
-fi
-
-last_from="$(more $from_path)"
-last_date="$(more $date_path)"
-
+log_path="$(readlink -f ./log.txt)"
+from_path="$(readlink -f ./from.txt)"
+date_path="$(readlink -f ./date.txt)"
 
 divers_path_to_save=("/home/dionisos/.ssh"
+										 "/home/dionisos/a_trier/"
 										 "/home/dionisos/logiciels/shaarli/data"
-										 "/home/dionisos/.aspell.fr.pws"
-										 "/home/dionisos/.aspell.en.pws"
 										 "/home/dionisos/personnelle/administratif"
 										 "/home/dionisos/projets/programmation/julia"
 										 "/home/dionisos/projets/programmation/python"
@@ -75,47 +40,120 @@ divers_path_to_save=("/home/dionisos/.ssh"
 										 "/home/dionisos/.mozilla/firefox/cysf0lb1.dev-edition-default-1680100960076/favicons.sqlite"
 										)
 
+divers_path_to_overwrite=("/home/dionisos/a_trier/"
+													"/home/dionisos/projets/programmation/julia"
+													"/home/dionisos/projets/programmation/python"
+													"/home/dionisos/projets/programmation/unity"
+													"/home/dionisos/projets/programmation/name_conventions"
+													"/home/dionisos/.mozilla/firefox/cysf0lb1.dev-edition-default-1680100960076/places.sqlite"
+													"/home/dionisos/.mozilla/firefox/cysf0lb1.dev-edition-default-1680100960076/favicons.sqlite"
+												 )
+
+contains () {
+	local element="$1"
+	shift # Shift element of $@ to the left
+	for el in "$@"
+	do
+		[[ "$el" == "$element" ]] && return 0
+	done
+	return 1
+}
+
+function log() {
+	printf "%b\n" "$1" >> "$log_path"
+	printf "Log : %b\n" "$1"
+}
+
+function transfer() {
+	rsync -au --progress "$@"
+	# echo "rsync -au --progress $*"
+	error=$?
+	if [[ $error -ne 0 ]]
+	then
+		log "End : rsync aborted (code:$error)"
+		exit 2
+	fi
+}
+
+if [[ ! -d "$divers_dir" ]]
+then
+	mkdir -p "$divers_dir"
+fi
+
+if [[ ! -d "$git_dir" ]]
+then
+	mkdir -p "$git_dir"
+fi
+
+if [[ ! -f "$log_path" ]]
+then
+	touch "$log_path"
+fi
+
+if [[ ! -f "$from_path" ]]
+then
+	echo "nobody" > "$from_path"
+fi
+
+if [[ ! -f "$date_path" ]]
+then
+	echo "no date" > "$date_path"
+fi
+
+last_from="$(more "$from_path")"
+last_date="$(more "$date_path")"
+
 log "$date"
 
-if [ "$command" == "pull" ]
+if [[ "$command" == "pull" ]]
 then
-		log "Pull transfer : from '$last_from' (at $last_date) to '$(uname -n)'"
+	log "Pull transfer : from '$last_from' (at $last_date) to '$(uname -n)'"
 else
-		log "Push transfer : from '$(uname -n)'"
+	log "Push transfer : from '$(uname -n)'"
 fi
 
 if git_save
 then
-		log "git_save done"
+	log "git_save done"
 else
-		log "End : git_save aborted (code:$?)\n"
-		exit 1
+	log "End : git_save aborted (code:$?)\n"
+	exit 1
 fi
 
-if [ "$command" == "pull" ]
+if [[ "$command" == "pull" ]]
 then
-		if [ "$last_from" == "$(uname -m)" ]
+	for path in "${divers_path_to_save[@]}"
+	do
+		if contains "$path" "${divers_path_to_overwrite[@]}"
 		then
-				echo "Last pull transfer from same computer ($last_from), did you forget to do it on the other one ?"
-				log "Pull failed : Push then Pull from same computer"
-				exit 1
+			from="$divers_dir/$(basename "$path")"
+			to=$(dirname "$path")
+			if [[ -e "$from" ]]
+			then
+				log "Overwrite '$from' in directory '$to'"
+				transfer "$from" "$to"
+			else
+				log "Skip (because not existing) : $from"
+			fi
+		else
+			log "Skip (no overwrite) : $path"
 		fi
-		# rsync -au --progress "$divers_dir" "$divers_local_dir"
-		# log "Transfer of divers completed"
-elif [ "$command" == "push" ]
-then
-
-		for path in "${divers_path_to_save[@]}"
-		do
-				if [ -e "$path$" ]
-				then
-						rsync -au --progress "$path" "$divers_dir"
-				else
-						echo "Skip (because not existing) : $path"
-				fi
-		done
-		rsync -au --progress --delete "/home/dionisos/personnelle/records_and_save/git_save/" "$git_dir"
-		echo "Transfer of divers completed"
+	done
+	log "Pull completed"
+else
+	for path in "${divers_path_to_save[@]}"
+	do
+		if [[ -e "$path" ]]
+		then
+			log "Transfer '$path' to directory '$divers_dir'"
+			transfer "$path" "$divers_dir"
+		else
+			log "Skip (because not existing) : $path"
+		fi
+	done
+	log "Transfer of divers completed"
+	transfer --delete "/home/dionisos/personnelle/records_and_save/git_save/" "$git_dir"
+	log "Transfer of git_save completed"
 fi
 
 echo "$date" > "$date_path"

@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+if [[ -f "./get_all_config" ]]
+then
+	./get_all_config
+else
+	echo "No get_all_config file : Nothing to do"
+fi

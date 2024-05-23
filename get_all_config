@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
-cp ~/.config/lf/lfrc ~/scripts/config/lf/
-cp ~/.config/qtile/config.py ~/scripts/config/qtile/
-cp ~/.config/qtile/autostart.sh ~/scripts/config/qtile/
+echo "get config files in '~/script'"
+rsync -au --progress ~/.config/lf/lfrc ~/scripts/config/lf/
+rsync -au --progress ~/.config/qtile/config.py ~/scripts/config/qtile/
+rsync -au --progress ~/.config/qtile/autostart.sh ~/scripts/config/qtile/
