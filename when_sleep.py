@@ -1,8 +1,9 @@
 #!/usr/bin/env python
 
-from plumbum import cli, local # See https://plumbum.readthedocs.io/en/latest/cli.html
-from datetime import datetime
 import json
+from datetime import datetime
+from plumbum import cli, local  # See https://plumbum.readthedocs.io/en/latest/cli.html
+
 
 class WhenSleep(cli.Application):
 	"""
@@ -12,9 +13,11 @@ class WhenSleep(cli.Application):
 	dates_count = cli.SwitchAttr(["n", "count"], int, default=6, help="number of dates to find")
 	date_key = "__REALTIME_TIMESTAMP"
 
-	def main(self):
+	def __init__(self, executable):
+		super().__init__(executable)
 		self.journalctl = local["journalctl"]
 
+	def main(self, *args):
 		# journalctl --no-pager -r -n 6 -o json …
 		basics_options = ["--no-pager", "-r", "-n", f"{self.dates_count}", "-o", "json"]
 
@@ -23,11 +26,11 @@ class WhenSleep(cli.Application):
 		# journalctl --no-pager -r -n 6 -o json -u "systemd-suspend" --grep "Finished"
 		systemd_suspend_wake_up = self.run_journalctl(basics_options + ["-u", "systemd-suspend", "--grep", "Finished"], "systemd_suspend wake_up")
 		# journalctl --no-pager -r -n 6 -o json -u "systemd-suspend" --grep "Entering"
-		systemd_suspend_sleep = self.run_journalctl(basics_options + ["-u", "systemd-suspend", "--grep", "Entering"], "systemd_suspend sleep")
+		systemd_suspend_sleep = self.run_journalctl(basics_options + ["-u", "systemd-suspend", "--grep", "Starting"], "systemd_suspend sleep")
+		# systemd_suspend_sleep = []
 		# journalctl --no-pager -r -n 6 -o json --grep "SYSTEM_BOOT"
 		# system_boot = self.run_journalctl(basics_options + ["--grep", "SYSTEM_BOOT"], "boot")
-		system_boot = [] # Don’t work anymore for unknown reason
-
+		system_boot = []  # Don’t work anymore for unknown reason
 
 		log_list = systemd_poweroff + systemd_suspend_wake_up + systemd_suspend_sleep + system_boot
 		log_list = self.sort_by_date(log_list)
@@ -37,7 +40,7 @@ class WhenSleep(cli.Application):
 	def run_journalctl(self, options, name):
 		print(options)
 		result = self.journalctl(options)
-		result = "[" + ",".join(result.split("\n")[:-1]) + "]" # Because it somehow doesn’t format it as a json list by default
+		result = "[" + ",".join(result.split("\n")[:-1]) + "]"  # Because it somehow doesn’t format it as a json list by default
 		result = json.loads(result)
 		for log in result:
 			log["name"] = name
@@ -56,11 +59,12 @@ class WhenSleep(cli.Application):
 
 		result = f"{date_str} : {name} : {message}"
 
-
 		return result
 
-if __name__ == "__main__":
-	WhenSleep.run()
 
 def test(argv=["plop"]):
 	WhenSleep.run(argv, False)
+
+
+if __name__ == "__main__":
+	WhenSleep.run()
