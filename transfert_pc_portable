@@ -75,6 +75,7 @@ function log() {
 }
 
 function transfer() {
+	mkdir -p "$2"
 	rsync -au --progress "$@"
 	# echo "rsync -au --progress $*"
 	error=$?
