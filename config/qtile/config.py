@@ -25,7 +25,7 @@
 # SOFTWARE.
 
 from libqtile.config import Key, Screen, Group, Drag, Click, Match
-from libqtile.command import lazy
+from libqtile.lazy import lazy
 from libqtile import layout, bar, widget, hook
 import subprocess
 import os
@@ -134,15 +134,15 @@ keys = [
 groups = [
   Group("a"),
   Group("u"),
-  Group("i", matches=[Match(wm_class=["whats-app-nativefier-7bbd2c", "Skype", "Pidgin", "Hexchat"])]),
-  Group("e", matches=[Match(wm_class=["Element"])]),
+  Group("i"),  # , matches=[Match(wm_class=["whats-app-nativefier-7bbd2c", "Skype", "Pidgin", "Hexchat"])]),
+  Group("e"),  # , matches=[Match(wm_class=["Element"])]),
   Group("c"),
 ]
 
 
 keybings = "auiec"
 
-lazy.group["c"].matches([Match(wm_class=["Firefox"])])
+lazy.group["c"].matches([Match(wm_class="Firefox")])
 
 for index, group in enumerate(groups):
   keys.extend([
@@ -201,7 +201,7 @@ mouse = [
 ]
 
 dgroups_key_binder = None
-dgroups_app_rules = []
+dgroups_app_rules = []  # type: list
 main = None
 follow_mouse_focus = True
 bring_front_click = False
