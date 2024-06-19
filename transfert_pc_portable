@@ -32,34 +32,30 @@ function remove_leading_slash () {
 	local -n my_local_array=$1
 	for index in "${!my_local_array[@]}"
 	do
-		my_local_array[index]=$(readlink -f "${my_local_array[$index]}")
+		if [ ${my_local_array[index]: -1} == "/" ]
+		then
+			my_local_array[index]=${my_local_array[index]::-1}
+		fi
 	done
 }
 
 divers_path_to_save=("/home/dionisos/.ssh"
-										 "/home/dionisos/a_trier/"
 										 "/home/dionisos/logiciels/shaarli/data"
 										 "/home/dionisos/personnelle/administratif"
-										 "/home/dionisos/projets/programmation/julia"
-										 "/home/dionisos/projets/programmation/python"
-										 "/home/dionisos/projets/programmation/unity"
-										 "/home/dionisos/projets/programmation/name_conventions"
-										 #https://support.mozilla.org/en-US/kb/profiles-where-firefox-stores-user-data
-										 "/home/dionisos/.mozilla/firefox/cysf0lb1.dev-edition-default-1680100960076/places.sqlite"
-										 "/home/dionisos/.mozilla/firefox/cysf0lb1.dev-edition-default-1680100960076/favicons.sqlite"
 										)
 
-remove_leading_slash divers_path_to_save
 
 divers_path_to_overwrite=("/home/dionisos/a_trier/"
 													"/home/dionisos/projets/programmation/julia"
 													"/home/dionisos/projets/programmation/python"
 													"/home/dionisos/projets/programmation/unity"
 													"/home/dionisos/projets/programmation/name_conventions"
+													#https://support.mozilla.org/en-US/kb/profiles-where-firefox-stores-user-data
 													"/home/dionisos/.mozilla/firefox/cysf0lb1.dev-edition-default-1680100960076/places.sqlite"
 													"/home/dionisos/.mozilla/firefox/cysf0lb1.dev-edition-default-1680100960076/favicons.sqlite"
 												 )
 
+remove_leading_slash divers_path_to_save
 remove_leading_slash divers_path_to_overwrite
 
 
@@ -79,6 +75,7 @@ function log() {
 }
 
 function transfer() {
+	mkdir -p "$2"
 	rsync -au --progress "$@"
 	# echo "rsync -au --progress $*"
 	error=$?
@@ -136,26 +133,28 @@ fi
 
 if [[ "$command" == "pull" ]]
 then
-	for path in "${divers_path_to_save[@]}"
+	for path in "${divers_path_to_overwrite[@]}"
 	do
-		if contains "$path" "${divers_path_to_overwrite[@]}"
+		from="$divers_dir/$(basename "$path")"
+		to=$(dirname "$path")
+		if [[ -e "$from" ]]
 		then
-			from="$divers_dir/$(basename "$path")"
-			to=$(dirname "$path")
-			if [[ -e "$from" ]]
-			then
-				log "Overwrite '$from' in directory '$to'"
-				transfer "$from" "$to"
-			else
-				log "Skip (because not existing) : $from"
-			fi
+			log "Overwrite '$from' in directory '$to'"
+			transfer "$from" "$to"
 		else
-			log "Skip (no overwrite) : $path"
+			log "Skip (because not existing) : $from"
 		fi
 	done
+
+	for path in "${divers_path_to_save[@]}"
+	do
+		log "Skip (no overwrite) : $path"
+	done
+
 	log "Pull completed"
 else
-	for path in "${divers_path_to_save[@]}"
+	all_path=("${divers_path_to_save[@]}" "${divers_path_to_overwrite[@]}")
+	for path in "${all_path[@]}"
 	do
 		if [[ -e "$path" ]]
 		then
