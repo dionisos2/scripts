@@ -92,15 +92,16 @@ keys = [
   # Unsplit = 1 window displayed, like Max layout, but still with
   # multiple stack panes
     Key([mod, "shift"], "Return", lazy.layout.toggle_split()),
-  Key([mod], "Return", lazy.spawn("alacritty")),
+  Key([mod], "Return", lazy.spawn("terminator")),
   Key([mod, "control"], "f", lazy.spawn("qutebrowser")),
   Key([mod], "t", lazy.spawn("rofi -show run")),
+	Key([mod, "control"], "t", lazy.spawn("rofi -show combi")),
   Key([mod], "o", lazy.spawn("dunstctl history-pop")),
   Key([mod], "k", lazy.spawn("dunstctl close-all")),
   Key([mod, "control"], "o", lazy.spawn("dunstctl close")),
   Key([mod, "control"], "h", lazy.spawn("hexchat")),
   Key([mod, "control"], "c", lazy.spawn("element-desktop")),
-  Key([mod, "control"], "t", lazy.spawn("gnome-clocks")),
+  # Key([mod, "control"], "t", lazy.spawn("gnome-clocks")),
   Key([mod, "control"], "p", lazy.spawn("firefox --private-window")),
   Key([mod, "control"], "e", lazy.spawn("emacsclient -c")),
   Key([mod, "control"], "m", lazy.spawn("smplayer")),

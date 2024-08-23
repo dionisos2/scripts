@@ -46,14 +46,14 @@ map f :fzf_jump
 
 # preview
 
-set previewer ctpv
-set cleaner ctpvclear
-&ctpv -s $id
-&ctpvquit $id
+# set previewer ctpv
+# set cleaner ctpvclear
+# &ctpv -s $id
+# &ctpvquit $id
 
-cmd clean_cache ${{
-clean_lf_cache
-}}
+# cmd clean_cache ${{
+# clean_lf_cache
+# }}
 
 cmd on-quit :clean_cache
 
@@ -79,6 +79,7 @@ map <a-x> read
 map <c-f> search
 map <a-f> filter
 map <c-v> push :glob-select<space>
+map <a-v> unselect
 
 map gm cd /mnt/
 map g/ cd /
@@ -145,7 +146,7 @@ set ifs "\n"
 set scrolloff 10
 
 # Use the `dim` attribute instead of underline for the cursor in the preview pane
-set cursorpreviewfmt "\033[7;2m"
+# set cursorpreviewfmt "\033[7;2m"
 
 # use enter for shell commands
 map S shell

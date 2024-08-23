@@ -1,14 +1,33 @@
-xrandr --output HDMI1 --auto
-xrandr --output HDMI1 --off
+! Écrans
 
-xrandr --output LVDS1 --mode 1366x768 //récupération de la résolution sur le portable
-xrandr --screen 0 //list possible mode
-xrandr --output HDMI1 --mode 1600x1200 //change mode
+!! Xorg
+
+GUI : `lxrandr`, `arandr`
+
+; `xrandr`
+: Voir les écrans et leurs possibles résolutions.
+; `xrandr --auto`
+: Active toutes les sorties avec leur mode par défaut.
+; `xrandr --output HDMI-1 --auto`
+: Active la sortie HDMI-1 avec son mode par défaut.
+; `xrandr --output HDMI-1 --off`
+: Désactive la sorite HDMI-1.
+; `xrandr --output eDP-1 --mode 1366x768
+: Changer la résolution pour la sortie eDP-1 (PC portable)
+; `xrandr --screen 0`
+: Lister les écrans actifs avec leur mode
+; `xrandr --output eDP-1 --brightness 1.5`
+: Changer la luminosité pour eDP-1
 
 
-pc salon:
-arand → 1360X768 pour les deux écrans et les mettre ensembles
-puis redémarrer qtile(control-windows-r)
-puis pavucontrol → configuration → HDMI machin
 
-xrandr --output VGA-0 --brightness 0.7
+! Son
+
+# `pavucontrol`
+# Configuration
+# Digital Stereo (HDMI) Ouput
+
+! Écran coupé
+
+# 1360X768 pour les deux écrans (résolution commune maximale)
+# Redémarrer qtile(control-windows-r)

@@ -10,4 +10,4 @@ fi
 volume="$1"
 degree="$2"
 
-python -c "print('{0:.2f}'.format(($volume*0.8*$degree*10),2))"
+python3 -c "print('{0:.2f}'.format(($volume*0.8*$degree*10),2))"
