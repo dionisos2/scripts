@@ -109,7 +109,7 @@ keys = [
   # Key([mod, "control"], "c", lazy.spawn("/home/dionisos/scripts/com_software")),
     Key([], "Print", lazy.spawn("/home/dionisos/scripts/screenshot")),
   Key([mod], "m", lazy.spawn("/home/dionisos/scripts/dmenu-qtile-windowslist.py")),
-  Key([mod, "control"], "s", lazy.spawn("systemctl suspend")),
+  Key([mod, "control"], "s", lazy.spawn("loginctl suspend")),
   Key([mod, "shift"], "s", lazy.spawn("/home/dionisos/scripts/screensaver")),
   # Key([mod], "F9", lazy.function(lambda qtile, args=None: widgetGmail.tick())),
     Key([mod], "F8", lazy.spawn("/home/dionisos/scripts/pgm_keyboard/load")),
