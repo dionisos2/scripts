@@ -55,6 +55,14 @@ map f :fzf_jump
 # clean_lf_cache
 # }}
 
+cmd quit-and-cd &{{
+    pwd > "$LF_CD_FILE"
+    lf -remote "send $id quit"
+}}
+
+map q quit-and-cd
+map Q quit
+
 cmd on-quit :clean_cache
 
 map <c-p>
