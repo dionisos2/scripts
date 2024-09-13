@@ -138,10 +138,11 @@ groups = [
   Group("i"),  # , matches=[Match(wm_class=["whats-app-nativefier-7bbd2c", "Skype", "Pidgin", "Hexchat"])]),
   Group("e"),  # , matches=[Match(wm_class=["Element"])]),
   Group("c"),
+	Group("l"),
 ]
 
 
-keybings = "auiec"
+keybings = "auiecl"
 
 lazy.group["c"].matches([Match(wm_class="Firefox")])
 
