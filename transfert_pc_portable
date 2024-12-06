@@ -41,7 +41,6 @@ function remove_leading_slash () {
 
 divers_path_to_save=("/home/dionisos/.ssh"
 										 "/home/dionisos/logiciels/shaarli/data"
-										 "/home/dionisos/personnelle/administratif"
 										)
 
 
@@ -54,6 +53,7 @@ divers_path_to_overwrite=("/home/dionisos/a_trier/"
 													#https://support.mozilla.org/en-US/kb/profiles-where-firefox-stores-user-data
 													"/home/dionisos/.mozilla/firefox/cysf0lb1.dev-edition-default-1680100960076/places.sqlite"
 													"/home/dionisos/.mozilla/firefox/cysf0lb1.dev-edition-default-1680100960076/favicons.sqlite"
+													"/home/dionisos/personnelle/administratif"
 												 )
 
 remove_leading_slash divers_path_to_save
