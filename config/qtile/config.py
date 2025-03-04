@@ -92,7 +92,7 @@ keys = [
   # Unsplit = 1 window displayed, like Max layout, but still with
   # multiple stack panes
     Key([mod, "shift"], "Return", lazy.layout.toggle_split()),
-  Key([mod], "Return", lazy.spawn("alacritty")),
+  Key([mod], "Return", lazy.spawn("terminator")),
   Key([mod, "control"], "f", lazy.spawn("qutebrowser")),
   Key([mod], "t", lazy.spawn("rofi -show run")),
 	Key([mod, "control"], "t", lazy.spawn("rofi -show combi")),
