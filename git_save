@@ -20,7 +20,8 @@ do
 		cd "$dir" || exit 1
 		echo "$name"
 		dwim
-		xonsh -DPROMPT="{env_name}{BOLD_GREEN}{user}@{hostname} $name $index/$total{BOLD_BLUE} {cwd}{branch_color}{curr_branch: {}}{RESET} {BOLD_BLUE}{prompt_end}{RESET} "
+		# xonsh -DPROMPT="{env_name}{BOLD_GREEN}{user}@{hostname} $name $index/$total{BOLD_BLUE} {cwd}{branch_color}{curr_branch: {}}{RESET} {BOLD_BLUE}{prompt_end}{RESET} "
+		bash
 		(( "index+=1" ))
 
 		if [[ -f "/home/dionisos/abort_git_save" ]]
