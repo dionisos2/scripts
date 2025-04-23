@@ -135,7 +135,8 @@ class ConvertMovie(cli.Application):
 
             cmd = self.ffmpeg[args_list]
         else:
-            cmd = self.ffmpeg["-i", path, "-c:v", "libx264", "-preset", "veryfast", "-c:a", "mp3", f"{new_path}"]
+            # cmd = self.ffmpeg["-i", path, "-map", "0", "-dn", "-c:v", "libx264", "-preset", "veryfast", "-c:a", "mp3", f"{new_path}"]
+            cmd = self.ffmpeg["-fflags", "+genpts", "-i", path, "-map", "0", "-dn", "-c", "copy", f"{new_path}"]
 
         return (cmd, new_path)
 
