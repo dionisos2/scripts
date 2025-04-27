@@ -31,8 +31,8 @@ import subprocess
 import os
 import sys
 import time
-sys.path.append('/home/dionisos/projets/programmation/python/qtile/')
-from org_mode_widget import OrgMode
+# sys.path.append('/home/dionisos/projets/programmation/python/qtile/')
+# from org_mode_widget import OrgMode
 
 mod = "mod4"
 
@@ -53,8 +53,8 @@ def updateVolume(qtile, args=None):
 
 keys = [
   # Sound and Mpd
-    Key([], "XF86AudioRaiseVolume",
-        lazy.spawn("amixer sset Master 5%+"), lazy.function(updateVolume)),
+  Key([], "XF86AudioRaiseVolume",
+      lazy.spawn("amixer sset Master 5%+"), lazy.function(updateVolume)),
   Key([], "XF86AudioLowerVolume",
       lazy.spawn("amixer sset Master 5%-"), lazy.function(updateVolume)),
   Key([], "XF86AudioMute",
@@ -96,9 +96,9 @@ keys = [
   Key([mod, "control"], "f", lazy.spawn("qutebrowser")),
   Key([mod], "t", lazy.spawn("rofi -show run")),
 	Key([mod, "control"], "t", lazy.spawn("rofi -show combi")),
-	Key([mod], "o", lazy.spawn("dunstctl history-pop")),
-	Key([mod], "k", lazy.spawn("dunstctl close-all")),
-	Key([mod, "control"], "o", lazy.spawn("dunstctl close")),
+  Key([mod], "o", lazy.spawn("dunstctl history-pop")),
+  Key([mod], "k", lazy.spawn("dunstctl close-all")),
+  Key([mod, "control"], "o", lazy.spawn("dunstctl close")),
   Key([mod, "control"], "h", lazy.spawn("hexchat")),
   Key([mod, "control"], "c", lazy.spawn("element-desktop")),
   # Key([mod, "control"], "t", lazy.spawn("gnome-clocks")),
@@ -109,7 +109,7 @@ keys = [
   # Key([mod, "control"], "c", lazy.spawn("/home/dionisos/scripts/com_software")),
     Key([], "Print", lazy.spawn("/home/dionisos/scripts/screenshot")),
   Key([mod], "m", lazy.spawn("/home/dionisos/scripts/dmenu-qtile-windowslist.py")),
-  Key([mod, "control"], "s", lazy.spawn("systemctl suspend")),
+  Key([mod, "control"], "s", lazy.spawn("loginctl suspend")),
   Key([mod, "shift"], "s", lazy.spawn("/home/dionisos/scripts/screensaver")),
   # Key([mod], "F9", lazy.function(lambda qtile, args=None: widgetGmail.tick())),
     Key([mod], "F8", lazy.spawn("/home/dionisos/scripts/pgm_keyboard/load")),
@@ -157,7 +157,8 @@ for index, group in enumerate(groups):
 
 layouts = [
   layout.Max(),
-  layout.Stack(num_stacks=2)
+  layout.Stack(num_stacks=2),
+	layout.VerticalTile()
 ]
 
 
@@ -178,7 +179,7 @@ screens = [
         widget.Prompt(),
         widget.WindowName(),
         # widget.TextBox(),
-                OrgMode(),
+                # OrgMode(),
         # widget.Battery(format='[{char} {percent:2.0%}]'),
                 widgetVolume,
         # widgetGmail,
@@ -210,14 +211,14 @@ bring_front_click = False
 cursor_warp = False
 
 floating_layout = layout.Floating(float_rules=[
-	# Run the utility of `xprop` to see the wm class and name of an X client.
-	*layout.Floating.default_float_rules,
-	Match(wm_class='confirmreset'), # gitk
-	Match(wm_class='makebranch'), # gitk
-	Match(wm_class='maketag'), # gitk
-	Match(wm_class='ssh-askpass'), # ssh-askpass
-	Match(title='branchdialog'), # gitk
-	Match(title='pinentry'), # GPG key password entry
+  # Run the utility of `xprop` to see the wm class and name of an X client.
+  *layout.Floating.default_float_rules,
+  Match(wm_class='confirmreset'), # gitk
+  Match(wm_class='makebranch'), # gitk
+  Match(wm_class='maketag'), # gitk
+  Match(wm_class='ssh-askpass'), # ssh-askpass
+  Match(title='branchdialog'), # gitk
+  Match(title='pinentry'), # GPG key password entry
 ])
 
 # floating_layout = layout.Floating(float_rules=[
