@@ -31,15 +31,15 @@ import subprocess
 import os
 import sys
 import time
-# sys.path.append('/home/dionisos/projets/programmation/python/qtile/')
-# from org_mode_widget import OrgMode
+sys.path.append('/home/dionisos/projets/programmation/python/qtile/')
+from org_mode_widget import OrgMode
 
 mod = "mod4"
 
 # gmail_password = subprocess.getoutput("/home/dionisos/scripts/.psw -p gmail")
 # widgetGmail = widget.GmailChecker(username="denis.baudouin@gmail.com", password=gmail_password, fmt="{%s}", status_only_unseen=True, update_interval=67)
 widgetVolume = widget.Volume(update_interval=200)
-
+widgetOrgMode = OrgMode()
 
 @hook.subscribe.startup_once
 def autostart():
@@ -179,15 +179,16 @@ screens = [
         widget.Prompt(),
         widget.WindowName(),
         # widget.TextBox(),
-                # OrgMode(),
+        # OrgMode(),
+        widgetOrgMode,
         # widget.Battery(format='[{char} {percent:2.0%}]'),
-                widgetVolume,
+        widgetVolume,
         # widgetGmail,
-                widget.Systray(),
+        widget.Systray(),
         # widget.Wlan(),
-                widget.Clock(format='%d-%m-%Y %a %R'),
+        widget.Clock(format='%d-%m-%Y %a %R'),
         # widget.Notify(default_timeout=10)
-            ],
+      ],
       24,
     ),
   ),
@@ -213,12 +214,12 @@ cursor_warp = False
 floating_layout = layout.Floating(float_rules=[
   # Run the utility of `xprop` to see the wm class and name of an X client.
   *layout.Floating.default_float_rules,
-  Match(wm_class='confirmreset'), # gitk
-  Match(wm_class='makebranch'), # gitk
-  Match(wm_class='maketag'), # gitk
-  Match(wm_class='ssh-askpass'), # ssh-askpass
-  Match(title='branchdialog'), # gitk
-  Match(title='pinentry'), # GPG key password entry
+  Match(wm_class='confirmreset'),  # gitk
+  Match(wm_class='makebranch'),  # gitk
+  Match(wm_class='maketag'),  # gitk
+  Match(wm_class='ssh-askpass'),  # ssh-askpass
+  Match(title='branchdialog'),  # gitk
+  Match(title='pinentry'),  # GPG key password entry
 ])
 
 # floating_layout = layout.Floating(float_rules=[
