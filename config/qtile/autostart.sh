@@ -2,3 +2,4 @@
 
 copyq &
 dunst &
+mcron &
