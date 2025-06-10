@@ -32,14 +32,16 @@ import os
 import sys
 import time
 sys.path.append('/home/dionisos/projets/programmation/python/qtile/')
-from org_mode_widget import OrgMode
+# from org_mode_widget import OrgMode
+
+# os.environ['PATH'] = '/home/dionisos/.local/bin:' + os.environ.get('PATH', '')
 
 mod = "mod4"
 
 # gmail_password = subprocess.getoutput("/home/dionisos/scripts/.psw -p gmail")
 # widgetGmail = widget.GmailChecker(username="denis.baudouin@gmail.com", password=gmail_password, fmt="{%s}", status_only_unseen=True, update_interval=67)
 widgetVolume = widget.Volume(update_interval=200)
-widgetOrgMode = OrgMode()
+# widgetOrgMode = OrgMode()
 
 @hook.subscribe.startup_once
 def autostart():
@@ -107,9 +109,9 @@ keys = [
   Key([mod, "control"], "m", lazy.spawn("smplayer")),
   Key([mod, "control"], "k", lazy.spawn("keepassxc")),
   # Key([mod, "control"], "c", lazy.spawn("/home/dionisos/scripts/com_software")),
-    Key([], "Print", lazy.spawn("/home/dionisos/scripts/screenshot")),
+  Key([], "Print", lazy.spawn("/home/dionisos/scripts/screenshot")),
   Key([mod], "m", lazy.spawn("/home/dionisos/scripts/dmenu-qtile-windowslist.py")),
-  Key([mod, "control"], "s", lazy.spawn("loginctl suspend")),
+  Key([mod, "control"], "s", lazy.spawn("systemctl suspend")),
   Key([mod, "shift"], "s", lazy.spawn("/home/dionisos/scripts/screensaver")),
   # Key([mod], "F9", lazy.function(lambda qtile, args=None: widgetGmail.tick())),
     Key([mod], "F8", lazy.spawn("/home/dionisos/scripts/pgm_keyboard/load")),
@@ -180,7 +182,7 @@ screens = [
         widget.WindowName(),
         # widget.TextBox(),
         # OrgMode(),
-        widgetOrgMode,
+        # widgetOrgMode,
         # widget.Battery(format='[{char} {percent:2.0%}]'),
         widgetVolume,
         # widgetGmail,

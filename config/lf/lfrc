@@ -46,14 +46,14 @@ map f :fzf_jump
 
 # preview
 
-# set previewer ctpv
-# set cleaner ctpvclear
-# &ctpv -s $id
-# &ctpvquit $id
+set previewer /home/dionisos/logiciels/ctpv/ctpv
+set cleaner /home/dionisos/logiciels/ctpv/ctpvclear
+&/home/dionisos/logiciels/ctpv/ctpv -s $id
+&/home/dionisos/logiciels/ctpv/quit/ctpvquit $id
 
-# cmd clean_cache ${{
-# clean_lf_cache
-# }}
+cmd clean_cache ${{
+ # clean_lf_cache
+}}
 
 cmd quit-and-cd &{{
     pwd > "$LF_CD_FILE"
@@ -77,6 +77,7 @@ map d up
 map s down
 map t updir
 map r open
+map gp bottom
 
 map <a-d> up
 map <a-s> down
