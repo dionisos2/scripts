@@ -3,4 +3,5 @@
 /home/dionisos/scripts/pgm_keyboard/load
 copyq &
 dunst &
-mcron &
+# mcron &
+# nm-applet $
