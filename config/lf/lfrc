@@ -46,13 +46,13 @@ map f :fzf_jump
 
 # preview
 
-set previewer /home/dionisos/logiciels/ctpv/ctpv
-set cleaner /home/dionisos/logiciels/ctpv/ctpvclear
-&/home/dionisos/logiciels/ctpv/ctpv -s $id
-&/home/dionisos/logiciels/ctpv/quit/ctpvquit $id
+set previewer ctpv
+set cleaner ctpvclear
+&ctpv -s $id
+&ctpvquit $id
 
 cmd clean_cache ${{
- # clean_lf_cache
+ /home/dionisos/scripts/clean_lf_cache
 }}
 
 cmd quit-and-cd &{{
