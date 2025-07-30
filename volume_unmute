@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
 amixer sset Master unmute
-amixer sset Headphone unmute
+amixer sset Speaker unmute

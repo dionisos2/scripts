@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+is_off="$(amixer sget Speaker | grep off)"
+
+if [ "$is_off" = "" ]
+then
+	volume_mute
+else
+	volume_unmute
+fi
+

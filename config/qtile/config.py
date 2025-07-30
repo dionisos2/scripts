@@ -61,7 +61,7 @@ keys = [
 	# Sound and Mpd
 	Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer sset Master 5%+"), lazy.function(updateVolume)),
 	Key([], "XF86AudioLowerVolume", lazy.spawn("amixer sset Master 5%-"), lazy.function(updateVolume)),
-	Key([], "XF86AudioMute", lazy.spawn("amixer sset Master toggle"), lazy.function(updateVolume)),
+	Key([], "XF86AudioMute", lazy.spawn("/home/dionisos/scripts/volume_toggle"), lazy.function(updateVolume)),
 
 	# Switch between windows in current stack pane
 	Key([mod], "s", lazy.layout.down()),
