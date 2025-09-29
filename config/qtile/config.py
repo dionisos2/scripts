@@ -71,8 +71,14 @@ keys = [
 	Key([mod, "shift"], "v", lazy.window.toggle_fullscreen()),
 	
 	# size
-	Key([mod, "shift"], "Right", lazy.layout.increase_ratio()),
-	Key([mod, "shift"], "Left", lazy.layout.decrease_ratio()),
+	# Key([mod, "shift"], "Right", lazy.layout.increase_ratio()),
+	# Key([mod, "shift"], "Left", lazy.layout.decrease_ratio()),
+	Key([mod, "shift"], "Left", lazy.layout.grow_left(), desc="Grow window to the left"),
+  Key([mod, "shift"], "Right", lazy.layout.grow_right(), desc="Grow window to the right"),
+  Key([mod, "shift"], "Down", lazy.layout.shrink(), desc="Grow window down"),
+	Key([mod, "shift"], "Up", lazy.layout.grow(), desc="Grow window down"),
+  Key([mod, "shift"], "m", lazy.layout.maximize(), desc="Grow window up"),
+	Key([mod, "shift"], "n", lazy.layout.normalize(), desc="Grow window up"),
 	
 	# Move windows up or down in current stack
 	Key([mod, "control"], "k", lazy.layout.shuffle_down()),
@@ -84,8 +90,7 @@ keys = [
 	Key([mod], "t", lazy.group.prev()),
 	Key([mod], "Right", lazy.group.next_window()),
 	Key([mod], "Left", lazy.group.prev_window()),
-	
-	
+
 	# Swap panes of split stack
 	# Key([mod, "shift"], "r", lazy.layout.rotate()),
 	Key([mod, "shift"], "r", lazy.layout.client_to_next()),
@@ -212,7 +217,7 @@ screens = [
 			# border_color=["ff00ff", "000000", "ff00ff", "000000"]	# Borders are magenta
 		),
 		background="#000000",
-		wallpaper=logo,
+		# wallpaper=logo,
 		wallpaper_mode="center",
 		# You can uncomment this variable if you see that on X11 floating resize/moving is laggy
 		# By default we handle these events delayed to already improve performance, however your system might still be struggling

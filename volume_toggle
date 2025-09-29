@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-is_off="$(amixer sget Speaker | grep off)"
+is_off="$(amixer sget Master | grep off)"
 
 if [ "$is_off" = "" ]
 then
