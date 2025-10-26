@@ -45,10 +45,12 @@ divers_path_to_save=("/home/dionisos/.ssh"
 
 
 divers_path_to_overwrite=("/home/dionisos/a_trier/"
-													"/home/dionisos/projets/programmation/julia"
-													"/home/dionisos/projets/programmation/python"
-													"/home/dionisos/projets/programmation/unity"
-													"/home/dionisos/projets/programmation/name_conventions"
+													"/home/dionisos/projets/"
+													"/home/dionisos/personnelle/"
+													# "/home/dionisos/projets/programmation/julia"
+													# "/home/dionisos/projets/programmation/python"
+													# "/home/dionisos/projets/programmation/unity"
+													# "/home/dionisos/projets/programmation/name_conventions"
 													"/home/dionisos/divertissements"
 													#https://support.mozilla.org/en-US/kb/profiles-where-firefox-stores-user-data
 													"/home/dionisos/.mozilla/firefox/cysf0lb1.dev-edition-default-1680100960076/places.sqlite"
