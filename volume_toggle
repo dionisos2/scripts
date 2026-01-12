@@ -4,8 +4,8 @@ is_off="$(amixer sget Master | grep off)"
 
 if [ "$is_off" = "" ]
 then
-	volume_mute
+	~/scripts/volume_mute
 else
-	volume_unmute
+	~/scripts/volume_unmute
 fi
 
