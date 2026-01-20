@@ -43,7 +43,7 @@ mod = "mod4"
 terminal = guess_terminal()
 # gmail_password = subprocess.getoutput("/home/dionisos/scripts/.psw -p gmail")
 # widgetGmail = widget.GmailChecker(username="denis.baudouin@gmail.com", password=gmail_password, fmt="{%s}", status_only_unseen=True, update_interval=67)
-widgetVolume = widget.Volume(update_interval=200)
+widgetVolume = widget.Volume(update_interval=1)
 # widgetOrgMode = OrgMode()
 
 @hook.subscribe.startup_once
@@ -53,7 +53,7 @@ def autostart():
 
 
 def updateVolume(qtile, args=None):
-	time.sleep(.100)
+	time.sleep(0.100)
 	widgetVolume.update()
 
 keys = [
