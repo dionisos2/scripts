@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+planning-kill
+systemctl --user stop languagetool.service
+systemctl --user stop tiddly_perso.service
+systemctl --user stop shaarli.service

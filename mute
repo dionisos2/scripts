@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+/home/dionisos/logiciels/myPyOrgMode/examples/notify_urgent_tasks.py --mute 120
+dunstctl close-all

@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+tmux attach-session -t planning
+
+# Utiliser 'C-b d' pour revenir en arrière

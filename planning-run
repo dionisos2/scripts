@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+if tmux has-session -t planning 2>/dev/null; then
+	echo "Planning already running"
+else
+	cd /home/dionisos/organisation/planning/
+	eval "$(ssh-agent -s)"
+	ssh-add ~/.ssh/id_rsa
+	tmux new-session -d -s planning
+	tmux send-keys -t planning 'run.sh' C-m
+fi
