@@ -5,3 +5,5 @@ isabelle
 builddir/
 save_valuable2
 borg_prune2
+plandex-cli
+plandex-server
