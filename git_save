@@ -9,6 +9,7 @@ git_dir=(
 		"/home/dionisos/scripts"
 		"/home/dionisos/projets/RD/tiddly_perso/"
 		"/home/dionisos/personnelle/private_config/"
+		"/home/dionisos/personnelle/administratif/"
 )
 
 total=${#git_dir[@]}
