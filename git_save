@@ -12,9 +12,6 @@ git_dir=(
 		"/home/dionisos/personnelle/administratif/"
 )
 
-total=${#git_dir[@]}
-index=1
-
 for dir in "${git_dir[@]}"
 do
 		name=$(basename "$dir")
