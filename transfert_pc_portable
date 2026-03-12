@@ -44,17 +44,25 @@ divers_path_to_save=("/home/dionisos/.ssh"
 										)
 
 
-divers_path_to_overwrite=("/home/dionisos/a_trier/"
-													"/home/dionisos/projets/"
+divers_path_to_overwrite=("/home/dionisos/a_trier"
+													"/home/dionisos/projets/RD_save"
+													"/home/dionisos/projets/résumés"
+													"/home/dionisos/projets/grand_projets"
+													"/home/dionisos/projets/jeux"
+													"/home/dionisos/projets/podman"
 													"/home/dionisos/projets/programmation/rust"
+													"/home/dionisos/projets/programmation/julia"
+													"/home/dionisos/projets/programmation/android"
+													"/home/dionisos/projets/programmation/nodewiki"
+													"/home/dionisos/projets/programmation/notebooks"
 													# "/home/dionisos/projets/programmation/python"
 													# "/home/dionisos/projets/programmation/unity"
 													"/home/dionisos/projets/programmation/name_conventions"
-													# "/home/dionisos/divertissements"
+													"/home/dionisos/divertissements/images"
+													"/home/dionisos/divertissements/histoires"
 													#https://support.mozilla.org/en-US/kb/profiles-where-firefox-stores-user-data
 													"/home/dionisos/.mozilla/firefox/cysf0lb1.dev-edition-default-1680100960076/places.sqlite"
 													"/home/dionisos/.mozilla/firefox/cysf0lb1.dev-edition-default-1680100960076/favicons.sqlite"
-													"/home/dionisos/personnelle/administratif"
 												 )
 
 remove_leading_slash divers_path_to_save
